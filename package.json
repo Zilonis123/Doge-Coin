@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/Zilonis123/remindr/issues"
   },
-  "homepage": "https://github.com/Zilonis123/remindr#readme"
+  "homepage": "https://github.com/Zilonis123/remindr#readme",
+  "dependencies": {
+    "discord.js": "^13.0.0-dev.t1628208261.a56ba09",
+    "dotenv": "^10.0.0",
+    "fs": "0.0.1-security"
+  }
 }

@@ -14,6 +14,7 @@ module.exports = {
             new MessageButton()
                 .setStyle('LINK')
                 .setLabel('Invite')
+                .author(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
                 .setURL('https://discord.com/api/oauth2/authorize?client_id=873122210750033920&permissions=2483285105&scope=bot%20applications.commands'),
         )
         message.channel.send({ embeds: [embed], components: [row] });

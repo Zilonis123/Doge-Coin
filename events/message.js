@@ -25,7 +25,7 @@ module.exports = {
 				const timeLeft = (expirationTime - now) / 1000;
 				return message.channel.send({ embeds: [new MessageEmbed()
 					.setColor('RED')
-					.setDescription(`${command.name} is on cooldown. Wait ${timeLeft.toFixed(1)} second(s) before using it again`)
+					.setDescription(`${command.name} is on cooldown.\nPlease wait ${timeLeft.toFixed(1)}second(s) before using it again`)
 					.setTitle('Cooldown')
 					.setFooter(message.author.tag)
 					.setTimestamp(),

@@ -15,6 +15,13 @@ module.exports = {
         const cmdName = args.shift().toLowerCase();
         const command = client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
         if(!command) return;
+		if (command.isReminder) {
+			if (schem) {
+				if (schem.OnlyAdmin === 'yes') {
+					if (!message.member.permissions.has(['MANAGE_SERVER'])) return message.channel.send(`You need \`MANAGE_SERVER\` to run this command`);
+				}
+			}
+		}
         if (!message.member.permissions.has(command.permissions || [])) return message.channel.send(`You need \`${command.permissions}\` to run this command`);
 		if (!message.channel.permissionsFor(message.guild.me).has(command.botPermissions || [])) return message.channel.send(`I dont have \`${command.botpermissions}\`permissions to run this command`);
 		if (!message.channel.permissionsFor(message.guild.me).has('EMBED_LINKS')) return message.channel.send('I dont have `EMBED_LINKS` permission to run this command');

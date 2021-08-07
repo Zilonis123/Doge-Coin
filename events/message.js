@@ -1,9 +1,15 @@
 const { Collection, MessageEmbed } = require('discord.js')
+const schema = require('../models/server');
 module.exports = {
-    name: 'message',
+    name: 'messageCreate',
     once: false,
     async execute(message, client) {
-        const prefix = process.env.PREFIX;
+		if (!message.guild) return;
+		const schem = await schema.findOne({ Guild: message.guild.id });
+		let prefix = process.env.PREFIX;
+		if (schem) {
+			 prefix = schem.Prefix;
+		}
         if (!message.content.startsWith(prefix)) return;
         const args = message.content.slice(prefix.length).split(/ +/);
         const cmdName = args.shift().toLowerCase();

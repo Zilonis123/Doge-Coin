@@ -36,7 +36,6 @@ module.exports = {
         const filter = m => m.author.id === message.author.id && (m.content.toLowerCase().includes('yes') || m.content.toLowerCase().includes('no'));
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 30000, errors: ['time'] }).catch((err) => {});
         if (!ans) return message.channel.send({ embeds: [failed] });
-        ans.delete();
         const adminOnly = ans.first().content;
 
         await msg.edit({ embeds: [prefi] })

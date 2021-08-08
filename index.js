@@ -1,6 +1,5 @@
 const { Client, Collection } = require('discord.js');
 require('dotenv').config();
-const mongo = require('./classes/mongo');
 const client = new Client({
 	intents: [
 		'GUILDS',
@@ -21,10 +20,12 @@ const client = new Client({
 	],
 	partials: ['MESSAGE', 'REACTION', 'CHANNEL'],
 });
-const mongoClient = new mongo(process.env.MONGO);
 
 client.commands = new Collection();
+client.slashCommands = new Collection();
 client.cooldowns = new Collection();
+
+module.exports = client
+
 require('./handler')(client);
 client.login(process.env.TOKEN);
-mongoClient.login();

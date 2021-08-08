@@ -1,23 +1,45 @@
-const { readdirSync } = require('fs');
+const { glob } = require("glob");
+const { promisify } = require("util");
+const globPromise = promisify(glob);
+
 module.exports = async (client) => {
-    // Normal commands
-    const commandFolders = readdirSync('./commands');
-    for(const folder of commandFolders) {
-        const commandFiles = readdirSync(`./commands/${folder}`);
-        for(const file of commandFiles) {
-            const command = require(`../commands/${folder}/${file}`);
-            client.commands.set(command.name.toLowerCase(), command);
+    // Commands
+    const commandFiles = await globPromise(`${process.cwd()}/commands/**/*.js`);
+    commandFiles.map((value) => {
+        const file = require(value);
+        const splitted = value.split("/");
+        const directory = splitted[splitted.length - 2];
+
+        if (file.name) {
+            const properties = { directory, ...file };
+            client.commands.set(file.name, properties);
         }
-    }
+    });
+
     // Events
-    const eventFiles = readdirSync('./events').filter(f => f.endsWith('.js'));
-    for (const file of eventFiles) {
-        const event = require(`../events/${file}`);
-        if (event.once) {
-            client.once(event.name, (...args) => event.execute(...args, client));
-        }
-        else {
-            client.on(event.name, (...args) => event.execute(...args, client));
-        }
-    }
-}
+    const eventFiles = await globPromise(`${process.cwd()}/events/*.js`);
+    eventFiles.map((value) => require(value));
+
+    // Slash Commands
+    return;
+    const slashCommands = await globPromise(
+        `${process.cwd()}/SlashCommands/*/*.js`
+    );
+
+    const arrayOfSlashCommands = [];
+    slashCommands.map((value) => {
+        const file = require(value);
+        if (!file?.name) return;
+        client.slashCommands.set(file.name, file);
+        arrayOfSlashCommands.push(file);
+    });
+    client.on("ready", async () => {
+        // Register for a single guild
+        await client.guilds.cache
+            .get("873965279665860628")
+            .commands.set(arrayOfSlashCommands);
+
+        // Register for all the guilds the bot is in
+        // await client.application.commands.set(arrayOfSlashCommands);
+    });
+};

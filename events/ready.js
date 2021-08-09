@@ -1,5 +1,5 @@
 const client = require('../index');
 client.on('ready', async() => {
     console.log(`${client.user.tag} is ready`);
-    client.user.setActivity('r!help | r!setup', { type: 'WATCHING' })
+    client.user.setActivity(`${process.env.PREFIX} help`, { type: 'WATCHING' })
 })

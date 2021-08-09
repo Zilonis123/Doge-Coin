@@ -2,8 +2,10 @@ const { Collection, MessageEmbed } = require('discord.js');
 const client = require('../index');
 
 client.on('messageCreate', async(message) => {
-	const prefix = process.env.PREFIX;
-	if (!message.content.startsWith(prefix)) return;
+	let prefix = process.env.PREFIX + ' ';
+	if (!message.content.toLowerCase().startsWith(prefix)) {
+		return;
+	}
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const cmdName = args.shift().toLowerCase();
 	const command = client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
@@ -22,15 +24,7 @@ client.on('messageCreate', async(message) => {
 		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 		if (now < expirationTime) {
 			const timeLeft = (expirationTime - now) / 1000;
-			return message.channel.send({ embeds: [new MessageEmbed()
-				.setColor('RED')
-				.setDescription(`${command.name} is on cooldown.\nPlease wait ${timeLeft.toFixed(1)}second(s) before using it again`)
-				.setTitle('Cooldown')
-				.setFooter(message.author.tag)
-				.setTimestamp(),
-				]
-			}
-			);
+			return message.reply(`Easier there, **${cmdName}** is on cooldown!`);
 		}
 	}
 	timestamps.set(message.author.id, now);

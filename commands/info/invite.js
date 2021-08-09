@@ -3,6 +3,7 @@ const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 module.exports = {
     name: 'invite',
     aliases: ['i'],
+    description: 'Get the invite for the bot',
     cooldown: 5,
     async execute(message) {
         const embed = new MessageEmbed()

@@ -1,10 +1,27 @@
 const { Collection, MessageEmbed } = require('discord.js');
 const client = require('../index');
+const schemas = require('../models/daily');
+const moment = require('moment')
 
 client.on('messageCreate', async(message) => {
 	let prefix = process.env.PREFIX + ' ';
 	if (!message.content.toLowerCase().startsWith(prefix)) {
 		return;
+	}
+	const isAllowed = await schemas.findOne({ User: message.author.id });
+	if (isAllowed) {
+		const start = client.daily.get(message.author.id);
+		if (start === 'start' || (start !== 'on' && start !== 'off')) {
+			client.daily.set(message.author.id, 'on');
+			function midnightTask() {
+				isAllowed.delete();
+				client.daily.set(message.author.id, 'off')
+			}
+			setTimeout(
+				midnightTask,
+				moment("24:00:00", "hh:mm:ss").diff(moment(), 'seconds')
+			);
+		}
 	}
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const cmdName = args.shift().toLowerCase();

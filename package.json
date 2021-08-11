@@ -12,6 +12,9 @@
   },
   "author": "Zilonis123",
   "license": "ISC",
+  "engines": {
+    "node": "16.6"
+  },
   "bugs": {
     "url": "https://github.com/Zilonis123/remindr/issues"
   },

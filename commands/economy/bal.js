@@ -13,12 +13,12 @@ module.exports = {
         try {
             const schem = await schema.findOne({ User: user.id });
             if(!schem) {
-                const sch = await create(message, 0, 0);
+                const sch = await create(message.author, 0, 0);
                 const embed = new MessageEmbed()
                     .setAuthor(`${user.username}'s balance`)
                     .setColor('YELLOW')
                     .addField('Wallet', `\`${sch.Wallet.toLocaleString()}\`💵`, true)
-                    .addField('Bank', `\`${sch.Bank.toLocaleString()}/${sch.BankMax.toLocaleString()}\`💳`, true);
+                    .addField('Bank', `\`${sch.Bank.toLocaleString()} || ${sch.BankMax.toLocaleString()}\`💳`, true);
                 return message.reply({ embeds: [embed] });
             }
             const embed = new MessageEmbed()

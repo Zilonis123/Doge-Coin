@@ -24,7 +24,7 @@ client.on('messageCreate', async(message) => {
 		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 		if (now < expirationTime) {
 			const timeLeft = (expirationTime - now) / 1000;
-			return message.reply(`Easier there, **${cmdName}** is on cooldown!`);
+			return message.reply(`Easier there, **${cmdName}** is on cooldown for ${timeLeft.toFixed(1)}s!`);
 		}
 	}
 	timestamps.set(message.author.id, now);

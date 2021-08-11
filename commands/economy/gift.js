@@ -14,7 +14,9 @@ module.exports = {
         }
         if (!args[0]) return message.reply('I can\'t give `nothing` to anyone! :angry:');
         const input = args[0];
-        if (Number.isInteger(input)) return message.reply('You can\'t gift anything else than money!')
+        const num = parseInt(args[0]);
+        if (Number.isInteger(num)) return message.reply('You can\'t gift anything else than money!');
+        if (input.includes(',') || input.includes('.')) return message.reply('Remove any commas / dots')
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
         if (!user) return message.reply(`Who do i give \`${input.toLocaleLowerCase()}\`<a:${coin.name}:${coin.id}> to?`);
         if (sch.Wallet < input) return message.reply('You don\'t have enough money in your wallet.. :sob:');

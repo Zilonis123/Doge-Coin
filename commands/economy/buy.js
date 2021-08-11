@@ -9,6 +9,7 @@ module.exports = {
     description: 'Buy something from the shop!',
     aliases: ['b'],
     async execute(message, args, client) {
+        if (message.author.id !== '530032883486687243') return message.reply('I\'m sorry but this command is getting fixed')
         const bruh = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577282621136907');
         const lol = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577305928888360');
         const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');
@@ -48,7 +49,7 @@ module.exports = {
             return message.reply(`You succsesfully bought ${itemEmoji} **${itemToBuy}** for \`${paying}\`<a:${coin.name}:${coin.id}>`)
         }
         data.Inventory[itemToBuy] = 1;
-        await data.save();
+        data.save();
         return message.reply(`You succsesfully bought ${itemEmoji} **${itemToBuy}** for \`${paying}\`<a:${coin.name}:${coin.id}>`)
         
     }

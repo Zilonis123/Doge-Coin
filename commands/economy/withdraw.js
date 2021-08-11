@@ -30,7 +30,7 @@ module.exports = {
         if (sch.Bank < input) return message.reply(`You don\'t have enough money in your bank.. <a:${lol.name}:${lol.id}>`);
         const bank = sch.Bank - parseInt(input);
         sch.Bank = bank;
-        sch.Wallet = parseInt(input);
+        sch.Wallet = sch.Wallet + parseInt(input);
         sch.save();
         message.reply(`Succsesfully withdrawed \`${input}\`<a:${coin.name}:${coin.id}> from your bank!`);
     }

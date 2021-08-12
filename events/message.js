@@ -36,7 +36,7 @@ client.on('messageCreate', async(message) => {
 	}
 	const now = Date.now();
 	const timestamps = cooldowns.get(command.name);
-	const cooldownAmount = (command.cooldown || 2000);
+	const cooldownAmount = (command.cooldown || 2) * 1000;
 	if (timestamps.has(message.author.id)) {
 		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 		if (now < expirationTime) {

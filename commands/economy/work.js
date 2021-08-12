@@ -5,7 +5,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
     name: 'work',
     description: 'Work if you are bored of begging',
-    cooldown: 3600000,
+    cooldown: 3600,
     async execute(message, args, client) {
         const lol = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577305928888360');
         const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');

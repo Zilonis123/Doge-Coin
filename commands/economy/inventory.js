@@ -22,7 +22,7 @@ module.exports = {
         }).join('\n');
         const embed = new MessageEmbed()
             .setColor('YELLOW')
-            .setAuthor(`${user.tag}'s Inventory`)
+            .setAuthor(`${user.username}'s Inventory`)
             .addField('Items :', `${mappedData}`);
         message.reply({ embeds: [embed] });
     }

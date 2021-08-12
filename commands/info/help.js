@@ -85,7 +85,7 @@ module.exports = {
                 );
             
             interaction.reply({ embeds: [embed], ephemeral: true })
-        }).catch((err) => {});
+        });
 
         collector.on('end', () => {
             initialMessage.edit({ components: components(true) })

@@ -3,6 +3,7 @@ const schema = require('../../models/wallet');
 const { MessageEmbed } = require('discord.js');
 const creates = require('../../daily create');
 const schemas = require('../../models/daily');
+const moment = require('moment');
 
 module.exports = {
     name: 'daily',
@@ -10,7 +11,7 @@ module.exports = {
     description: 'Get your daily money',
     async execute(message, args, client) {
         const isAllowed = await schemas.findOne({ User: message.author.id });
-        if (isAllowed) return message.reply('You can use this command at midnight');
+        if (isAllowed) return message.reply(`You can use this command after `);
         await creates(message.author);
         client.daily.set(message.author.id, 'start')
         const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');

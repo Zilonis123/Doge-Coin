@@ -40,7 +40,8 @@ client.on('messageCreate', async(message) => {
 	if (timestamps.has(message.author.id)) {
 		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 		if (now < expirationTime) {
-			return message.reply(`You will be able to use **${cmdName}** \`${moment(expirationTime).fromNow()}\``);
+			const timeLeft = (expirationTime - now) / 1000;
+			return message.reply(`You will be able to use **${cmdName}** \`${moment(expirationTime).fromNow()}\` or in \`${moment().seconds(timeLeft)}\``);
 		}
 	}
 	timestamps.set(message.author.id, now);

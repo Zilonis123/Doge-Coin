@@ -25,13 +25,13 @@ module.exports = {
             sch.Bank = 0;
             sch.Wallet = all;
             sch.save();
-            return message.reply(`Succsesfully withdrawed \`${lol}\`<a:${coin.name}:${coin.id}> from your bank!`);
+            return message.reply(`Succsesfully withdrawed \`${lol.toLocaleString()}\`<a:${coin.name}:${coin.id}> from your bank!`);
         }
         if (sch.Bank < input) return message.reply(`You don\'t have enough money in your bank.. <a:${lol.name}:${lol.id}>`);
         const bank = sch.Bank - parseInt(input);
         sch.Bank = bank;
         sch.Wallet = sch.Wallet + parseInt(input);
         sch.save();
-        message.reply(`Succsesfully withdrawed \`${input}\`<a:${coin.name}:${coin.id}> from your bank!`);
+        message.reply(`Succsesfully withdrawed \`${input.toLocaleString()}\`<a:${coin.name}:${coin.id}> from your bank!`);
     }
 }

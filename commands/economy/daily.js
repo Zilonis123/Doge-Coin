@@ -19,9 +19,9 @@ module.exports = {
         const sch = await schema.findOne({ User: message.author.id });
         if (!sch) {
             await create(message.author, 25000, 0);
-            return message.channel.send({ embeds: [new MessageEmbed().setColor('YELLOW').setDescription(`You got \`25000\`<a:${coin.name}:${coin.id}>\n\nCome back in ${moment().seconds(number).fromNow()}`).setAuthor(`${message.author.tag} here is your daily`)] });
+            return message.channel.send({ embeds: [new MessageEmbed().setColor('YELLOW').setDescription(`You got \`25,000\`<a:${coin.name}:${coin.id}>\n\nCome back in ${moment().seconds(number).fromNow()}`).setAuthor(`${message.author.tag} here is your daily`)] });
         }
-        message.channel.send({ embeds: [new MessageEmbed().setColor('YELLOW').setDescription(`You got \`25000\`<a:${coin.name}:${coin.id}>\n\nCome back in ${moment().seconds(number).fromNow()}`).setAuthor(`${message.author.tag} here is your daily`)] });
+        message.channel.send({ embeds: [new MessageEmbed().setColor('YELLOW').setDescription(`You got \`25,000\`<a:${coin.name}:${coin.id}>\n\nCome back in ${moment().seconds(number).fromNow()}`).setAuthor(`${message.author.tag} here is your daily`)] });
         sch.Wallet += 25000,
         sch.save();
     }

@@ -33,6 +33,6 @@ module.exports = {
             sche.save();
         }
 
-        message.reply(`Succsesfully gifted \`${gift}\`<a:${coin.name}:${coin.id}> to ${user}!`);
+        message.reply(`Succsesfully gifted \`${gift.toLocaleString()}\`<a:${coin.name}:${coin.id}> to ${user}!`);
     }
 }

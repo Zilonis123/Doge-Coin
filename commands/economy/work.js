@@ -36,7 +36,7 @@ module.exports = {
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 15000, errors: ['time'] }).catch((err) => {});
         if (!ans || ans.first().content.toLowerCase() !== text[job][random].toLowerCase()) {
             const bruh = Math.floor(Math.random() * 1000) + 1;
-            message.reply(`Bad work, you got \`${bruh}\`<a:${coin.name}:${coin.id}>`);
+            message.reply(`Bad work, you got \`${bruh.toLocaleString()}\`<a:${coin.name}:${coin.id}>`);
             const schem = await schema.findOne({ User: message.author.id });
             if (!schem) {
                 return create(message.author, bruh, 0);
@@ -45,7 +45,7 @@ module.exports = {
             schem.save();
             return;
         }
-        message.reply(`Good work soldier, you got \`15000\`<a:${coin.name}:${coin.id}>`);
+        message.reply(`Good work soldier, you got \`15,000\`<a:${coin.name}:${coin.id}>`);
         const sche = await schema.findOne({ User: message.author.id });
         if (!sche) {
             return create(message.author, 15000, 0);

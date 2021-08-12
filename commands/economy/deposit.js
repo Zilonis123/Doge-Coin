@@ -26,7 +26,7 @@ module.exports = {
             sch.Bank = all;
             sch.Wallet = 0;
             sch.save();
-            return message.reply(`Succsesfully deposited \`${lol}\`<a:${coin.name}:${coin.id}> into your bank!`);
+            return message.reply(`Succsesfully deposited \`${lol.toLocaleString()}\`<a:${coin.name}:${coin.id}> into your bank!`);
         }
         if (sch.Wallet < number) return message.reply(`You don\'t have enough money in your wallet.. <a:${lol.name}:${lol.id}>`);
         const bank = sch.Bank + parseInt(input);
@@ -34,6 +34,6 @@ module.exports = {
         sch.Bank = bank;
         sch.Wallet = sch.Wallet - input;
         sch.save();
-        message.reply(`Succsesfully deposited \`${input}\`<a:${coin.name}:${coin.id}> into your bank!`);
+        message.reply(`Succsesfully deposited \`${input.toLocaleString()}\`<a:${coin.name}:${coin.id}> into your bank!`);
     }
 }

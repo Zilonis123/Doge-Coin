@@ -66,7 +66,7 @@ module.exports = {
             const money = Math.floor(Math.random() * 5000) + 1;
             const num = Math.floor(Math.random() * Yesmessages.length);
             let msg = Yesmessages[num].message;
-            msg = msg.replace('{money}', `${money}`);
+            msg = msg.replace('{money}', `${money.toLocaleString()}`);
             const embed = new MessageEmbed()
                 .setColor('YELLOW')
                 .setAuthor(`${Yesmessages[num].name}`)

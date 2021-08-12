@@ -40,7 +40,7 @@ module.exports = {
                         .setColor('YELLOW')
                         .setDescription(chunking)
                         .setAuthor(`${message.guild.name} Leaderboard`)
-                        .setFooter('This is the Wallet not the NetWorth')
+                        .setFooter('This is the Wallet not the NetWorth\n\n')
                 )
             }
             pagination({
@@ -59,7 +59,7 @@ module.exports = {
                         .setColor('YELLOW')
                         .setDescription(chunking)
                         .setAuthor(`${message.guild.name} Leaderboard`)
-                        .setFooter('This is the Wallet not the NetWorth')
+                        .setFooter('This is the Wallet not the NetWorth\n\n')
                 ]
             })
         }

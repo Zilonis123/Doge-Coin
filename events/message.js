@@ -19,7 +19,7 @@ client.on('messageCreate', async(message) => {
 			}
 			setTimeout(
 				midnightTask,
-				moment("24:00:00", "hh:mm:ss").diff(moment(), 'seconds') * 1000;
+				moment("24:00:00", "hh:mm:ss").diff(moment(), 'seconds') * 1000
 			);
 		}
 	}

@@ -12,7 +12,7 @@ module.exports = {
             await create(message, 0, 0);
             return message.reply('You dont have money!');
         }
-        if (!args[0]) return message.reply('I can\'t give money to noone! :angry:');
+        if (!args[0]) return message.reply('You can\'t give money to noone! :angry:');
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         const input = args[1];
         const num = parseInt(args[1]);

@@ -1,13 +1,13 @@
 const { MessageEmbed } = require('discord.js');
 const schema = require('../../models/wallet');
-const paci = require('../../models/pacifist');
+const pacis = require('../../models/pacifist');
 
 module.exports = {
     name: 'rob',
     aliases: ['steal'],
     description: 'Steal someones cash',
     async execute(message, args, client) {
-        const paci = await paci.findOne({ User: message.author.id })
+        const paci = await pacis.findOne({ User: message.author.id })
         if (paci) return message.reply('You are in pacifist👨‍🦳 mode you cant rob anyone!')
         const sch = await schema.findOne({ User: message.author.id });
         const lol = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577305928888360');
@@ -15,8 +15,8 @@ module.exports = {
         if (!sch || sch.Wallet < 1000) return message.reply(`You need to have atleast \`1000\`<a:${coin.name}:${coin.id}> in your wallet!`);
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         if (!user || user.id === message.author.id) return message.reply(`<a:${lol.name}:${lol.id}> What are you gonna rob?`);
-        const paci = await paci.findOne({ User: user.id })
-        if (paci) return message.reply(`You can\'t rob ${user.username} because they are a hippy!`);
+        const pacic = await pacis.findOne({ User: user.id })
+        if (pacic) return message.reply(`You can\'t rob ${user.username} because they are a hippy!`);
 
         const userSch = await schema.findOne({ User: user.id });
         if (!userSch || userSch.Wallet === 0) return message.reply(`<a:${lol.name}:${lol.id}> That user has no money in their wallet!`);

@@ -17,7 +17,7 @@ module.exports = {
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         if (!user || user.id === message.author.id) return message.reply(`<a:${lol.name}:${lol.id}> What are you gonna rob?`);
         const pacic = await pacis.findOne({ User: user.id })
-        if (pacic) return message.reply(`You can\'t rob ${user.tag} because they are a hippy!`);
+        if (pacic) return message.reply(`You can\'t rob ${user} because they are a hippy!`);
 
         const userSch = await schema.findOne({ User: user.id });
         if (!userSch || userSch.Wallet === 0) return message.reply(`<a:${lol.name}:${lol.id}> That user has no money in their wallet!`);
@@ -28,7 +28,7 @@ module.exports = {
             userSch.Wallet += 1000;
             sch.save();
             userSch.save();
-            return message.reply(`<a:${lol.name}:${lol.id}> You gave ${user.tag} \`1000\`<a:${coin.name}:${coin.id}>`);
+            return message.reply(`<a:${lol.name}:${lol.id}> You gave ${user} \`1000\`<a:${coin.name}:${coin.id}>`);
         }
         const m = userSch.Wallet / 2
         const money = Math.floor(Math.random() * m) + 1;

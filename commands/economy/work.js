@@ -25,7 +25,7 @@ module.exports = {
                 'WE WIN WE WIN LETS GOOO'
             ]
         }
-        const type = Math.floor(Math.random() * 2);
+        const type = Math.floor(Math.random() * 3);
         if (type === 2) {
             function scramble(a) {
                 a = a.split("");

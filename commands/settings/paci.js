@@ -6,7 +6,6 @@ module.exports = {
     name: 'pacifist',
     description: 'Become a hippy',
     aliases: ['hippy'],
-    cooldown: 10,
     async execute(message, args, client) {
         const pacifi = await paci.findOne({ User: message.author.id });
         const get = client.hippy.get(message.author.id);

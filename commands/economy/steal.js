@@ -28,7 +28,7 @@ module.exports = {
             userSch.Wallet += 1000;
             sch.save();
             userSch.save();
-            return message.reply(`<a:${lol.name}:${lol.id}> You gave ${user.username} \`1000\`<a:${coin.name}:${coin.id}>`);
+            return message.reply(`<a:${lol.name}:${lol.id}> You gave ${user} \`1000\`<a:${coin.name}:${coin.id}>`);
         }
         const m = userSch.Wallet / 2
         const money = Math.floor(Math.random() * m) + 1;

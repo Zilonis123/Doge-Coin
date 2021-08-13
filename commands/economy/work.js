@@ -60,6 +60,7 @@ module.exports = {
                 .setColor('YELLOW')
                 .setAuthor(`You work as a ${job}`)
                 .addField('Unscramble this :', `\`${msgWord}\``, true);
+            message.reply({ embeds: [embed] })
             const filter = m => m.author.id === message.author.id && m.content.toLowerCase() === words[job][word].toLowerCase();
             const ans = await message.channel.awaitMessages({ filter, max: 1, time: 20000, errors: ['time'] }).catch((err) => {});
             if (!ans) return message.reply(`You failed! <a:${lol.name}:${lol.id}>`);

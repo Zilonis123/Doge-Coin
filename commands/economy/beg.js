@@ -24,6 +24,22 @@ module.exports = {
                 message: `<a:${troll.name}:${troll.id}>`
             },
             {
+                name: 'Emoji',
+                message: `:sob:`
+            },
+            {
+                name: 'Zombie',
+                message: `**Bruhhhhhhhhhhhhh...**`
+            },
+            {
+                name: 'POOP',
+                message: `**Comes out of a##**`
+            },
+            {
+                name: 'Kel8lus',
+                message: `Don\'t call me Kel8`
+            },
+            {
                 name: 'Subaru',
                 message: `eww, why would i give <a:${coin.name}:${coin.id}> to you, im subaru not a donor`,
             },

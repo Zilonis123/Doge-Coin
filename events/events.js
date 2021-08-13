@@ -24,6 +24,10 @@ client.on('messageCreate', async(message) => {
         {
             title: 'Doge is going to bite you',
             message: 'UwU please dont',
+        },
+        {
+            title: 'Your boss is demanding more..',
+            message: 'Work work work',
         }
     ];
     const num = Math.floor(Math.random() * text.length);
@@ -42,6 +46,7 @@ client.on('messageCreate', async(message) => {
         people.push(m.author.id)
     })
     collector.on('end', async(collected) => {
+        if (people.length < 1) return message.channel.send('Noone has participated! :sob:')
         let i = 1;
     
         const chunking = people.map((v) => `\`${i++}#\` <@${v}> `).join('\n\n');

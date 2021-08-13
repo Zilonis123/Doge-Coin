@@ -38,8 +38,16 @@ module.exports = {
                 message: `Wanna Netflix and chill? \`{money}\`<a:${coin.name}:${coin.id}>`,
             },
             {
+                name: 'A child',
+                message: `Take this \`{money}\`<a:${coin.name}:${coin.id}> you peace of shit! **You take the money and think where did this child learn this**`,
+            },
+            {
                 name: 'The news',
                 message: `**AUTO TUNE THIS ** \`{money}\`<a:${coin.name}:${coin.id}>`,
+            },
+            {
+                name: 'Sad guy',
+                message: `My wife just left me \`{money}\`<a:${coin.name}:${coin.id}> take it please dont become like me`,
             },
             {
                 name: 'Youtuber',
@@ -51,6 +59,10 @@ module.exports = {
                 I ain't the sharpest tool in the shed
                 She was looking kind of dumb with her finger and her thumb
                 In the shape of an "{money}" on her forehead`,
+            },
+            {
+                name: 'Rick Astley',
+                description: `Never gonna make you cry\nNever gonna say goodbye\nNever gonna give you \`{money}\`\nAnd hurt you`
             },
             {
                 name: 'A weird man',

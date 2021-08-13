@@ -26,7 +26,7 @@ module.exports = {
             ]
         }
         const type = Math.floor(Math.random() * 2) + 1;
-        if (type === 1) {
+        if (type === 2) {
             function scramble(a) {
                 a = a.split("");
                 for(var b = a.length - 1; 0 < b; b--) {

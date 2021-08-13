@@ -63,8 +63,7 @@ client.on('messageCreate', async(message) => {
             ]
         })
         for (msg of people) {
-            const indx = people.findIndex(msg);
-            if (indx === 0) mony += 1000;
+            if (collected.first().author.id === msg) mony += 1000;
             const sch = await schema.findOne({ User: msg });
             if (!sch) {
                 const usr = await message.guild.members.cache.get(msg);

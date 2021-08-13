@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const schema = require('discord.js');
+const schema = require('../../modles/wallet');
 
 module.exports = {
     name: 'gamble',

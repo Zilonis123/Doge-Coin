@@ -1,6 +1,7 @@
 const { Collection, MessageEmbed } = require('discord.js');
 const client = require('../index');
 const schemas = require('../models/daily');
+const hip = require('../models/resign as hippy');
 const moment = require('moment')
 
 client.on('messageCreate', async(message) => {
@@ -16,6 +17,22 @@ client.on('messageCreate', async(message) => {
 			function midnightTask() {
 				isAllowed.delete();
 				client.daily.set(message.author.id, 'off')
+			}
+			setTimeout(
+				midnightTask,
+				moment("24:00:00", "hh:mm:ss").diff(moment(), 'seconds') * 1000
+			);
+		}
+	}
+
+	const hippy = await hip.findOne({ User: message.author.id });
+	if (hippy) {
+		const start = client.hippy.get(message.author.id);
+		if (start === 'start' || (start !== 'on' && start !== 'off')) {
+			client.hippy.set(message.author.id, 'on');
+			function midnightTask() {
+				hippy.delete();
+				client.hippy.set(message.author.id, 'off')
 			}
 			setTimeout(
 				midnightTask,

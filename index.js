@@ -25,6 +25,7 @@ client.commands = new Collection();
 client.slashCommands = new Collection();
 client.cooldowns = new Collection();
 client.daily = new Collection();
+client.hippy = new Collection();
 client.config = require('./config.json');
 
 module.exports = client

@@ -7,7 +7,11 @@ const { pagination } = require('reconlx');
 client.on('messageCreate', async(message) => {
     const prefix = process.env.PREFIX + ' ';
     const random = Math.floor(Math.random() * 100);
-    if (random > 90 || !message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
+    const args = message.content.slice(prefix.length).split(/ +/);
+    const cmdName = args.shift().toLowerCase();
+    const command = client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
+    if (!command) return;
+    if (random < 90 || !message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
     const text = [
         {
             title: 'Boss karen has summoned',

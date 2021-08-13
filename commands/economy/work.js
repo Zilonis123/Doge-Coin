@@ -1,5 +1,5 @@
 const schema = require('../../models/wallet');
-const createWallet = require('../../wallet create');
+const create = require('../../wallet create');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
@@ -25,7 +25,53 @@ module.exports = {
                 'WE WIN WE WIN LETS GOOO'
             ]
         }
+        const type = Math.floor(Math.random() * 2) + 1;
+        if (type === 1) {
+            function scramble(a) {
+                a = a.split("");
+                for(var b = a.length - 1; 0 < b; b--) {
+                    var c = Math.floor(Math.random() * (b + 1));
+                    d = a[b];
+                    a[b] = a[c];
+                    a[c] = d
+                }
+                return a.join("")}
 
+            const words = {
+                miner: [
+                    'dogecoin',
+                    'mining',
+                    'coal',
+                    'rock',
+                    'cave',
+                    'torches',
+                ],
+                footballer: [
+                    'ball',
+                    'couch',
+                    'broken',
+                    'rain',
+                    'goal',
+                ]
+            }
+            const word = Math.floor(Math.random() * words[job].length);
+            const msgWord = await scramble(words[job][word]);
+            const embed = new MessageEmbed()
+                .setColor('YELLOW')
+                .setAuthor(`You work as a ${job}`)
+                .addField('Unscramble this :', `\`${msgWord}\``, true);
+            const filter = m => m.author.id === message.author.id && m.content.toLowerCase() === words[job][word].toLowerCase();
+            const ans = await message.channel.awaitMessages({ filter, max: 1, time: 20000, errors: ['time'] }).catch((err) => {});
+            if (!ans) return message.reply(`You failed! <a:${lol.name}:${lol.id}>`);
+            const mony = Math.floor(Math.random() * 5000) + 15000;
+            const sche = await schema.findOne({ User: message.author.id });
+            if (!sche) create(message.author, mony, 0);
+            if (sche) {
+                sche.Wallet += mony;
+                sche.save();
+            }
+            ans.first().reply(`Great job, you got \`${mony}\`<a:${coin.name}:${coin.id}>`);
+        }
         const random = Math.floor(Math.random() * text[job].length);
         const filter = m => m.author.id === message.author.id;
         const embed = new MessageEmbed()

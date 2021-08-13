@@ -6,6 +6,7 @@ module.exports = {
     name: 'rob',
     aliases: ['steal'],
     description: 'Steal someones cash',
+    cooldown: 60,
     async execute(message, args, client) {
         const paci = await pacis.findOne({ User: message.author.id })
         if (paci) return message.reply('You are in pacifist👨‍🦳 mode you cant rob anyone!')

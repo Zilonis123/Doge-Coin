@@ -21,7 +21,8 @@ module.exports = {
                 message.reply('You are nolonger a hippy!');
                 const hip = await hippy.create({
                     User: message.author.id
-                }).save();
+                });
+                hip.save();
                 client.hippy.set(message.author.id, 'start');
                 const start = client.hippy.get(message.author.id);
                 if (start === 'start' || (start !== 'on' && start !== 'off')) {
@@ -45,10 +46,12 @@ module.exports = {
         if (ans.first().content.toLowerCase().includes('no')) return message.reply('Ok you arent a hippy');
         const hipi = await paci.create({
             User: message.author.id
-        }).save();
+        });
+        hipi.save();
         const hippi = await hippy.create({
             User: message.author.id
-        }).save();
+        });
+        hippi.save();
         client.hippy.set(message.author.id, 'start');
         const start = client.hippy.get(message.author.id);
         if (start === 'start' || (start !== 'on' && start !== 'off')) {

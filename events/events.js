@@ -7,7 +7,7 @@ const { pagination } = require('reconlx');
 client.on('messageCreate', async(message) => {
     const prefix = process.env.PREFIX + ' ';
     const random = Math.floor(Math.random() * 100);
-    if (random < 75 || !message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
+    if (random > 75 || !message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
     const text = [
         {
             title: 'Boss karen has summoned',

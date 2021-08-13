@@ -42,7 +42,7 @@ module.exports = {
         const filter = m => m.author.id === message.author.id && (m.content.toLowerCase().includes('yes') || m.content.toLowerCase().includes('no'));
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 30000, errors: ['time'] }).catch((err) => {});
         if (!ans) return;
-        if (ans.first().toLowerCase().includes('no')) return message.reply('Ok you arent a hippy');
+        if (ans.first().content.toLowerCase().includes('no')) return message.reply('Ok you arent a hippy');
         const hipi = await paci.create({
             User: message.author.id
         }).save();

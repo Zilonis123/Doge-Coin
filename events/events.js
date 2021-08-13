@@ -48,6 +48,8 @@ client.on('messageCreate', async(message) => {
     collector.on('end', async(collected) => {
         if (people.length < 1) return message.channel.send('Noone has participated! :sob:')
         let i = 1;
+        let mony = 15000;
+        if (collected.size >= 10) mony += 2000;
     
         const chunking = people.map((v) => `\`${i++}#\` <@${v}> `).join('\n\n');
 
@@ -57,17 +59,19 @@ client.on('messageCreate', async(message) => {
                     .setColor('YELLOW')
                     .setDescription(chunking)
                     .setAuthor('Winners')
-                    .setFooter('Each won 15,000k')
+                    .setFooter(`Each won ${mony.toLocaleString()}\n1# place got 1k more`)
             ]
         })
         for (msg of people) {
+            const indx = people.findIndex(msg);
+            if (indx === 0) mony += 1000;
             const sch = await schema.findOne({ User: msg });
             if (!sch) {
                 const usr = await message.guild.members.cache.get(msg);
-                create(user, 15000, 0);
+                create(user, mony, 0);
                 continue;
             }
-            sch.Wallet += 15000;
+            sch.Wallet += mony;
             sch.save();
         }
     })

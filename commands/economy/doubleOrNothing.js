@@ -24,6 +24,7 @@ module.exports = {
         if (random()) {
             const win = betting * 2;
             message.reply(`You have won \`${win}\`<a:${coin.name}:${coin.id}>!`);
+            
             sch.Wallet += win;
             sch.save();
         }

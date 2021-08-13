@@ -82,7 +82,7 @@ module.exports = {
             },
             {
                 name: 'Rick Astley',
-                description: `Never gonna make you cry\nNever gonna say goodbye\nNever gonna give you \`{money}\`\nAnd hurt you`
+                message: `Never gonna make you cry\nNever gonna say goodbye\nNever gonna give you \`{money}\`\nAnd hurt you`
             },
             {
                 name: 'A weird man',

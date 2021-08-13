@@ -32,7 +32,7 @@ module.exports = {
         });
 
         const initEmbed = new MessageEmbed()
-            .setDescription('Please choose a category in the menu!')
+            .setDescription('Please choose a category in the menu!\nNeed Support join [here](https://discord.gg/kRgWZXTjzt)')
             .setColor('YELLOW');
 
         const components = (state) => [

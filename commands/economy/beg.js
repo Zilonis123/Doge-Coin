@@ -37,7 +37,7 @@ module.exports = {
             },
             {
                 name: 'Kel8lus',
-                message: `Don\'t call me Kel8`
+                message: `Don\'t call me K8`
             },
             {
                 name: 'Subaru',
@@ -52,6 +52,10 @@ module.exports = {
             {
                 name: 'Yo, homie',
                 message: `Wanna Netflix and chill? \`{money}\`<a:${coin.name}:${coin.id}>`,
+            },
+            {
+                name: 'Grape-Man#9106',
+                message: `Oh you poor child take some money \`{money}\`<a:${coin.name}:${coin.id}>`
             },
             {
                 name: 'A child',

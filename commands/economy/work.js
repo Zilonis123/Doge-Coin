@@ -70,7 +70,8 @@ module.exports = {
                 sche.Wallet += mony;
                 sche.save();
             }
-            return ans.first().reply(`Great job, you got \`${mony}\`<a:${coin.name}:${coin.id}>`);
+            message.reply(`Great job, you got \`${mony}\`<a:${coin.name}:${coin.id}>`);
+            return;
         }
         const random = Math.floor(Math.random() * text[job].length);
         const filter = m => m.author.id === message.author.id;

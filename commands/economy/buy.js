@@ -31,12 +31,6 @@ module.exports = {
         const paying = itemPrice * count;
         if (userBalance.Wallet < paying) return message.reply(`You dont have \`${paying}\`<a:${coin.name}:${coin.id}> in your wallet! <a:${lol.name}:${lol.id}>`);
 
-        const data = await inventory.findOne({ User: message.author.id })
-        if (data) {
-            const hasItem = Object.keys(data.Inventory).includes(itemToBuy);
-            if (hasItem) return message.reply(`You allready own this item! <a:${lol.name}:${lol.id}>`)
-        }
-        
         message.reply(`Do you really want to buy ${itemEmoji} **${itemToBuy}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>?\nYes/No`);
         const filter = m => m.author.id === message.author.id && (m.content.toLowerCase() === 'yes' || m.content.toLowerCase() === 'no');
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 20000, errors: ['time'] }).catch((err) => {});
@@ -44,13 +38,27 @@ module.exports = {
         if (ans.first().content.toLowerCase() === 'no') return ans.first().reply('Canceling..')
         userBalance.Wallet -= paying;
         userBalance.save();
-        if (!data) {
-            await createInv(message.author, { [itemToBuy]: count });
-            return message.reply(`You succsesfully bought ${itemEmoji} **${itemToBuy}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>`)
-        }
-        data.Inventory[itemToBuy] = 1;
-        data.save();
-        return message.reply(`You succsesfully bought ${itemEmoji} **${itemToBuy}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>`)
-        
+        inventory.findOne({ User: message.author.id }, async(err, data) => {
+            if (data) {
+                const hasItem = Object.keys(data.Inventory).includes(itemToBuy);
+                if (!hasItem) {
+                    data.Inventory[itemToBuy] = 1;
+                }
+                else {
+                    data.Inventory[itemToBuy]++;
+                }
+                console.log(data);
+                await inventory.findOneAndUpdate({ User: message.author.id }, data)
+            }
+            else {
+                new inventory({
+                    User: message.author.id,
+                    Inventory: {
+                        [itemToBuy]: 1
+                    },
+                }).save();
+            }
+        });
+        message.reply(`You succsesfully bought ${itemEmoji} **${itemToBuy}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>`)
     }
 }

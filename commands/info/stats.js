@@ -13,7 +13,7 @@ module.exports = {
             .setAuthor('Stats')
             .addField('Loyal members', `${m}`, true)
             .addField('Loyal servers', `${client.guilds.cache.size}`, true)
-            .addField('I was created at', `${moment(client.user.createdAt).fromNow()}`, true);
+            .addField('I was created', `${moment(client.user.createdAt).fromNow()}`, true);
         message.reply({ embeds: [embed] });
     }
 }

@@ -9,7 +9,8 @@ module.exports = {
     async execute(message, args, client) {
         const pacifi = await paci.findOne({ User: message.author.id });
         const get = client.hippy.get(message.author.id);
-        if (get === 'on') return message.reply('You cant become a hippy or resign as one')
+        const sec = moment("24:00:00", "hh:mm:ss").diff(moment(), 'seconds');
+        if (get === 'on') return message.reply(`You cant become a hippy or resign as one, you can do that \`${moment().seconds(sec).fromNow()}\``)
         if (pacifi) {
             message.reply('Do you want to resign as a hippy? yes/no')
             const filter = m => m.author.id === message.author.id && (m.content.toLowerCase().includes('yes') || m.content.toLowerCase().includes('no'));

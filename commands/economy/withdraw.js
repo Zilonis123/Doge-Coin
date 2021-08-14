@@ -18,7 +18,7 @@ module.exports = {
         const input = args[0];
         const number = parseInt(args[0])
         if (!Number.isInteger(number) && input.toLowerCase() !== 'all' && input.toLowerCase() !== 'max') return message.reply(`I cant take out \`${input}\` from your bank.. its not a number`);
-        if (input.includes(',') || input.includes('.')) return message.reply('Please remove any commas or dots!');
+        if (input.includes(',') || input.includes('.') || input.includes('-')) return message.reply('Please remove any commas or dots!');
         if (input.toLowerCase() === 'max' || input.toLowerCase() === 'all') {
             const all = sch.Wallet + sch.Bank;
             const lol = sch.Bank;

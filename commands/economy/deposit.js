@@ -18,7 +18,7 @@ module.exports = {
         const input = args[0];
         const number = parseInt(args[0]);
         if (!Number.isInteger(number) && input.toLowerCase() !== 'all' && input.toLowerCase() !== 'max') return message.reply(`I cant put \`${input}\` into your bank.. <a:${lmfao.name}:${lmfao.id}>`);
-        if (input.includes(',') || input.includes('.')) return message.reply('Please remove any commas or dots!');
+        if (input.includes(',') || input.includes('.') || input.includes('-')) return message.reply('Please remove any commas or dots!');
         if (input.toLowerCase() === 'max' || input.toLowerCase() === 'all') {
             if ((sch.Wallet + sch.Bank) > sch.BankMax) return message.reply('You don\'t have enough space in your bank!');
             const all = sch.Wallet + sch.Bank;

@@ -55,7 +55,7 @@ client.on('messageCreate', async(message) => {
 	let time = 1000;
 	const inv = await inventory.findOne({ User: message.author.id });
 	if (inv) {
-		const has = Object.keys(data.Inventory).includes('clock');
+		const has = Object.keys(inv.Inventory).includes('clock');
 		if (has) time = 500;
 	}
 	const now = Date.now();

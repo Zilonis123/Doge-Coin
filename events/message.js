@@ -9,6 +9,7 @@ client.on('messageCreate', async(message) => {
 	if (!message.content.toLowerCase().startsWith(prefix)) {
 		return;
 	}
+	return message.reply('Commands are disabled')
 	const isAllowed = await schemas.findOne({ User: message.author.id });
 	if (isAllowed) {
 		const start = client.daily.get(message.author.id);

@@ -9,7 +9,6 @@ client.on('messageCreate', async(message) => {
 	if (!message.content.toLowerCase().startsWith(prefix)) {
 		return;
 	}
-	return message.reply('Commands are disabled')
 	const isAllowed = await schemas.findOne({ User: message.author.id });
 	if (isAllowed) {
 		const start = client.daily.get(message.author.id);
@@ -54,7 +53,6 @@ client.on('messageCreate', async(message) => {
 		cooldowns.set(command.name, new Collection());
 	}
 	const now = Date.now();
-	console.log(`${message.author.tag} just used ${cmdName}`);
 	const timestamps = cooldowns.get(command.name);
 	const cooldownAmount = (command.cooldown || 2) * 1000;
 	if (timestamps.has(message.author.id)) {
@@ -66,8 +64,8 @@ client.on('messageCreate', async(message) => {
 	}
 	timestamps.set(message.author.id, now);
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-
 	try {
+		console.log(`${message.author.tag} just used ${cmdName}`);
 		command.execute(message, args, client);
 	}
 	catch (error) {

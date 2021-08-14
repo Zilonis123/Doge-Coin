@@ -16,7 +16,7 @@ module.exports = {
         let count = parseInt(args[1]);
         if (!Number.isInteger(count)) count = 1;
 
-        const validItem = !!items.find((val) => val.item.toLowerCase() === itemToBuy);
+        const validItem = !!items.find((val) => val.item.slice(' ').toLowerCase() === itemToBuy);
         if (!validItem) return message.reply(`That item isnt for sale <:${bruh.name}:${bruh.id}>`);
 
         const itemPrice = items.find((val) => (val.item.toLowerCase() === itemToBuy)).price;

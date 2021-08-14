@@ -1,5 +1,6 @@
 const { Collection, MessageEmbed } = require('discord.js');
 const client = require('../index');
+const inventory = require('../models/inventory');
 const schemas = require('../models/daily');
 const hip = require('../models/resign as hippy');
 const moment = require('moment')
@@ -40,7 +41,6 @@ client.on('messageCreate', async(message) => {
 			);
 		}
 	}
-	if (message.author.id === '727757852021883000' || message.author.id === '876058476034523156') return message.reply('Bruh, blacklisted');
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const cmdName = args.shift().toLowerCase();
 	const command = client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
@@ -52,13 +52,19 @@ client.on('messageCreate', async(message) => {
 	if (!cooldowns.has(command.name)) {
 		cooldowns.set(command.name, new Collection());
 	}
+	let time = 1000;
+	const inv = await inventory.findOne({ User: message.author.id });
+	if (inv) {
+		const has = Object.keys(data.Inventory).includes('clock');
+		if (has) time = 500;
+	}
 	const now = Date.now();
 	const timestamps = cooldowns.get(command.name);
-	const cooldownAmount = (command.cooldown || 2) * 1000;
+	const cooldownAmount = (command.cooldown || 2) * time;
 	if (timestamps.has(message.author.id)) {
 		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 		if (now < expirationTime) {
-			const timeLeft = (expirationTime - now) / 1000;
+			const timeLeft = (expirationTime - now) / time;
 			return message.reply(`You will be able to use **${cmdName}** \`${moment(expirationTime).fromNow()}\``);
 		}
 	}

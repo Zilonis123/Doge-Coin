@@ -17,8 +17,9 @@ module.exports = {
         }
         const mappedData = Object.keys(player.Inventory).map((key) => {
             const itemDescription = items.find((val) => (val.item.toLowerCase() === key)).description;
+            const itemPower = items.find((val) => (val.item.toLowerCase() === key)).type;
             const emoji = items.find((val) => (val.item.toLowerCase() === key)).emoji;
-            return `${emoji} **${key}** - ${player.Inventory[key].toLocaleString()}\n- ${itemDescription}`
+            return `${emoji} **${key}** - ${player.Inventory[key].toLocaleString()}\n- ${itemDescription} - **${itemPower}**`
         }).join('\n');
         const embed = new MessageEmbed()
             .setColor('YELLOW')

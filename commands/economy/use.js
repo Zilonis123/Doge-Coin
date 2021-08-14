@@ -49,6 +49,9 @@ module.exports = {
                 })
                 data.Inventory[item]--;
             }
+            else if (item === 'clock') {
+                return message.reply('This item has been automaticly used!');
+            }
             else if (item === 'banknote') {
                 Player.findOne({ User: message.author.id }, async(err, data) => {
                     let bankInc = Math.floor(Math.random() * 100000) + 1;

@@ -13,7 +13,7 @@ module.exports = {
         const item = args[0].toLowerCase();
 
         inventory.findOne({ User: message.author.id }, async(err, data) => {
-            if (!data || !hasItem) return message.reply('You dont own this item! :thinking:');
+            if (!data) return message.reply('You dont own this item! :thinking:');
             const hasItem = Object.keys(data.Inventory).includes(item);
             if (!hasItem || data.Inventory[item] === 0) return message.reply('You dont own this item! :thinking:');
             // Poop

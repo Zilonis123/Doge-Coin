@@ -22,6 +22,11 @@ module.exports = [
         description: 'You may eat me!',
         price: 1000,
         emoji: '🍇',
+    },
+    {
+        item: 'banknote',
+        description: 'Increase your banks campacity',
+        price: 100000,
+        emoji: '💶',
     }
-
 ]

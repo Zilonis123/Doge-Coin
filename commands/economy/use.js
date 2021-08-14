@@ -49,6 +49,20 @@ module.exports = {
                 })
                 data.Inventory[item]--;
             }
+            else if (item === 'banknote') {
+                Player.findOne({ User: message.author.id }, async(err, data) => {
+                    let bankInc = Math.floor(Math.random() * 100000) + 1;
+                    if (!data) {
+                        create(message.author, 0, 0, bankInc);
+                    }
+                    else {
+                        data.BankMax += bankInc;
+                        await Player.findOneAndUpdate({ User: message.author.id }, data);
+                    }
+                    message.reply(`You increased your banks campacity by \`${bankInc}\`<a:${coin.name}:${coin.id}> from your banknote!`)
+                })
+                data.Inventory[item]--;
+            }
             else {
                 message.reply('This item cant be used! :thinking:')
             }

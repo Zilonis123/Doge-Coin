@@ -14,6 +14,7 @@ module.exports = {
 
         const sch = await schema.findOne({ User: message.author.id });
         const betting = parseInt(args[0]);
+        if (args[0].includes('-') || args[0].includes(',') || args[0].includes('.')) return message.reply('Remove any -/,/.')
         if (!sch || sch.Wallet < betting) return message.reply(`You dont have enough money in your wallet! <a:${lol.name}:${lol.id}>`);
 
         function random() {

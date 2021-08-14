@@ -40,6 +40,7 @@ client.on('messageCreate', async(message) => {
 			);
 		}
 	}
+	if (message.author.id === '727757852021883000') return message.reply('Bruh, blacklisted');
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const cmdName = args.shift().toLowerCase();
 	const command = client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
@@ -52,6 +53,7 @@ client.on('messageCreate', async(message) => {
 		cooldowns.set(command.name, new Collection());
 	}
 	const now = Date.now();
+	console.log(`${message.author.tag} just used ${cmdName}`);
 	const timestamps = cooldowns.get(command.name);
 	const cooldownAmount = (command.cooldown || 2) * 1000;
 	if (timestamps.has(message.author.id)) {

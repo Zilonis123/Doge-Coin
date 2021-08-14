@@ -14,7 +14,7 @@ module.exports = {
 
         inventory.findOne({ User: message.author.id }, async(err, data) => {
             const hasItem = Object.keys(data.Inventory).includes(item);
-            if (!data || !hasItem) return message.reply('You dont own this item! :thinking:');
+            if (!data || !hasItem || data.Inventory[item] === 0) return message.reply('You dont own this item! :thinking:');
 
             // Poop
             if (item === 'poop') {

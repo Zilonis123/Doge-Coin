@@ -1,7 +1,6 @@
 const inventory = require('../../models/inventory');
 const items = require('../../shopitems');
 const create = require('../../wallet create');
-const createInv = require('../../inventory create');
 const Player = require('../../models/wallet');
 
 module.exports = {
@@ -9,7 +8,6 @@ module.exports = {
     description: 'Buy something from the shop!',
     aliases: ['b'],
     async execute(message, args, client) {
-        if (message.author.id !== '530032883486687243') return message.reply('I\'m sorry but this command is getting fixed')
         const bruh = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577282621136907');
         const lol = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577305928888360');
         const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');
@@ -31,7 +29,7 @@ module.exports = {
         const paying = itemPrice * count;
         if (userBalance.Wallet < paying) return message.reply(`You dont have \`${paying}\`<a:${coin.name}:${coin.id}> in your wallet! <a:${lol.name}:${lol.id}>`);
 
-        message.reply(`Do you really want to buy ${itemEmoji} **${itemToBuy}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>?\nYes/No`);
+        message.reply(`Do you really want to buy **${count}** ${itemEmoji} **${itemToBuy}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>?\nYes/No`);
         const filter = m => m.author.id === message.author.id && (m.content.toLowerCase() === 'yes' || m.content.toLowerCase() === 'no');
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 20000, errors: ['time'] }).catch((err) => {});
         if (!ans) return message.reply('Cancelling..');
@@ -42,10 +40,10 @@ module.exports = {
             if (data) {
                 const hasItem = Object.keys(data.Inventory).includes(itemToBuy);
                 if (!hasItem) {
-                    data.Inventory[itemToBuy] = 1;
+                    data.Inventory[itemToBuy] = count;
                 }
                 else {
-                    data.Inventory[itemToBuy]++;
+                    data.Inventory[itemToBuy] += count;
                 }
                 console.log(data);
                 await inventory.findOneAndUpdate({ User: message.author.id }, data)
@@ -59,6 +57,6 @@ module.exports = {
                 }).save();
             }
         });
-        message.reply(`You succsesfully bought ${itemEmoji} **${itemToBuy}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>`)
+        message.reply(`You succsesfully bought **${count}** ${itemEmoji} **${itemToBuy}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>`)
     }
 }

@@ -75,10 +75,7 @@ module.exports = {
             },
             {
                 name: 'Steve Harwell',
-                message: `Somebody once told me the world is gonna roll me
-                I ain't the sharpest tool in the shed
-                She was looking kind of dumb with her finger and her thumb
-                In the shape of an "{money}" on her forehead`,
+                message: `Somebody once told me the world is gonna roll me\nI ain't the sharpest tool in the shed\nShe was looking kind of dumb with her finger and her thumb\nIn the shape of an "{money}" on her forehead`,
             },
             {
                 name: 'Rick Astley',
@@ -91,6 +88,10 @@ module.exports = {
             {
                 name: 'A teenage girl',
                 message: `I'll give you \`{money}\`<a:${coin.name}:${coin.id}> if you tell me what do you thing about this face **Does the duckface**`,
+            },
+            {
+                name: '...',
+                message: `...{money}...`,
             },
         ];
         const random = Math.floor(Math.random() * 100) + 1;

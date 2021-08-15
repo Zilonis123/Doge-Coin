@@ -45,6 +45,11 @@ module.exports = {
                     'rock',
                     'cave',
                     'torches',
+                    'female',
+                    'iron',
+                    'gold',
+                    'diamond',
+                    'sus rock'
                 ],
                 footballer: [
                     'ball',
@@ -52,6 +57,7 @@ module.exports = {
                     'broken',
                     'rain',
                     'goal',
+                    'cheerleaders',
                 ]
             }
             const word = Math.floor(Math.random() * words[job].length);

@@ -8,43 +8,80 @@ client.on('messageCreate', async(message) => {
     const prefix = process.env.PREFIX + ' ';
     const random = Math.floor(Math.random() * 100);
     const args = message.content.slice(prefix.length).split(/ +/);
+    const loading = client.guilds.cache.get("873965279665860628").emojis.cache.get('876456105289580544');
     const cmdName = args.shift().toLowerCase();
     const command = client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
     if (!command) return;
     if (random < 90 || !message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
-    const text = [
-        {
-            title: 'Boss karen has summoned',
-            message: 'KAREN GO AWAY',
-        },
-        {
-            title: 'Angry subaru car has summoned',
-            message: 'BROOM BROOM GO AWAY',
-        },
-        {
-            title: 'Doge is going to bite you',
-            message: 'UwU please dont',
-        },
-        {
-            title: 'Your boss is demanding more..',
-            message: 'Work work work',
+    const thing = Math.floor(Math.random() * 2);
+    let title = '';
+    let msg = '';
+    let send = '';
+    if (thing === 0) {
+        const text = [
+            {
+                title: 'Boss karen has summoned',
+                message: 'KAREN GO AWAY',
+            },
+            {
+                title: 'Angry subaru car has summoned',
+                message: 'BROOM BROOM GO AWAY',
+            },
+            {
+                title: 'Doge is going to bite you',
+                message: 'UwU please dont',
+            },
+            {
+                title: 'Your boss is demanding more..',
+                message: 'Work work work',
+            }
+        ];
+        const num = Math.floor(Math.random() * text.length);
+        title = text[num].title;
+        msg = text[num].message;
+        send = text[num].message;
+    }
+    else if (thing === 1) {
+        const txt = [
+            'sussy',
+            'doge',
+            'woof',
+            'amongus',
+            'coins',
+            'singing',
+        ];
+        title = 'Unscramble';
+        const num = Math.floor(Math.random() * txt.length);
+        function scramble(a) {
+            a = a.split("");
+            for(var b = a.length - 1; 0 < b; b--) {
+                var c = Math.floor(Math.random() * (b + 1));
+                d = a[b];
+                a[b] = a[c];
+                a[c] = d
+            }
+            return a.join("")
         }
-    ];
-    const num = Math.floor(Math.random() * text.length);
+        msg = scramble(txt[num]);
+        send = txt[num];
+    }
+    
 
     const embed = new MessageEmbed()
         .setColor('YELLOW')
-        .setAuthor(text[num].title)
-        .setDescription(`Type :\n\`${text[num].message}\`\n**To defeat him**`);
+        .setAuthor(title)
+        .setDescription(`Type :\n\`${msg}\`\n**To defeat them**`);
     message.channel.send({ embeds: [embed] });
-    const filter = m => m.content.toLowerCase().includes(text[num].message.toLowerCase());
+    const filter = m => m.content.toLowerCase().includes(send.toLowerCase());
     const collector = message.channel.createMessageCollector({ filter, time: 15000 });
     let people = [];
+    // Collecting
     collector.on('collect', m => {
         if (people.includes(m.author.id) || m.author.bot) return;
-        m.channel.send(`<@${m.author.id}> has damaged the boss`);
-        people.push(m.author.id)
+        m.channel.send(`<@${m.author.id}> has damaged the boss <a:${loading.name}:${loading.id}>`);
+        people.push(m.author.id);
     })
+    // End
     collector.on('end', async(collected) => {
         if (people.length < 1) return message.channel.send('Noone has participated! :sob:')
         let i = 1;
@@ -59,15 +96,13 @@ client.on('messageCreate', async(message) => {
                     .setColor('YELLOW')
                     .setDescription(chunking)
                     .setAuthor('Winners')
-                    .setFooter(`Each won ${mony.toLocaleString()}\n1# place got 1k more`)
+                    .setFooter(`Each won ${mony.toLocaleString()}`)
             ]
         })
         for (msg of people) {
-            if (collected.first().author.id === msg) mony += 1000;
-            const sch = await schema.findOne({ User: msg });
             if (!sch) {
                 const usr = await message.guild.members.cache.get(msg);
-                create(user, mony, 0);
+                create(usr, mony, 0);
                 continue;
             }
             sch.Wallet += mony;

@@ -29,7 +29,7 @@ module.exports = {
                         data.Wallet += money;
                         await Player.findOneAndUpdate({ User: message.author.id }, data);
                     }
-                    message.reply(`You got \`${money}\`<a:${coin.name}:${coin.id}> from diging in your shit!`)
+                    message.reply(`You got \`${money.toLocaleString()}\`<a:${coin.name}:${coin.id}> from diging in your shit!`)
                 })
                 data.Inventory[item]--;
             }
@@ -45,7 +45,7 @@ module.exports = {
                         data.BankMax += bankInc;
                         await Player.findOneAndUpdate({ User: message.author.id }, data);
                     }
-                    message.reply(`You increased your banks campacity by \`${bankInc}\`<a:${coin.name}:${coin.id}> from eating grapes!`)
+                    message.reply(`You increased your banks campacity by \`${bankInc.toLocaleString()}\`<a:${coin.name}:${coin.id}> from eating grapes!`)
                 })
                 data.Inventory[item]--;
             }
@@ -54,7 +54,7 @@ module.exports = {
             }
             else if (item === 'banknote') {
                 Player.findOne({ User: message.author.id }, async(err, data) => {
-                    let bankInc = Math.floor(Math.random() * 100000) + 1;
+                    let bankInc = Math.floor(Math.random() * 40000) + 80000;
                     if (!data) {
                         create(message.author, 0, 0, bankInc);
                     }
@@ -62,7 +62,7 @@ module.exports = {
                         data.BankMax += bankInc;
                         await Player.findOneAndUpdate({ User: message.author.id }, data);
                     }
-                    message.reply(`You increased your banks campacity by \`${bankInc}\`<a:${coin.name}:${coin.id}> from your banknote!`)
+                    message.reply(`You increased your banks campacity by \`${bankInc.toLocaleString()}\`<a:${coin.name}:${coin.id}> from your banknote!`)
                 })
                 data.Inventory[item]--;
             }

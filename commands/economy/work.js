@@ -35,7 +35,8 @@ module.exports = {
                     a[b] = a[c];
                     a[c] = d
                 }
-                return a.join("")}
+                return a.join("")
+            }
 
             const words = {
                 miner: [

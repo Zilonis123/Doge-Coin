@@ -14,7 +14,7 @@ module.exports = {
         const sch = await schema.findOne({ User: message.author.id });
 
         function random(rand) {
-            const num = Math.floor(Math.random() * rand);
+            const num = Math.floor(Math.random() * rand) + 1;
             return num;
         }
 
@@ -27,16 +27,16 @@ module.exports = {
 
         const msg = ans.first().content.toLowerCase();
         if ((msg.includes('bigger') && guess > realNum) || (msg.includes('smaller') && guess < realNum) || (msg.includes('exact') && guess === realNum)) {
-            const money = Math.floor((realNum / random(30) + 1) * random(50) + 1);
+            const money = Math.floor((realNum / (random(5) + 1)) * (random(50) + 1));
             if (!sch) create(message.author, money, 0);
             else {
-                sch.Wallet += money;
+               sch.Wallet += money;
                 sch.save();
             }
             return message.reply(`You got \`${money}\`<a:${coin.name}:${coin.id}> for guessing right!`);
         }
         else {
             return message.reply(`Incorrect, the number was \`${realNum}\``);
-        }
+        } 
     }
 }

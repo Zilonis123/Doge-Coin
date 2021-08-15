@@ -100,6 +100,7 @@ client.on('messageCreate', async(message) => {
             ]
         })
         for (msg of people) {
+            const sch = await schema.findOne({ User: msg });
             if (!sch) {
                 const usr = await message.guild.members.cache.get(msg);
                 create(usr, mony, 0);

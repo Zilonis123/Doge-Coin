@@ -20,7 +20,14 @@ module.exports = {
 
         const realNum = random(1000);
         const guess = random(1000);
-        message.reply(`Is \`${guess}\` bigger/exact/smaller than the real number?`);
+        function replace(num) {
+            let nu = '';
+            for (n of num) {
+                nu += '#';
+            }
+            return nu;
+        }
+        message.reply(`Is \`${guess}\` bigger/exact/smaller then \`${nu}\`?`);
         const filter = m => m.author.id === message.author.id && (m.content.toLowerCase().includes('bigger') || m.content.toLowerCase().includes('smaller') || m.content.toLowerCase().includes('exact'));
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 20000, errors: ['time'] });
         if (!ans) return;

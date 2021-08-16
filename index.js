@@ -20,8 +20,6 @@ const client = new Client({
 	],
 	partials: ['MESSAGE', 'REACTION', 'CHANNEL'],
 });
-
-const dbl = new DBL(process.env.TOPGG_TOKEN, { webhookPort: 3000, webhookAuth: process.env.TOPGG_AUTH });
 // Collections
 client.commands = new Collection();
 client.slashCommands = new Collection();

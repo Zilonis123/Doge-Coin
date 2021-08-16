@@ -27,7 +27,7 @@ module.exports = {
 
         const msg = ans.first().content.toLowerCase();
         if ((msg.includes('bigger') && guess > realNum) || (msg.includes('smaller') && guess < realNum) || (msg.includes('exact') && guess === realNum)) {
-            const money = Math.floor((realNum / (random(5) + 1)) * (random(50) + 1));
+            const money = random(10000);
             if (!sch) create(message.author, money, 0);
             else {
                sch.Wallet += money;

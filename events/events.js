@@ -51,7 +51,7 @@ client.on('messageCreate', async(message) => {
             'coins',
             'singing',
         ];
-        title = 'Unscramble';
+        title = 'Unscramble this';
         const num = Math.floor(Math.random() * txt.length);
         function scramble(a) {
             a = a.split("");

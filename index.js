@@ -20,35 +20,12 @@ const client = new Client({
 	],
 	partials: ['MESSAGE', 'REACTION', 'CHANNEL'],
 });
-// top.gg
-const express = require('express')
-const Topgg = require('@top-gg/sdk')
-const fetch = require('node-fetch')
-const app = express();
-
-const webhook = new Topgg.Webhook('topggauth123') // add your Top.gg webhook authorization (not bot token)
-
-app.post('/dblwebhook', webhook.listener(vote => {
-	let value = JSON.stringify({
-		embeds: [
-			{
-				title: 'Thank You',
-				description: `<@${vote.user}> has just voted for **${client.user.tag}** on top.gg`,
-				color: 'YELLOW',
-
-			}
-		]
-	})
-	fetch('https://discord.com/api/webhooks/876788316723372042/gnY7wD3oyfNwvMplcBmtkSqFA9sh2IRph-CYiWZIIp9Ws3661RIA79zw8e9Arth4uBos', {
-		method: 'POST',
-		headers: {
-			'content-type': 'application/json'
-		},
-		body: value,
-	}).catch(err => console.log(err));
-}))
-
-app.listen(3000)
+// Checking if dbl is ready
+const dbl = require('dblapi.js');
+const DBL = new dbl(process.env.DBLTOKEN, { webhookPort: 5000, webhookAuth: process.env.DBLAUTH });
+DBL.webhook.on('ready', () => {
+	console.log('DBL is ready!');
+});
 
 // Collections
 client.commands = new Collection();
@@ -61,6 +38,7 @@ client.config = require('./config.json');
 module.exports = client;
 
 require('./handler')(client);
+// Database
 const mongoose = require("mongoose");
 
 mongoose.connect(process.env.MONGO, {
@@ -72,5 +50,37 @@ mongoose.connect(process.env.MONGO, {
 }).catch((err) =>{
     console.log(err);
 });
+// Vote tracking
+DBL.webhook.on('vote', async(vote) => {
+	console.log(`${vote.user} has just voted for ${client.user.tag} in top.gg`);
+	const webclient = new WebhookClient({ id: '876788316723372042', token: 'gnY7wD3oyfNwvMplcBmtkSqFA9sh2IRph-CYiWZIIp9Ws3661RIA79zw8e9Arth4uBos' });
+	webclient.send({
+		username: 'Doge Coin',
+		avatarURL: 'https://cdn.discordapp.com/avatars/873964681721679902/99d7f0d7011fc999b289527cef71b3a1.webp?size=1024',
+		content: `${vote.user} has just voted for ${client.user.tag} in top.gg!`
+	});
+	const inventory = require('./models/inventory');
+	inventory.findOne({ User: vote.user }, async(err, data) => {
+		if (data) {
+			const hasItem = Object.keys(data.Inventory).includes('voter box');
+			if (hasItem) {
+				data.Inventory['voter box']++;
+			}
+			else {
+				data.Inventory['voter box'] = 1;
+			}
+			await inventory.findOneAndUpdate({ User: vote.user }, data);
+		}
+		else {
+			new inventory({
+				User: vote.user,
+				Inventory: {
+					'voter box': 1,
+				}
+			}).save();
+		}
+	})
+});
+// LOG IN
 
 client.login(process.env.TOKEN);

@@ -47,8 +47,9 @@ app.post('/vote', webhook.listener(vote => { //ending url
         body: value
     }).catch(e => console.log('Error occured while posting webhook : ' + e))
 }))
-app.listen(3000) //Port
-console.log("Your app is ready to log votes :D")
+const port = process.env.PORT || 3000;
+console.log(`Applications port is - ` + port)
+app.listen(port) //Port
 
 // Collections
 client.commands = new Collection();

@@ -20,54 +20,6 @@ const client = new Client({
 	],
 	partials: ['MESSAGE', 'REACTION', 'CHANNEL'],
 });
-// Checking if dbl is ready
-const express = require('express')
-const Topgg = require('@top-gg/sdk')
-const fetch = require('node-fetch')
-const app = express()
-
-const webhook = new Topgg.Webhook('topggauth123') //Secure Password (Change it for god's Sake)
-
-const { networkInterfaces } = require('os');
-
-const nets = networkInterfaces();
-const results = Object.create(null); // Or just '{}', an empty object
-
-for (const name of Object.keys(nets)) {
-    for (const net of nets[name]) {
-        // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
-        if (net.family === 'IPv4' && !net.internal) {
-            if (!results[name]) {
-                results[name] = [];
-            }
-            results[name].push(net.address);
-        }
-    }
-}
-console.log(results)
-
-app.post('/vote', webhook.listener(vote => { //ending url
-    console.log("User with id - " + vote.user + " Voted!")
-    let value = JSON.stringify({
-        embeds: [
-            {
-                title: "Another Vote!!",
-                description: `<@${vote.user}> (${vote.user}) Just Voted For \`The Bot\`!!`,
-                color: "8388736" //Hex -> Decimal
-            }
-        ]
-    })
-    fetch("https://discord.com/api/webhooks/876788316723372042/gnY7wD3oyfNwvMplcBmtkSqFA9sh2IRph-CYiWZIIp9Ws3661RIA79zw8e9Arth4uBos", { //Your webhook here
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json',
-        },
-        body: value
-    }).catch(e => console.log('Error occured while posting webhook : ' + e))
-}))
-const port = process.env.PORT || 3000;
-console.log(`Applications port is - ` + port)
-app.listen(port) //Port
 
 // Collections
 client.commands = new Collection();

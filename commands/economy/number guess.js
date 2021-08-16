@@ -22,7 +22,7 @@ module.exports = {
         const guess = random(1000);
         function replace(num) {
             let nu = '';
-            const bruh = num;
+            const bruh = `${num;}`;
             for (n of bruh) {
                 nu += '#';
             }

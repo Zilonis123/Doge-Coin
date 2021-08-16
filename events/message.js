@@ -10,6 +10,7 @@ client.on('messageCreate', async(message) => {
 	if (!message.content.toLowerCase().startsWith(prefix)) {
 		return;
 	}
+	if (message.webhookId) return;
 	const isAllowed = await schemas.findOne({ User: message.author.id });
 	if (isAllowed) {
 		const start = client.daily.get(message.author.id);

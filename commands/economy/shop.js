@@ -11,7 +11,9 @@ module.exports = {
 
         const shopList = items
             .map((value, index) => {
-                return `**${index+1}** | ${value.emoji} **${value.item}** - ${value.price.toLocaleString()}<a:${coin.name}:${coin.id}>\n - ${value.description} - **${value.type}**`;
+                if (value.onShop) {
+                    return `**${index+1}** | ${value.emoji} **${value.item}** - ${value.price.toLocaleString()}<a:${coin.name}:${coin.id}>\n - ${value.description} - **${value.type}**`;
+                }
             }).join('\n\n')
 
         const page1 = new MessageEmbed()

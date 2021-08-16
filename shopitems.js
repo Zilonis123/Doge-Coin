@@ -5,6 +5,7 @@ module.exports = [
         emoji: '💩',
         type: 'Item',
         description: 'Its shit what do you expect',
+        onShop: true,
     },
     {
         item: 'subaru',
@@ -12,6 +13,7 @@ module.exports = [
         price: 50000,
         type: 'Special item',
         emoji: '🚗',
+        onShop: true,
     },
     {
         item: 'police car',
@@ -19,6 +21,7 @@ module.exports = [
         price: 100000,
         type: 'Special item',
         emoji: '🚓',
+        onShop: true,
     },
     {
         item: 'grapes',
@@ -26,6 +29,7 @@ module.exports = [
         type: 'Item',
         price: 1000,
         emoji: '🍇',
+        onShop: true,
     },
     {
         item: 'banknote',
@@ -33,6 +37,7 @@ module.exports = [
         type: 'Power Up',
         price: 100000,
         emoji: '💶',
+        onShop: true,
     },
     {
         item: 'clock',
@@ -40,5 +45,13 @@ module.exports = [
         type: 'Power Up',
         price: 1000000,
         emoji: '⏰',
+        onShop: true,
+    },
+    {
+        item: 'voter box',
+        description: 'A box that you can get by voting !',
+        type: 'Item',
+        emoji: '📦',
+        onShop: false,
     }
 ]

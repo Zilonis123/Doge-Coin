@@ -5,6 +5,7 @@ const create = require('../wallet create');
 const { pagination } = require('reconlx');
 
 client.on('messageCreate', async(message) => {
+    if (message.webhookId) return;
     const prefix = process.env.PREFIX + ' ';
     const random = Math.floor(Math.random() * 100);
     const args = message.content.slice(prefix.length).split(/ +/);

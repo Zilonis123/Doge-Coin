@@ -28,7 +28,7 @@ const app = express()
 
 const webhook = new Topgg.Webhook('topggauth123') //Secure Password (Change it for god's Sake)
 
-app.post('/vote', webhook.listener(vote => { //ending url
+app.post('/', webhook.listener(vote => { //ending url
     console.log("User with id - " + vote.user + " Voted!")
     let value = JSON.stringify({
         embeds: [

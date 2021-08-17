@@ -13,6 +13,7 @@ client.on('messageCreate', async(message) => {
     const cmdName = args.shift().toLowerCase();
     const command = client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
     if (!command) return;
+    if (command.directory !== 'economy') return;
     if (random < 90 || !message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
     const thing = Math.floor(Math.random() * 2);
     let title = '';

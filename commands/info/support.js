@@ -8,8 +8,8 @@ module.exports = {
     async execute(message) {
         const embed = new MessageEmbed()
             .setColor('YELLOW')
-            .setTitle('Support/Community')
-            .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
+            .setAuthor('Support/Community')
+            .setFooter(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('Need support, want to chat with cool people join [here](https://discord.gg/kRgWZXTjzt) or click the button bellow');
 
         const row = new MessageActionRow().addComponents(

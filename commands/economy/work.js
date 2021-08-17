@@ -1,6 +1,6 @@
 const schema = require('../../models/wallet');
 const create = require('../../wallet create');
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, MessageAttachment } = require('discord.js');
 
 module.exports = {
     name: 'work',
@@ -95,12 +95,14 @@ module.exports = {
             textColor: '#eae6e6',
         });
         console.log(dataUri)
+        const imageDataURI = require('image-data-uri');
+        const img = await imageDataURI.decode(dataUri);
         const filter = m => m.author.id === message.author.id;
         const embed = new MessageEmbed()
             .setColor('YELLOW')
-            .setAuthor(`You work as a ${job}`)
-            .setImage(daraUri)
-            .addField('Retype this :');
+            .setAuthor(`You work as a "${job}"`)
+            .setImage(img)
+            .addField('Retype this to get paid :');
         message.reply({ embeds: [embed] })
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 15000, errors: ['time'] }).catch((err) => {});
         if (!ans || ans.first().content.toLowerCase() !== text[job][random].toLowerCase()) {

@@ -25,8 +25,10 @@ module.exports = {
                 'WE WIN WE WIN LETS GOOO'
             ]
         }
+        const textToImage = require('text-to-image');
+
         const type = Math.floor(Math.random() * 3);
-        if (type === 2) {
+        if (type === -2) {
             function scramble(a) {
                 a = a.split("");
                 for(var b = a.length - 1; 0 < b; b--) {
@@ -81,12 +83,24 @@ module.exports = {
             message.reply(`Great job, you got \`${mony}\`<a:${coin.name}:${coin.id}>`);
             return;
         }
+
+        
+
         const random = Math.floor(Math.random() * text[job].length);
+        const dataUri = await textToImage.generate(text[job][random], {
+            textAlign: 'center',
+            verticalAlign: 'center',
+            fontSize: '20',
+            bgColor: '#2b2b2a',
+            textColor: '#eae6e6',
+        });
+        console.log(dataUri)
         const filter = m => m.author.id === message.author.id;
         const embed = new MessageEmbed()
             .setColor('YELLOW')
             .setAuthor(`You work as a ${job}`)
-            .addField('Retype this :', `\`${text[job][random]}\``, true);
+            .setImage(daraUri)
+            .addField('Retype this :');
         message.reply({ embeds: [embed] })
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 15000, errors: ['time'] }).catch((err) => {});
         if (!ans || ans.first().content.toLowerCase() !== text[job][random].toLowerCase()) {

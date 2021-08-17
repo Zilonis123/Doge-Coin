@@ -48,10 +48,11 @@ module.exports = [
         onShop: true,
     },
     {
-        item: 'voter box',
+        item: 'loot box',
         description: 'A box that you can get by voting !',
         type: 'Item',
+        price: 100000,
         emoji: '📦',
-        onShop: false,
+        onShop: true,
     }
 ]

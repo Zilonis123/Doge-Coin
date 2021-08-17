@@ -28,7 +28,7 @@ module.exports = {
         const textToImage = require('text-to-image');
 
         const type = Math.floor(Math.random() * 3);
-        if (type === -2) {
+        if (type === 2) {
             function scramble(a) {
                 a = a.split("");
                 for(var b = a.length - 1; 0 < b; b--) {
@@ -90,20 +90,19 @@ module.exports = {
         const dataUri = await textToImage.generate(text[job][random], {
             textAlign: 'center',
             verticalAlign: 'center',
-            fontSize: '20',
             bgColor: '#2b2b2a',
             textColor: '#eae6e6',
         });
-        console.log(dataUri)
-        const imageDataURI = require('image-data-uri');
-        const img = await imageDataURI.decode(dataUri);
+
+        var base64Data = dataUri.replace(/^data:image\/png;base64,/, "");
+
+        await require("fs").writeFile("out.png", base64Data, 'base64', function(err) {
+            console.log(err);
+        });
+        
+        const file = new MessageAttachment("out.png"); 
         const filter = m => m.author.id === message.author.id;
-        const embed = new MessageEmbed()
-            .setColor('YELLOW')
-            .setAuthor(`You work as a "${job}"`)
-            .setImage(img)
-            .addField('Retype this to get paid :');
-        message.reply({ embeds: [embed] })
+        await message.reply({ content: 'Retype this :', files: [file] })
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 15000, errors: ['time'] }).catch((err) => {});
         if (!ans || ans.first().content.toLowerCase() !== text[job][random].toLowerCase()) {
             const bruh = Math.floor(Math.random() * 1000) + 1;

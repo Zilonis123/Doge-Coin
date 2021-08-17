@@ -28,7 +28,7 @@ module.exports = {
             }
             return nu;
         }
-        message.reply(`Is \`${guess}\` bigger/exact/smaller then \`${replace(realNum)}\`?`);
+        message.reply(`Is \`${guess}\` bigger/exact/smaller than \`${replace(realNum)}\`?`);
         const filter = m => m.author.id === message.author.id && (m.content.toLowerCase().includes('bigger') || m.content.toLowerCase().includes('smaller') || m.content.toLowerCase().includes('exact'));
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 20000, errors: ['time'] });
         if (!ans) return;

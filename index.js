@@ -51,7 +51,7 @@ const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3Mzk2NDY4MT
 dbl.webhook.on('ready', hook => {
   console.log(`Webhook running at http://${hook.hostname}:${hook.port}${hook.path}`);
 });
-dbl.webhook.on('vote', vote => {
+dbl.webhook.on('vote', async(vote) => {
 	const channel = client.channels.cache.get('876915018606714891')
 	const embed = new MessageEmbed()
 		.setTitle("__Thanks for voting__")

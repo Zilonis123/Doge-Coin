@@ -96,14 +96,18 @@ module.exports = {
 
         var base64Data = dataUri.replace(/^data:image\/png;base64,/, "");
 
-        await require("fs").writeFile("out.png", base64Data, 'base64', function(err) {
+        await require("fs").writeFile(`${message.author.id}.png`, base64Data, 'base64', function(err) {
             console.log(err);
         });
         
-        const file = new MessageAttachment("out.png"); 
+        const file = new MessageAttachment(`${message.author.id}.png`); 
         const filter = m => m.author.id === message.author.id;
         await message.reply({ content: 'Retype this :', files: [file] })
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 15000, errors: ['time'] }).catch((err) => {});
+        fs.unlink(`${message.author.id}.png`, function (err) {
+  
+            if (err) throw err;
+          }); 
         if (!ans || ans.first().content.toLowerCase() !== text[job][random].toLowerCase()) {
             const bruh = Math.floor(Math.random() * 1000) + 1;
             message.reply(`Bad work, you got \`${bruh.toLocaleString()}\`<a:${coin.name}:${coin.id}>`);

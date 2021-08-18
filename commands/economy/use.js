@@ -66,6 +66,28 @@ module.exports = {
                 })
                 data.Inventory[item]--;
             }
+            else if (item === 'loot') {
+                let banknote = Math.floor(Math.random() * 2);
+                if (banknote === 1) banknote = true;
+                if (banknote === 0) banknote = false;
+                Player.findOne({ User: message.author.id }, async(err, data) => {
+                    let money = Math.floor(Math.random() * 10000) + 50000;
+                    if (!data) {
+                        create(message.author, money, 0);
+                    }
+                    else {
+                        data.Wallet += money;
+                        await Player.findOneAndUpdate({ User: message.author.id }, data);
+                    }
+                })
+                let msg = `You got\n\`${money.toLocaleString()}\`<a:${coin.name}:${coin.id}>\n\n from your loot box!`;
+                if (banknote) {
+                    data.Inventory['loot box']--;
+                    msg = `You got\n\`${money.toLocaleString()}\`<a:${coin.name}:${coin.id}>\n💶 **Banknote** - 1\n\n from your loot box!`;
+                }
+                data.Inventory[item]--;
+                message.reply(msg);
+            }
             else {
                 message.reply('This item cant be used! :thinking:')
             }

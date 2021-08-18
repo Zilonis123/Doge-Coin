@@ -22,7 +22,8 @@ module.exports = {
             ],
             footballer: [
                 'MY LEG ITS ITS BROKEN',
-                'WE WIN WE WIN LETS GOOO'
+                'WE WIN WE WIN LETS GOOO',
+                'Cheerleaders do be hot tho'
             ]
         }
         const textToImage = require('text-to-image');

@@ -70,8 +70,8 @@ module.exports = {
                 let banknote = Math.floor(Math.random() * 2);
                 if (banknote === 1) banknote = true;
                 if (banknote === 0) banknote = false;
+                let money = Math.floor(Math.random() * 10000) + 50000;
                 Player.findOne({ User: message.author.id }, async(err, data) => {
-                    let money = Math.floor(Math.random() * 10000) + 50000;
                     if (!data) {
                         create(message.author, money, 0);
                     }

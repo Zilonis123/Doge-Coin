@@ -96,8 +96,8 @@ module.exports = {
         });
 
         var base64Data = dataUri.replace(/^data:image\/png;base64,/, "");
-
-        await require("fs").writeFile(`${message.author.id}.png`, base64Data, 'base64', function(err) {
+        const fs = require('fs');
+        await fs.writeFile(`${message.author.id}.png`, base64Data, 'base64', function(err) {
             console.log(err);
         });
         

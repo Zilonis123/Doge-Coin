@@ -10,7 +10,7 @@ module.exports = {
             .setColor('YELLOW')
             .setAuthor('Vote')
             .setFooter(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
-            .setDescription('Vote for me aka the best bot ever [top.gg here](https://top.gg/bot/873964681721679902/vote/) or click the button bellow');
+            .setDescription('Vote for me in [top.gg](https://top.gg/bot/873964681721679902/vote/) or click the button bellow');
 
         const row = new MessageActionRow().addComponents(
             new MessageButton()

@@ -73,7 +73,7 @@ module.exports = {
             message.reply({ embeds: [embed] })
             const filter = m => m.author.id === message.author.id && m.content.toLowerCase() === words[job][word].toLowerCase();
             const ans = await message.channel.awaitMessages({ filter, max: 1, time: 20000, errors: ['time'] }).catch((err) => {});
-            if (!ans) return message.reply(`You failed! <a:${lol.name}:${lol.id}>`);
+            if (!ans) return message.reply(`You failed! <a:${lol.name}:${lol.id}>\nThe word was **${words[job][word]}**`);
             const mony = Math.floor(Math.random() * 5000) + 15000;
             const sche = await schema.findOne({ User: message.author.id });
             if (!sche) create(message.author, mony, 0);

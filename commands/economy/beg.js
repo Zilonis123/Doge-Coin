@@ -32,10 +32,6 @@ module.exports = {
                 message: `**Bruhhhhhhhhhhhhh...**`
             },
             {
-                name: 'POOP',
-                message: `**Comes out of a##**`
-            },
-            {
                 name: 'Kel8lus',
                 message: `Don\'t call me K8`
             },

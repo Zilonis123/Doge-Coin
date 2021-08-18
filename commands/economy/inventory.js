@@ -16,10 +16,10 @@ module.exports = {
             return message.reply(`${user.tag} doesn't have an inventory, what a looser! <a:${lol.name}:${lol.id}>`);
         }
         const mappedData = Object.keys(player.Inventory).map((key) => {
+            if (player.Inventory[key] <= 0 || isNaN(player.Inventory[key])) return;
             const itemDescription = items.find((val) => (val.item.toLowerCase() === key)).description;
             const itemPower = items.find((val) => (val.item.toLowerCase() === key)).type;
             const emoji = items.find((val) => (val.item.toLowerCase() === key)).emoji;
-            if (player.Inventory[key] <= 0) return;
             return `${emoji} **${key}** - ${player.Inventory[key].toLocaleString()}\n- ${itemDescription} - **${itemPower}**`
         }).join('\n');
         const embed = new MessageEmbed()

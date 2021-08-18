@@ -82,7 +82,7 @@ module.exports = {
                 })
                 let msg = `You got\n\`${money.toLocaleString()}\`<a:${coin.name}:${coin.id}>\n\n from your loot box!`;
                 if (banknote) {
-                    data.Inventory['loot box']--;
+                    data.Inventory['banknote']++;
                     msg = `You got\n\`${money.toLocaleString()}\`<a:${coin.name}:${coin.id}>\n💶 **Banknote** - 1\n\n from your loot box!`;
                 }
                 data.Inventory[item]--;

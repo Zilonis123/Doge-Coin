@@ -49,7 +49,7 @@ module.exports = [
     },
     {
         item: 'loot box',
-        description: 'A box that you can get by voting !',
+        description: 'a loot box lol',
         type: 'Item',
         price: 100000,
         emoji: '📦',

@@ -1,5 +1,6 @@
 const items = require('../../shopitems');
 const { MessageEmbed } = require('discord.js');
+const { pagination } = require('reconlx');
 
 module.exports = {
     name: 'shop',
@@ -9,17 +10,56 @@ module.exports = {
         const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');
         if (items.length === 0) return message.reply('Return later when Doge.Co makes more products');
 
-        const shopList = items
-            .map((value, index) => {
-                if (value.onShop) {
-                    return `**${index+1}** | ${value.emoji} **${value.item}** - ${value.price.toLocaleString()}<a:${coin.name}:${coin.id}>\n - ${value.description} - **${value.type}**`;
-                }
-            }).join('\n\n')
+        let data = []
+        for (item of items) {
+            if (item.onShop) {
+                data.push(item);
+            }
+        }
 
-        const page1 = new MessageEmbed()
-            .setColor('YELLOW')
-            .setAuthor(`Shop`)
-            .setDescription(`${shopList}`)
-        message.reply({ embeds: [page1] });
+        function chunkz (arr, size){
+            let array = [];
+            for (let i = 0; i < arr.length; i += size){
+                array.push(arr.slice(i, i + size))
+            }
+            return array;
+        }
+
+        const sorted = data.sort((a, b) => a.price - b.price);
+
+        if (data.length > 5) {
+            const chunks = await chunkz(sorted, 5);
+            let arry = [];
+
+            for (chunk of chunks) {
+                const chunking = chunk.map((v) => `- ${v.emoji} **${v.item}** - \`${v.price}\`<a:${coin.name}:${coin.id}>\n- ${v.description} - **${v.type}**`).join('\n\n');
+
+                const embed = new MessageEmbed()
+                    .setColor('YELLOW')
+                    .setDescription(chunking)
+                    .setAuthor('Shop')
+                
+                arry.push(embed)
+            }
+
+            pagination({
+                embeds: arry,
+                message: message,
+                time: 30000,
+                fastSkip: true,
+            });
+        }
+        else {
+            const chunking = sorted.map((v) => `- ${v.emoji} **${v.item}** - \`${v.price}\`<a:${coin.name}:${coin.id}>\n- ${v.description} - **${v.type}**`).join('\n\n');
+
+            message.channel.send({
+                embeds: [
+                    new MessageEmbed()
+                        .setColor('YELLOW')
+                        .setDescription(chunking)
+                        .setAuthor('Shop')
+                ]
+            })
+        }
     }
 }

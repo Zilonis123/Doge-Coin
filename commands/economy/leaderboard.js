@@ -20,7 +20,7 @@ module.exports = {
         let data = [];
         for (id of userIDs) {
             const sch = await schema.findOne({ User: id });
-            if (sch) {
+            if (sch && sch.Wallet !== 0) {
                 data.push(sch);
             }
         }
@@ -30,7 +30,7 @@ module.exports = {
         let i = 1;
         if (data.length > 10) {
             const chunks = chunkz(sorted, 10);
-            const arry = [];
+            let arry = [];
 
             for (chunk of chunks) {
                 const chunking = chunk.map((v) => `\`${i++}#\` <@${v.User}> - \`${v.Wallet.toLocaleString()}\`<a:${coin.name}:${coin.id}>`).join('\n\n');
@@ -68,7 +68,7 @@ module.exports = {
 
 function chunkz (arr, size){
     var array = [];
-    for(var i =0; i < arr.lenght; i += size){
+    for(var i =0; i < arr.length; i += size){
         array.push(arr.slice(i, i+size))
     }
     return array;

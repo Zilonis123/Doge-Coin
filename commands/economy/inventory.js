@@ -19,6 +19,7 @@ module.exports = {
             const itemDescription = items.find((val) => (val.item.toLowerCase() === key)).description;
             const itemPower = items.find((val) => (val.item.toLowerCase() === key)).type;
             const emoji = items.find((val) => (val.item.toLowerCase() === key)).emoji;
+            if (player.Inventory[key] <= 0) return;
             return `${emoji} **${key}** - ${player.Inventory[key].toLocaleString()}\n- ${itemDescription} - **${itemPower}**`
         }).join('\n');
         const embed = new MessageEmbed()

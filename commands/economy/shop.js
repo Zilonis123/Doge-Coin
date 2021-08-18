@@ -32,7 +32,7 @@ module.exports = {
             let arry = [];
 
             for (chunk of chunks) {
-                const chunking = chunk.map((v) => `- ${v.emoji} **${v.item}** - \`${v.price}\`<a:${coin.name}:${coin.id}>\n- ${v.description} - **${v.type}**`).join('\n\n');
+                const chunking = chunk.map((v) => `- ${v.emoji} **${v.item}** - \`${v.price.toLocaleString()}\`<a:${coin.name}:${coin.id}>\n- ${v.description} - **${v.type}**`).join('\n\n');
 
                 const embed = new MessageEmbed()
                     .setColor('YELLOW')

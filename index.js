@@ -19,6 +19,7 @@ const client = new Client({
 		'DIRECT_MESSAGE_TYPING',
 	],
 	partials: ['MESSAGE', 'REACTION', 'CHANNEL'],
+        allowedMentions: { parse: ['users'], repliedUser: true } 
 });
 
 // Collections

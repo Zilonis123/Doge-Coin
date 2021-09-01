@@ -10,7 +10,7 @@ client.on('messageCreate', async(message) => {
 	if (!message.content.toLowerCase().startsWith(prefix)) {
 		return;
 	}
-	if (message.webhookId) return;
+	if (message.webhookId || !message.guild) return;
 	const isAllowed = await schemas.findOne({ User: message.author.id });
 	if (isAllowed) {
 		const start = client.daily.get(message.author.id);
@@ -18,6 +18,7 @@ client.on('messageCreate', async(message) => {
 			client.daily.set(message.author.id, 'on');
 			function midnightTask() {
 				isAllowed.delete();
+                                isAllowed.save()
 				client.daily.set(message.author.id, 'off')
 			}
 			setTimeout(

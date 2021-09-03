@@ -15,7 +15,7 @@ module.exports = {
             if(!schem) {
                 const sch = await create(message.author, 0, 0);
                 const embed = new MessageEmbed()
-                    .setAuthor(`${user}'s balance`)
+                    .setAuthor(`${user.tag}'s balance`)
                     .setColor('YELLOW')
                     .addField('Wallet', `\`${sch.Wallet.toLocaleString()}\`💵`, true)
                     .addField('Bank', `\`${sch.Bank.toLocaleString()} || ${sch.BankMax.toLocaleString()}\`💳`, true)
@@ -23,7 +23,7 @@ module.exports = {
                 return message.reply({ embeds: [embed] });
             }
             const embed = new MessageEmbed()
-                .setAuthor(`${user}'s balance`)
+                .setAuthor(`${user.tag}'s balance`)
                 .setColor('YELLOW')
                 .addField('Wallet', `\`${schem.Wallet.toLocaleString()}\`💵`, true)
                 .addField('Bank', `\`${schem.Bank.toLocaleString()} || ${schem.BankMax.toLocaleString()}\`💳`, true)

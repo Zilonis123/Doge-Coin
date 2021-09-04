@@ -18,14 +18,16 @@ module.exports = {
                     .setAuthor(`${user.tag}'s balance`)
                     .setColor('YELLOW')
                     .addField('Wallet', `\`${sch.Wallet.toLocaleString()}\`💵`, true)
-                    .addField('Bank', `\`${sch.Bank.toLocaleString()} || ${sch.BankMax.toLocaleString()}\`💳`, true);
+                    .addField('Bank', `\`${sch.Bank.toLocaleString()} || ${sch.BankMax.toLocaleString()}\`💳`, true)
+                    .addField('Total', `\`${(sch.Bank + sch.Wallet).toLocaleString()}\`🤑`, true);
                 return message.reply({ embeds: [embed] });
             }
             const embed = new MessageEmbed()
                 .setAuthor(`${user.tag}'s balance`)
                 .setColor('YELLOW')
                 .addField('Wallet', `\`${schem.Wallet.toLocaleString()}\`💵`, true)
-                .addField('Bank', `\`${schem.Bank.toLocaleString()} || ${schem.BankMax.toLocaleString()}\`💳`, true);
+                .addField('Bank', `\`${schem.Bank.toLocaleString()} || ${schem.BankMax.toLocaleString()}\`💳`, true)
+                .addField('Total', `\`${(schem.Bank + schem.Wallet).toLocaleString()}\`🤑`, true);
             message.reply({ embeds: [embed] })
         } catch(err) {
             console.log(err)

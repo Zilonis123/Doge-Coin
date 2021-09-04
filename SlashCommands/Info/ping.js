@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const moment = require('moment');
+const ms = require('ms')
 
 module.exports = {
     name: "ping",
@@ -11,7 +11,7 @@ module.exports = {
             .setColor('YELLOW')
             .addFields(
                 { name: 'Ping', value: `${client.ws.ping}ms!`, inline: true },
-                { name: 'Uptime', value: `${moment().seconds(uptime).fromNow()}!`, inline: true }
+                { name: 'Uptime', value: `${ms(uptime)}!`, inline: true }
             )
         interaction.followUp({ content: 'Pong!', embeds: [embed] });
     }

@@ -39,8 +39,9 @@ module.exports = {
                     new MessageEmbed()
                         .setColor('YELLOW')
                         .setDescription(chunking)
+                        .setThumbnail(message.guild.iconURL())
                         .setAuthor(`${message.guild.name} Leaderboard`)
-                        .setFooter('This is the Wallet not the NetWorth\n\n')
+                        .setFooter('This is their Wallet not the NetWorth\n\n')
                 )
             }
             pagination({
@@ -58,8 +59,9 @@ module.exports = {
                     new MessageEmbed()
                         .setColor('YELLOW')
                         .setDescription(chunking)
+                        .setThumbnail(message.guild.iconURL())
                         .setAuthor(`${message.guild.name} Leaderboard`)
-                        .setFooter('This is the Wallet not the NetWorth\n\n')
+                        .setFooter('This is their Wallet not the NetWorth\n\n')
                 ]
             })
         }

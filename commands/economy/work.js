@@ -86,7 +86,7 @@ module.exports = {
                 .setColor('YELLOW')
                 .setFooter(`You work as a ${job}`)
                 .setAuthor('Unscramble this :')
-                .setImage(`attachments://${message.author.id}.png`);
+                .setImage(`attachment://${message.author.id}.png`);
             message.reply({ embeds: [embed], files: [file] })
             const filter = m => m.author.id === message.author.id && m.content.toLowerCase() === words[job][word].toLowerCase();
             const ans = await message.channel.awaitMessages({ filter, max: 1, time: 20000, errors: ['time'] }).catch((err) => {});
@@ -124,7 +124,7 @@ module.exports = {
         
         const file = new MessageAttachment(`${message.author.id}.png`); 
         const filter = m => m.author.id === message.author.id;
-        await message.reply({ files: [file], embeds: [new MessageEmbed().setColor('YELLOW').setFooter(`You work as a ${job}`).setAuthor('Retype this to earn money!').setImage(`attachments://${message.author.id}.png`)] })
+        await message.reply({ files: [file], embeds: [new MessageEmbed().setColor('YELLOW').setFooter(`You work as a ${job}`).setAuthor('Retype this to earn money!').setImage(`attachment://${message.author.id}.png`)] })
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 15000, errors: ['time'] }).catch((err) => {});
         fs.unlink(`${message.author.id}.png`, function (err) {
   

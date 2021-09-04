@@ -6,7 +6,7 @@ module.exports = {
     description: "returns the websocket ping",
     type: 'CHAT_INPUT',
     async execute(client, interaction, args) {
-        const uptime = client.uptime / 1000
+        const uptime = client.uptime
         const embed = new MessageEmbed()
             .setColor('YELLOW')
             .addFields(

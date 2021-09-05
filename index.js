@@ -40,8 +40,9 @@ mongoose.connect(process.env.MONGO, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
-}).then(() => {
-    console.log('Connected to the database');
+}).then((db) => {
+    console.log(`Connected to the database`);
+	client.database = db
 }).catch((err) =>{
     console.log(err);
 });

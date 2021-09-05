@@ -1,4 +1,6 @@
 const client = require('../index');
+const moment = require('moment');
+const daily = require('../models/daily');
 client.on('ready', async() => {
     console.log(`${client.user.tag} is ready`);
     client.user.setActivity(`${process.env.PREFIX} help`, { type: 'WATCHING' });
@@ -11,7 +13,7 @@ client.on('ready', async() => {
         await client.guilds.cache.forEach((g) => {
             mc += g.memberCount;
         });
-        servers.setName(`😮Servers : ${client.guilds.cache.size}`);
+        servers.setName(`😮DC supporters - ${client.guilds.cache.size}`);
         members.setName(`😎Serving ${mc} members`);
-    }, 10000)
+    }, 30000);
 })

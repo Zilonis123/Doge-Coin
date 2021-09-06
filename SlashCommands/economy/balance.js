@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const ms = require('ms');
 const schema = require('../../models/wallet');
-const create = require('../../create wallet');
+const create = require('../../wallet create');
 
 module.exports = {
     name: "balance",

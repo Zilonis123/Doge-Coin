@@ -17,9 +17,9 @@ module.exports = {
     type: 'CHAT_INPUT',
     async execute(client, interaction, args) {
         const [ someone ] = args
-        let user = interaction.guild.users.cache.get(someone) || interaction.user;
+        let user = someone || interaction.user.id;
         try {
-            const schem = await schema.findOne({ User: user.id });
+            const schem = await schema.findOne({ User: user });
             if(!schem) {
                 const sch = await create(message.author, 0, 0);
                 const embed = new MessageEmbed()

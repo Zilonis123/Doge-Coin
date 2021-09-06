@@ -17,6 +17,7 @@ module.exports = {
     type: 'CHAT_INPUT',
     async execute(client, interaction, args) {
         const [ someone ] = args
+        return interaction.editReply("bruh use `doge bal`");
         let user = someone || interaction.user.id;
         try {
             const schem = await schema.findOne({ User: user });

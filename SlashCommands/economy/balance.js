@@ -17,7 +17,7 @@ module.exports = {
     type: 'CHAT_INPUT',
     async execute(client, interaction, args) {
         const [ someone ] = args
-        let user = interaction.guild.members.cache.get(someone) || interaction.author;
+        let user = interaction.guild.users.cache.get(someone) || interaction.user;
         try {
             const schem = await schema.findOne({ User: user.id });
             if(!schem) {

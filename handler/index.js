@@ -40,8 +40,6 @@ module.exports = async (client) => {
 
         // Register for all the guilds the bot is in
         await client.application.commands.set(arrayOfSlashCommands)
-            .then(() => {
-                console.log(`Slashcommands for all ${client.guilds.cache.size} servers have been updated`)
-            });
+        console.log(`Slashcommands for all ${client.guilds.cache.size} servers have been updated`)
     });
 };

@@ -25,6 +25,7 @@ client.on("interactionCreate", async (interaction) => {
     }
 
     // Context Menu Handling
+    return;
     if (interaction.isContextMenu()) {
         await interaction.deferReply({ ephemeral: false });
         const command = client.slashCommands.get(interaction.commandName);

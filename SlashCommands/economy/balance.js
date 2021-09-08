@@ -29,7 +29,7 @@ module.exports = {
                     .addField('Wallet', `\`${sch.Wallet.toLocaleString()}\`💵`, true)
                     .addField('Bank', `\`${sch.Bank.toLocaleString()} || ${sch.BankMax.toLocaleString()}\`💳`, true)
                     .addField('Total', `\`${(sch.Bank + sch.Wallet).toLocaleString()}\`🤑`, true);
-                return interaction.followUp({ embeds: [embed] });
+                return interaction.editReply({ embeds: [embed] });
             }
             const embed = new MessageEmbed()
                 .setAuthor(`${person}'s balance`)

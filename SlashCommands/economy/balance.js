@@ -37,7 +37,7 @@ module.exports = {
                 .addField('Wallet', `\`${schem.Wallet.toLocaleString()}\`💵`, true)
                 .addField('Bank', `\`${schem.Bank.toLocaleString()} || ${schem.BankMax.toLocaleString()}\`💳`, true)
                 .addField('Total', `\`${(schem.Bank + schem.Wallet).toLocaleString()}\`🤑`, true);
-            interaction.followUp({ embeds: [embed] })
+            interaction.editReply({ embeds: [embed] })
         } catch(err) {
             console.log(err)
         }

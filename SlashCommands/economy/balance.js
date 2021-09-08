@@ -17,27 +17,27 @@ module.exports = {
     type: 'CHAT_INPUT',
     async execute(client, interaction, args) {
         const [ someone ] = args
-        return interaction.editReply("bruh use `doge bal`");
         let user = someone || interaction.user.id;
+        const person = await interaction.guild.members.cache.get(someone)?.user.username || interaction.member.user.username
         try {
             const schem = await schema.findOne({ User: user });
             if(!schem) {
                 const sch = await create(interaction.user, 0, 0);
                 const embed = new MessageEmbed()
-                    .setAuthor(`someone's balance`)
+                    .setAuthor(`${person}'s balance`)
                     .setColor('YELLOW')
                     .addField('Wallet', `\`${sch.Wallet.toLocaleString()}\`💵`, true)
                     .addField('Bank', `\`${sch.Bank.toLocaleString()} || ${sch.BankMax.toLocaleString()}\`💳`, true)
                     .addField('Total', `\`${(sch.Bank + sch.Wallet).toLocaleString()}\`🤑`, true);
-                return interaction.editReply({ embeds: [embed] });
+                return interaction.followUp({ embeds: [embed] });
             }
             const embed = new MessageEmbed()
-                .setAuthor(`someone's balance`)
+                .setAuthor(`${person}'s balance`)
                 .setColor('YELLOW')
                 .addField('Wallet', `\`${schem.Wallet.toLocaleString()}\`💵`, true)
                 .addField('Bank', `\`${schem.Bank.toLocaleString()} || ${schem.BankMax.toLocaleString()}\`💳`, true)
                 .addField('Total', `\`${(schem.Bank + schem.Wallet).toLocaleString()}\`🤑`, true);
-            interaction.editReply({ embeds: [embed] })
+            interaction.followUp({ embeds: [embed] })
         } catch(err) {
             console.log(err)
         }

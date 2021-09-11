@@ -22,8 +22,11 @@ module.exports = {
         if (!sch) {
             return message.editReply(`You dont have money in your bank!<a:${lmfao.name}:${lmfao.id}><a:${lmfao.name}:${lmfao.id}>`);
         }
+        
         if (!args[0]) return interaction.editReply(`I cant take out \`nothing\` out of your bank! <a:${lmfao.name}:${lmfao.id}>`);
         const input = amount;
+        const output = parsefloat(input)
+        if (output.includes(',') || output.includes('.') || output.includes('-') || output.includes('@')) return message.reply('Please remove any commas or dots!');
         if (sch.Bank < input) return message.reply(`You don\'t have enough money in your bank.. <a:${lol.name}:${lol.id}>`);
         const bank = sch.Bank - input;
         sch.Bank = bank;

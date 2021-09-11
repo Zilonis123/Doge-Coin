@@ -22,7 +22,11 @@ module.exports = {
         try {
             const schem = await schema.findOne({ User: user });
             if(!schem) {
-                const sch = await create(interaction.user, 0, 0);
+                const sch = {
+                    Wallet: 0,
+                    Bank: 0,
+                    BankMax: 10000,
+                };
                 const embed = new MessageEmbed()
                     .setAuthor(`${person}'s balance`)
                     .setColor('YELLOW')

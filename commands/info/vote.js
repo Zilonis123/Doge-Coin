@@ -10,7 +10,7 @@ module.exports = {
             .setColor('YELLOW')
             .setAuthor('Vote')
             .setFooter(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
-            .setDescription('Vote for me in [top.gg](https://top.gg/bot/873964681721679902/vote/) or click the button bellow');
+            .setDescription('Vote for me in [top.gg](https://top.gg/bot/873964681721679902/vote/) or click the button bellow\nVote for me in [RedCord](https://rcord.repl.co/bot/873964681721679902/vote) or click the button bellow');
 
         const row = new MessageActionRow().addComponents(
             new MessageButton()
@@ -24,9 +24,8 @@ module.exports = {
                 .setDisabled(true),
             new MessageButton()
                 .setStyle('LINK')
-                .setLabel('DiscordBoats.com')
-                .setURL('https://discord.gg/kRgWZXTjzt')
-                .setDisabled(true),
+                .setLabel('RedCord')
+                .setURL('https://rcord.repl.co/bot/873964681721679902/vote'),
         )
         message.channel.send({ embeds: [embed], components: [row] });
     }

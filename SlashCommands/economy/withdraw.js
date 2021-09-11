@@ -24,11 +24,10 @@ module.exports = {
         }
         if (!args[0]) return interaction.editReply(`I cant take out \`nothing\` out of your bank! <a:${lmfao.name}:${lmfao.id}>`);
         const input = amount;
-        if (input.includes(',') || input.includes('.') || input.includes('-') || input.includes('@')) return interaction.editReply('Please remove any commas or dots!');
         if (sch.Bank < input) return message.reply(`You don\'t have enough money in your bank.. <a:${lol.name}:${lol.id}>`);
-        const bank = sch.Bank - parseInt(input);
+        const bank = sch.Bank - input;
         sch.Bank = bank;
-        sch.Wallet = sch.Wallet + parseInt(input);
+        sch.Wallet = sch.Wallet + input;
         sch.save();
         interaction.editReply(`Succsesfully withdrawed \`${input.toLocaleString()}\`<a:${coin.name}:${coin.id}> from your bank!`);
     }

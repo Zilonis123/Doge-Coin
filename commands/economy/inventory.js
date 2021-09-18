@@ -17,7 +17,7 @@ module.exports = {
         }
         const mappedData = Object.keys(player.Inventory).map((key) => {
             if (player.Inventory[key] <= 0 || isNaN(player.Inventory[key])) return;
-            const jtemName = items.find((val) => (val.item.toLowerCase().includes(key)));
+            const itemName = items.find((val) => (val.item.toLowerCase().includes(key)));
             const itemDescription = items.find((val) => (val.item.toLowerCase().includes(key))).description;
             const itemPower = items.find((val) => (val.item.toLowerCase().includes(key))).type;
             const emoji = items.find((val) => (val.item.toLowerCase().includes(key))).emoji;

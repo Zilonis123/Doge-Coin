@@ -21,6 +21,8 @@ module.exports = {
 
         const itemPrice = items.find((val) => (val.item.toLowerCase().includes(itemToBuy))).price;
         const itemEmoji = items.find((val) => (val.item.toLowerCase().includes(itemToBuy))).emoji;
+        const itemName = items.find((val) => (val.item.toLowerCase().includes(itemToBuy))).name;
+
 
         let userBalance = await Player.findOne({ User: message.author.id });
         if (!userBalance) {
@@ -29,7 +31,7 @@ module.exports = {
         const paying = itemPrice * count;
         if (userBalance.Wallet < paying) return message.reply(`You dont have \`${paying}\`<a:${coin.name}:${coin.id}> in your wallet! <a:${lol.name}:${lol.id}>`);
 
-        message.reply(`Do you really want to buy **${count}** ${itemEmoji} **${itemToBuy}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>?\nYes/No`);
+        message.reply(`Do you really want to buy **${count}** ${itemEmoji} **${itemName}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>?\nYes/No`);
         const filter = m => m.author.id === message.author.id && (m.content.toLowerCase() === 'yes' || m.content.toLowerCase() === 'no');
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 20000, errors: ['time'] }).catch((err) => {});
         if (!ans) return message.reply('Cancelling..');
@@ -57,6 +59,6 @@ module.exports = {
                 }).save();
             }
         });
-        message.reply(`You succsesfully bought **${count}** ${itemEmoji} **${validItem.item}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>`)
+        message.reply(`You succsesfully bought **${count}** ${itemEmoji} **${itemName}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>`)
     }
 }

@@ -21,7 +21,7 @@ module.exports = {
 
         const itemPrice = items.find((val) => (val.item.toLowerCase().includes(itemToBuy))).price;
         const itemEmoji = items.find((val) => (val.item.toLowerCase().includes(itemToBuy))).emoji;
-        const itemName = items.find((val) => (val.item.toLowerCase().includes(itemToBuy))).name;
+        const itemName = items.find((val) => (val.item.toLowerCase().includes(itemToBuy)));
 
 
         let userBalance = await Player.findOne({ User: message.author.id });
@@ -31,11 +31,11 @@ module.exports = {
         const paying = itemPrice * count;
         if (userBalance.Wallet < paying) return message.reply(`You dont have \`${paying}\`<a:${coin.name}:${coin.id}> in your wallet! <a:${lol.name}:${lol.id}>`);
 
-        message.reply(`Do you really want to buy **${count}** ${itemEmoji} **${itemName}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>?\nYes/No`);
+        message.reply(`Do you really want to buy **${count}** ${itemEmoji} **${itemName.item}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>?\nYes/No`);
         const filter = m => m.author.id === message.author.id && (m.content.toLowerCase() === 'yes' || m.content.toLowerCase() === 'no');
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 20000, errors: ['time'] }).catch((err) => {});
         if (!ans) return message.reply('Cancelling..');
-        if (ans.first().content.toLowerCase() === 'no') return ans.first().reply('Canceling..')
+        if (ans.first().content.toLowerCase() === 'no') return ans.first().reply('Canceling the request..')
         userBalance.Wallet -= paying;
         userBalance.save();
         inventory.findOne({ User: message.author.id }, async(err, data) => {

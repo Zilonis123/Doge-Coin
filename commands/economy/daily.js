@@ -13,7 +13,7 @@ module.exports = {
         const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');
         const sch = await schema.findOne({ User: message.author.id });
 
-        let text = `You got \`{items}\`\n\nCome back in ${ms(86400, { long: true })} here is your daily`
+        let text = `You got \`{items}\`\n\nCome back in ${ms(86400, { long: true })}`
         const random = Math.floor(Math.random() * 10);
         if (random === 1) {
             text = text.replace('{items}', `25,000\`<a:${coin.name}:${coin.id}>\`\n1 - 📦loot box`);

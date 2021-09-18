@@ -17,11 +17,11 @@ module.exports = {
         }
         const mappedData = Object.keys(player.Inventory).map((key) => {
             if (player.Inventory[key] <= 0 || isNaN(player.Inventory[key])) return;
-            const jtemName = items.find((val) => (val.item.toLowerCase().includes(key))).item
+            const jtemName = items.find((val) => (val.item.toLowerCase().includes(key)));
             const itemDescription = items.find((val) => (val.item.toLowerCase().includes(key))).description;
             const itemPower = items.find((val) => (val.item.toLowerCase().includes(key))).type;
             const emoji = items.find((val) => (val.item.toLowerCase().includes(key))).emoji;
-            return `${emoji} **${itemName}** - ${player.Inventory[key].toLocaleString()}\n- ${itemDescription} - **${itemPower}**`
+            return `${emoji} **${itemName.item}** - ${player.Inventory[key].toLocaleString()}\n- ${itemDescription} - **${itemPower}**`
         }).join('\n');
         const embed = new MessageEmbed()
             .setColor('YELLOW')

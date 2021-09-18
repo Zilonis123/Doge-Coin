@@ -59,6 +59,6 @@ module.exports = {
                 }).save();
             }
         });
-        message.reply(`You succsesfully bought **${count}** ${itemEmoji} **${itemName}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>`)
+        message.reply(`You succsesfully bought **${count}** ${itemEmoji} **${itemName.name}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>`)
     }
 }

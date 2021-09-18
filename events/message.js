@@ -33,7 +33,7 @@ client.on('messageCreate', async(message) => {
 		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 		if (now < expirationTime) {
 			const timeLeft = (expirationTime - now) / time;
-			return message.reply(`You will be able to use **${cmdName}** \`${ms(timeLeft, { long: true })}\``);
+			return message.reply(`You will be able to use **${cmdName}** \`${ms(expirationTime, { long: true })}\``);
 		}
 	}
 	timestamps.set(message.author.id, now);

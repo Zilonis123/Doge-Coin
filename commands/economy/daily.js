@@ -8,15 +8,15 @@ module.exports = {
     name: 'daily',
     aliases: ['d'],
     description: 'Get your daily money',
-    cooldown: 57600,
+    cooldown: 86400,
     async execute(message, args, client) {
         const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');
         const sch = await schema.findOne({ User: message.author.id });
 
-        let text = `You got \`{items}\`\n\nCome back in ${ms(576000000, { long: true })} here is your daily`
+        let text = `You got \`{items}\`\n\nCome back in ${ms(86400, { long: true })} here is your daily`
         const random = Math.floor(Math.random() * 10);
         if (random === 1) {
-            text = text.replace('{items}', '25,000<a:${coin.name}:${coin.id}>\n1 - 📦loot box');
+            text = text.replace('{items}', `25,000\`<a:${coin.name}:${coin.id}>\`\n1 - 📦loot box`);
             inventory.findOne({ User: message.author.id }, async(err, data) => {
                 if (data) {
                     const hasItem = Object.keys(data.Inventory).includes('loot');
@@ -39,7 +39,7 @@ module.exports = {
                 }
             });
         }
-        text = text.replace('{items}', `25,000 <a:${coin.name}:${coin.id}>`)
+        text = text.replace('{items}', `25,000 \`<a:${coin.name}:${coin.id}>\``)
 
         if (!sch) {
             await create(message.author, 25000, 0);

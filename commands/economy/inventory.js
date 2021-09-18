@@ -17,9 +17,9 @@ module.exports = {
         }
         const mappedData = Object.keys(player.Inventory).map((key) => {
             if (player.Inventory[key] <= 0 || isNaN(player.Inventory[key])) return;
-            const itemDescription = items.find((val) => (val.item.toLowerCase() === key)).description;
-            const itemPower = items.find((val) => (val.item.toLowerCase() === key)).type;
-            const emoji = items.find((val) => (val.item.toLowerCase() === key)).emoji;
+            const itemDescription = items.find((val) => (val.item.toLowerCase().includes(key))).description;
+            const itemPower = items.find((val) => (val.item.toLowerCase().includes(key))).type;
+            const emoji = items.find((val) => (val.item.toLowerCase().includes(key))).emoji;
             return `${emoji} **${key}** - ${player.Inventory[key].toLocaleString()}\n- ${itemDescription} - **${itemPower}**`
         }).join('\n');
         const embed = new MessageEmbed()

@@ -5,7 +5,7 @@ module.exports = {
     name: 'bal',
     aliases: ['balance'],
     description: 'Check your or someone elses balance',
-    cooldown: 2,
+    cooldown: 5,
     async execute(message, args, client) {
         const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');
         let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
@@ -19,7 +19,7 @@ module.exports = {
                     .setColor('YELLOW')
                     .addField('Wallet', `\`${sch.Wallet.toLocaleString()}\`💵`, true)
                     .addField('Bank', `\`${sch.Bank.toLocaleString()} || ${sch.BankMax.toLocaleString()}\`💳`, true)
-                    .addField('Total', `\`${(sch.Bank + sch.Wallet).toLocaleString()}\`🤑`, true);
+                    .addField('Total', `\`${(sch.Bank + sch.Wallet).toLocaleString()}\`:moneybag:`, true);
                 return message.reply({ embeds: [embed] });
             }
             const embed = new MessageEmbed()
@@ -27,7 +27,7 @@ module.exports = {
                 .setColor('YELLOW')
                 .addField('Wallet', `\`${schem.Wallet.toLocaleString()}\`💵`, true)
                 .addField('Bank', `\`${schem.Bank.toLocaleString()} || ${schem.BankMax.toLocaleString()}\`💳`, true)
-                .addField('Total', `\`${(schem.Bank + schem.Wallet).toLocaleString()}\`🤑`, true);
+                .addField('Total', `\`${(schem.Bank + schem.Wallet).toLocaleString()}\`:moneybag:`, true);
             message.reply({ embeds: [embed] })
         } catch(err) {
             console.log(err)

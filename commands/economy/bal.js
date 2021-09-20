@@ -8,14 +8,14 @@ module.exports = {
     cooldown: 5,
     async execute(message, args, client) {
         const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');
-        let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-        if (!user) user = message.author;
+        let user = message.mentions.users.first()?.username || message.guild.users.cache.get(args[0])?.username;
+        if (!user) user = message.author.username;
         try {
             const schem = await schema.findOne({ User: user.id });
             if(!schem) {
                 const sch = await create(message.author, 0, 0);
                 const embed = new MessageEmbed()
-                    .setAuthor(`${user.tag}'s balance`)
+                    .setAuthor(`${user}'s balance`)
                     .setColor('YELLOW')
                     .addField('Wallet', `\`${sch.Wallet.toLocaleString()}\`💵`, true)
                     .addField('Bank', `\`${sch.Bank.toLocaleString()} || ${sch.BankMax.toLocaleString()}\`💳`, true)
@@ -23,7 +23,7 @@ module.exports = {
                 return message.reply({ embeds: [embed] });
             }
             const embed = new MessageEmbed()
-                .setAuthor(`${user.tag}'s balance`)
+                .setAuthor(`${user}'s balance`)
                 .setColor('YELLOW')
                 .addField('Wallet', `\`${schem.Wallet.toLocaleString()}\`💵`, true)
                 .addField('Bank', `\`${schem.Bank.toLocaleString()} || ${schem.BankMax.toLocaleString()}\`💳`, true)

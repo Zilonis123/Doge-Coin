@@ -10,11 +10,12 @@ module.exports = {
         const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');
         let user = message.mentions.users.first() || message.guild.members.cache.get(args[0]);
         if (!user) user = message.author;
-        user = user.username
+        id = user;
+        user = user.username;
         try {
-            const schem = await schema.findOne({ User: user.id });
+            const schem = await schema.findOne({ User: id.id });
             if(!schem) {
-                const sch = await create(message.author, 0, 0);
+                const sch = await create(id, 0, 0);
                 const embed = new MessageEmbed()
                     .setAuthor(`${user}'s balance`)
                     .setColor('YELLOW')

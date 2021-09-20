@@ -8,8 +8,9 @@ module.exports = {
     cooldown: 5,
     async execute(message, args, client) {
         const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');
-        let user = message.mentions.users.first()?.username || message.guild.users.cache.get(args[0])?.username;
-        if (!user) user = message.author.username;
+        let user = message.mentions.users.first() || message.guild.users.cache.get(args[0]);
+        if (!user) user = message.author;
+        user = user.username
         try {
             const schem = await schema.findOne({ User: user.id });
             if(!schem) {

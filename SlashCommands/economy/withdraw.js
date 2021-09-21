@@ -20,12 +20,13 @@ module.exports = {
 
         const sch = await schema.findOne({ User: interaction.user.id });
         if (!sch) {
-            return message.editReply(`You dont have money in your bank!<a:${lmfao.name}:${lmfao.id}><a:${lmfao.name}:${lmfao.id}>`);
+            return interaction.editReply(`You dont have money in your bank!<a:${lmfao.name}:${lmfao.id}><a:${lmfao.name}:${lmfao.id}>`);
         }
         
         if (!args[0]) return interaction.editReply(`I cant take out \`nothing\` out of your bank! <a:${lmfao.name}:${lmfao.id}>`);
         const input = amount;
-        if (sch.Bank < input) return message.reply(`You don\'t have enough money in your bank.. <a:${lol.name}:${lol.id}>`);
+        if (input < 0) return interaction.editReply('POV You are trying to break dogecoin in 2021');
+        if (sch.Bank < input) return interaction.editReply(`You don\'t have enough money in your bank.. <a:${lol.name}:${lol.id}>`);
         const bank = sch.Bank - input;
         sch.Bank = bank;
         sch.Wallet = sch.Wallet + input;

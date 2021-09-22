@@ -18,13 +18,16 @@ module.exports = {
         const text = {
             miner: [
                 'I\'ve been mining for dogecoin for so long',
-                'Guys Guys i found a coin!!',
-                'I quit'
+                'Guys Guys i finnaly found a coin!',
+                'I quit',
+                'My wife just left me',
+                'Why do i only find coal?'
             ],
             footballer: [
-                'MY LEG ITS ITS BROKEN',
-                'WE WIN WE WIN LETS GOOO',
-                'Cheerleaders do be hot tho'
+                'MY LEG IS FKING BROKEN',
+                'We won but at what cost?',
+                'I like hamburgers',
+                '69 against 420 points we are loosing'
             ]
         }
         const textToImage = require('text-to-image');
@@ -54,7 +57,8 @@ module.exports = {
                     'iron',
                     'gold',
                     'diamond',
-                    'sus rock'
+                    'copper',
+                    'wife'
                 ],
                 footballer: [
                     'ball',
@@ -63,6 +67,8 @@ module.exports = {
                     'rain',
                     'goal',
                     'cheerleaders',
+                    'football',
+                    '69'
                 ]
             }
             const word = Math.floor(Math.random() * words[job].length);
@@ -80,7 +86,7 @@ module.exports = {
                 console.log(err);
             });
             
-            const file = new MessageAttachment(`${message.author.id}.png`); 
+            const file = new MessageAttachment(`${message.author.id}.png`);
 
             const embed = new MessageEmbed()
                 .setColor('YELLOW')

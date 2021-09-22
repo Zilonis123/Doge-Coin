@@ -90,7 +90,7 @@ client.on('messageCreate', async(message) => {
         .setAuthor(title)
         .setDescription('Type :')
         .setFooter('Event has occured!')
-        .setImage(`attachment://${message.autor.id}-${message.channel.id}.png`);
+        .setImage(`attachment://${message.author.id}-${message.channel.id}.png`);
     await message.channel.send({ embeds: [embed], files: [file] });
     fs.unlink(`${message.author.id}-${message.channel.id}.png`, function (err) {
         if (err) throw err;

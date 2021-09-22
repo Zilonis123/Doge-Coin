@@ -85,15 +85,16 @@ client.on('messageCreate', async(message) => {
             
     const file = new MessageAttachment(`${message.author.id}.png`);
 
-
-
     const embed = new MessageEmbed()
         .setColor('YELLOW')
         .setAuthor(title)
         .setDescription('Type :')
+        .setFooter('Event has occured!')
         .setImage(`attachment://${message.autor.id}-${message.channel.id}.png`);
     await message.channel.send({ embeds: [embed], files: [file] });
-    
+    fs.unlink(`${message.author.id}-${message.channel.id}.png`, function (err) {
+        if (err) throw err;
+    }); 
     const filter = m => m.content.toLowerCase().includes(send.toLowerCase());
     const collector = message.channel.createMessageCollector({ filter, time: 15000 });
     let people = [];

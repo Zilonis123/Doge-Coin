@@ -79,7 +79,7 @@ client.on('messageCreate', async(message) => {
     });
     
     var base64Data = dataUri.replace(/^data:image\/png;base64,/, "");
-    await fs.writeFile(`${message.author.id}-${message.channel}.png`, base64Data, 'base64', function(err) {
+    await fs.writeFile(`${message.author.id}-${message.channel.id}.png`, base64Data, 'base64', function(err) {
         console.log(err);
     });
             

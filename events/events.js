@@ -2,6 +2,8 @@ const client = require('../index');
 const { MessageEmbed } = require('discord.js');
 const schema = require('../models/wallet');
 const create = require('../wallet create');
+const fs = require('fs');
+const imageToText = require('image-to-text');
 const { pagination } = require('reconlx');
 
 client.on('messageCreate', async(message) => {
@@ -32,7 +34,7 @@ client.on('messageCreate', async(message) => {
             },
             {
                 title: 'Doge is going to bite you',
-                message: 'UwU please dont',
+                message: 'Master please dont',
             },
             {
                 title: 'Your boss is demanding more..',
@@ -69,12 +71,29 @@ client.on('messageCreate', async(message) => {
         send = txt[num];
     }
     
+    const dataUri = await textToImage.generate(msg, {
+        textAlign: 'center',
+        verticalAlign: 'center',
+        bgColor: '#2b2b2a',
+        textColor: '#eae6e6',
+    });
+    
+    var base64Data = dataUri.replace(/^data:image\/png;base64,/, "");
+    await fs.writeFile(`${message.author.id}-${message.channel}.png`, base64Data, 'base64', function(err) {
+        console.log(err);
+    });
+            
+    const file = new MessageAttachment(`${message.author.id}.png`);
+
+
 
     const embed = new MessageEmbed()
         .setColor('YELLOW')
         .setAuthor(title)
-        .setDescription(`Type :\n\`${msg}\`\n**To defeat them**`);
-    message.channel.send({ embeds: [embed] });
+        .setDescription('Type :')
+        .setImage(`attachment://${message.autor.id}-${message.channel.id}.png`);
+    await message.channel.send({ embeds: [embed], files: [file] });
+    
     const filter = m => m.content.toLowerCase().includes(send.toLowerCase());
     const collector = message.channel.createMessageCollector({ filter, time: 15000 });
     let people = [];

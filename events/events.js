@@ -83,7 +83,7 @@ client.on('messageCreate', async(message) => {
         console.log(err);
     });
             
-    const file = new MessageAttachment(`${message.author.id}.png`);
+    const file = new MessageAttachment(`${message.author.id}-${message.channel.id}.png`);
 
     const embed = new MessageEmbed()
         .setColor('YELLOW')

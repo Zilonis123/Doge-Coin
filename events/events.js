@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 const schema = require('../models/wallet');
 const create = require('../wallet create');
 const fs = require('fs');
-const imageToText = require('image-to-text');
+const textToImage = require('text-to-image');
 const { pagination } = require('reconlx');
 
 client.on('messageCreate', async(message) => {

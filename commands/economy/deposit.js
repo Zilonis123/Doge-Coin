@@ -20,13 +20,13 @@ module.exports = {
         if (!Number.isInteger(number) && input.toLowerCase() !== 'all' && input.toLowerCase() !== 'max') return message.reply(`I cant put \`${input}\` into your bank.. <a:${lmfao.name}:${lmfao.id}>`);
         if (input.includes(',') || input.includes('.') || input.includes('-') || input.includes('@')) return message.reply('Please remove any commas or dots!');
         if (input.toLowerCase() === 'max' || input.toLowerCase() === 'all') {
-            if ((sch.Wallet + sch.Bank) > sch.BankMax) return message.reply('You don\'t have enough space in your bank!');
-            const all = sch.Wallet + sch.Bank;
-            const lol = sch.Wallet;
+            let all = sch.Wallet + sch.Bank;
+            if ((sch.Wallet + sch.Bank) > sch.BankMax) all = sch.BankMax
+            const price = sch.Wallet - all;
             sch.Bank = all;
-            sch.Wallet = 0;
+            sch.Wallet = price;
             sch.save();
-            return message.reply(`Succsesfully deposited \`${lol.toLocaleString()}\`<a:${coin.name}:${coin.id}> into your bank!`);
+            return message.reply(`Succsesfully deposited \`${all.toLocaleString()}\`<a:${coin.name}:${coin.id}> into your bank!`);
         }
         if (sch.Wallet < number) return message.reply(`You don\'t have enough money in your wallet.. <a:${lol.name}:${lol.id}>`);
         const bank = sch.Bank + parseInt(input);

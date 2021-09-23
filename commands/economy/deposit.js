@@ -21,7 +21,7 @@ module.exports = {
         if (input.includes(',') || input.includes('.') || input.includes('-') || input.includes('@')) return message.reply('Please remove any commas or dots!');
         if (input.toLowerCase() === 'max' || input.toLowerCase() === 'all') {
             let all = sch.Wallet + sch.Bank;
-            if ((sch.Wallet + sch.Bank) > sch.BankMax) all = sch.BankMax
+            if ((sch.Wallet + sch.Bank) > sch.BankMax) all = sch.BankMax - sch.Bank;
             const price = sch.Wallet - all;
             sch.Bank = all;
             sch.Wallet = price;

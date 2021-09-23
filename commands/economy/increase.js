@@ -15,7 +15,7 @@ module.exports = {
             create(message.author, 0, 0);
             return message.reply(`<a:${lol.name}:${lol.id}> You don\'t have the money to do this..`);
         }
-        if (!args[0]) return message.reply('How much will you pay to extend the bank?');
+        if (!args[0]) return message.reply('How much will you pay to extend the bank? Add it when sending the message?!!!!!!!');
         if (isNaN(args[0])) return message.reply('You cant pay anything else than money!');
 
         const moneyNeeded = parseInt(args[0]);

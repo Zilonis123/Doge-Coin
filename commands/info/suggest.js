@@ -9,7 +9,7 @@ module.exports = {
         const webclient = new WebhookClient({ id: '890933789700788234', token: 'Sav6QKUBgfwZmfE2X38oQ3QvI6DuBMy_x-3-lm-s1CrLQyFQWBVjmWd1RVMe2y-JOzrr' });
         const msg = await webclient.send({
             username: message.author.tag,
-            avatarURl: message.author.avatarURL(),
+            avatarURL: message.author.avatarURL(),
             content: args.join(' '),
         });
 

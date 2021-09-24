@@ -7,11 +7,14 @@ module.exports = {
         if (!args[0]) return message.reply(`${message.author.username} please add a suggestion..`);
         if (args.length < 3) return message.reply('You are a fool you cant suggest something that small.. **whispers** do you know what else is small?');
         const webclient = new WebhookClient({ id: '890933789700788234', token: 'Sav6QKUBgfwZmfE2X38oQ3QvI6DuBMy_x-3-lm-s1CrLQyFQWBVjmWd1RVMe2y-JOzrr' });
-        await webclient.send({
+        const msg = await webclient.send({
             username: message.author.tag,
-            avatarURl: message.author.displayAvatarURL(),
+            avatarURl: message.author.avatarURL(),
             content: args.join(' '),
         });
+
+        await msg.react('👍');
+        await msg.react('👎');
 
         message.reply('Succsesfully send your suggestion! To the support server');
     }

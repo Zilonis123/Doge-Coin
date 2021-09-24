@@ -32,7 +32,7 @@ module.exports = {
         });
 
         const initEmbed = new MessageEmbed()
-            .setDescription('Please choose a category in the menu!\nNeed Support join [here](https://discord.gg/kRgWZXTjzt)')
+            .setDescription('Need help?👀 select a category from the menu!\nNeed Support join [here](https://discord.gg/kRgWZXTjzt)')
             .setColor('YELLOW');
 
         const components = (state) => [
@@ -74,7 +74,7 @@ module.exports = {
                 .setAuthor(
                     `${directory} commands`
                 )
-                .setDescription(`Here are the list of commands in **${directory}** category`)
+                .setDescription(`Here are the list of commands in ${emojis[directory]} **${directory}** category!`)
                 .addFields(
                     category.commands.map((cmd) => {
                         return {

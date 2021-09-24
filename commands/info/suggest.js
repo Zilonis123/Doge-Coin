@@ -13,9 +13,6 @@ module.exports = {
             content: args.join(' '),
         });
 
-        await msg.react('👍');
-        await msg.react('👎');
-
         message.reply('Succsesfully send your suggestion! To the support server');
     }
 }

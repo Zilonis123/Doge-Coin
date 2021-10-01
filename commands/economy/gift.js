@@ -21,7 +21,7 @@ module.exports = {
         if (!user) return message.reply(`Who do i give \`${input.toLocaleLowerCase()}\`<a:${coin.name}:${coin.id}> to?`);
         if (message.author.id != '530032883486687243' && args[2] != 'admin') {
             if (sch.Wallet < input) return message.reply('You don\'t have enough money in your wallet.. :sob:');
-        {
+        }
         if (user.id === message.author.id) return message.reply('You can\'t give your self money!')
         const gift = parseInt(input);
         if (message.author.id != '530032883486687243' && args[2] != 'admin') {

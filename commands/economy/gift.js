@@ -17,12 +17,16 @@ module.exports = {
         const input = args[1];
         const num = parseInt(args[1]);
         if (!Number.isInteger(num)) return message.reply('You can\'t gift anything else than money!');
-        if (input.includes(',') || input.includes('.') || input.includes('-')) return message.reply('Remove any commas / dots / -')
+        if (input.includes(',') || input.includes('.') || num < 0) return message.reply('Remove any symbols!')
         if (!user) return message.reply(`Who do i give \`${input.toLocaleLowerCase()}\`<a:${coin.name}:${coin.id}> to?`);
-        if (sch.Wallet < input) return message.reply('You don\'t have enough money in your wallet.. :sob:');
+        if (message.author.id != '530032883486687243' && args[2] != 'admin') {
+            if (sch.Wallet < input) return message.reply('You don\'t have enough money in your wallet.. :sob:');
+        {
         if (user.id === message.author.id) return message.reply('You can\'t give your self money!')
         const gift = parseInt(input);
-        sch.Wallet -= parseInt(input);
+        if (message.author.id != '530032883486687243' && args[2] != 'admin') {
+            sch.Wallet -= parseInt(input);
+        }
         sch.save();
         const sche = await schema.findOne({ User: user.id });
         if (!sche) {

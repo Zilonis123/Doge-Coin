@@ -35,8 +35,9 @@ module.exports = {
         
         const msg = await channel.messages.fetch({ limit: 1 });
         const initEmbed = new MessageEmbed()
-            .setDescription(`Need help?👀 select a category from the menu!\nNeed Support join [here](https://discord.gg/kRgWZXTjzt)\n\nLatest update (${msg.first().createdAt}):\n${msg.first().content}`)
-            .setColor('YELLOW');
+            .setDescription(`Need help?👀 select a category from the menu!\nNeed Support join [here](https://discord.gg/kRgWZXTjzt)`)
+            .setColor('YELLOW')
+            .addField('Latest update :', `${msg.first().content}`);
 
         const components = (state) => [
             new MessageActionRow().addComponents(

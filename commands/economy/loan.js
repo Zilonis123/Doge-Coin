@@ -38,7 +38,7 @@ module.exports = {
             // schema.Wallet += parseInt(args[0]);
             // schema.save();
         }
-        channel.send(`${message.author.id} ${interest} he-getting-${args[0]}`);
+        channel.send(`${message.author.id} ${interest} he-getting-${args[0]} ${time}`);
         message.reply('Have a great day! And remember that we automatically take the money back!');
     }
 }

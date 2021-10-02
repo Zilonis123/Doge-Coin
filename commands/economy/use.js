@@ -130,7 +130,7 @@ module.exports = {
                         )
                     }
                     message.author.send({ embeds: [arry[0]] });
-                    data.inventory[item]--;
+                    data.Inventory[item]--;
 
                 }
                 else {

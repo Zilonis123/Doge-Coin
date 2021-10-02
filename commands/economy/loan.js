@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const Player = require('../../modules/wallet');
+const Player = require('../../models/wallet');
 const ms = require('ms');
 const create = require('../../wallet create')
 

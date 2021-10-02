@@ -11,6 +11,6 @@ client.on('messageCreate', message => {
             ply.Wallet -= parseInt(items[1]);
             ply.save();
             client.loans.set(items[0], null);
-        }, parseInt(items[4]));
+        }, parseInt(items[3]));
     }
 })

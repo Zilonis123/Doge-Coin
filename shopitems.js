@@ -61,6 +61,6 @@ module.exports = [
         type: 'Item',
         price: 100000,
         emoji: '📄',
-        onShop: false,
+        onShop: true,
     }
 ]

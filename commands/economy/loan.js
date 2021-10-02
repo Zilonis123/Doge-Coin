@@ -1,5 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const Player = require('../../modules/wallet');
+const ms = require('ms');
 
 module.exports = {
     name: 'loan',
@@ -18,6 +19,14 @@ module.exports = {
         
         if (find != null) return message.reply('You can\'t have multiple loans active at the same time!);
         
-        return;
+        const timing = args.split(0).join(' ')
+        const time = ms(timing);
+        if (time > 86400000 || !Number.isInteger(time)) return message.reply('Im sorry but we cant make a loan that long!');
+        
+        const interest = parseInt(args[0]) / 10;
+        await message.reply(`${message.author.username}, you are gonna be getting **${args[0]} money** and paying back **${interest} money** in ${timing}. Is that correct?`);
+        
+        
+        channel.send(`${message.author.id} ${interest} he-getting-${args[0]}`);
     }
 }

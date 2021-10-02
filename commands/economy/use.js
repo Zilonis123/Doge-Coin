@@ -69,7 +69,7 @@ module.exports = {
                 })
                 data.Inventory[item]--;
             }
-            else if (item.includes('loot')) {
+            else if (item === 'loot') {
                 let banknote = Math.floor(Math.random() * 2);
                 if (banknote === 1) banknote = true;
                 if (banknote === 0) banknote = false;
@@ -91,7 +91,7 @@ module.exports = {
                 data.Inventory[item]--;
                 message.reply(msg);
             }
-            else if (item.includes('robbers')) {
+            else if (item === 'robbers') {
                 const embeds = []
 
                 let userIDs = [];

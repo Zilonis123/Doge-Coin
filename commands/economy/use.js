@@ -2,6 +2,7 @@ const inventory = require('../../models/inventory');
 const items = require('../../shopitems');
 const create = require('../../wallet create');
 const Player = require('../../models/wallet');
+const Paci = require('../../models/pacifist');
 
 module.exports = {
     name: 'use',
@@ -89,7 +90,47 @@ module.exports = {
                 message.reply(msg);
             }
             else if (item.includes('robbers')) {
-                // Nothing
+                        const embeds = []
+
+        let userIDs = [];
+        message.guild.members.cache.forEach(async(m) => {
+            if (!m.user.bot) userIDs.push(m.id);
+        })
+
+        let data = [];
+        for (id of userIDs) {
+            const sch = await Player.findOne({ User: id });
+            if (sch && sch.Wallet !== 0) {
+                data.push(sch);
+            }
+        }
+
+        const sorted = data.sort((a, b) => b.Wallet - a.Wallet);
+        
+        let i = 1;
+        if (sorted.length != null) {
+            const chunks = chunkz(sorted, 10);
+            let arry = [];
+
+            for (chunk of chunks) {
+                const chunking = chunk.map((v) => `\`${i++}#\` <@${v.User}> - \`${v.Wallet.toLocaleString()}\`<a:${coin.name}:${coin.id}>`).join('\n\n');
+
+                arry.push(
+                    new MessageEmbed()
+                        .setColor('YELLOW')
+                        .setDescription(chunking)
+                        .setThumbnail(message.guild.iconURL())
+                        .setAuthor(`${message.guild.name} Leaderboard`)
+                        .setFooter('This is their Wallet not the NetWorth\n\n')
+                )
+            }
+            pagination({
+                embeds: arry,
+                message: message,
+                time: 30000,
+                fastSkip: true,
+            });
+        }
             }
             else {
                 message.reply('This item cant be used! :thinking:')
@@ -98,3 +139,10 @@ module.exports = {
         })
     }
 }
+
+function chunkz (arr, size){
+    var array = [];
+    for(var i =0; i < arr.length; i += size){
+        array.push(arr.slice(i, i+size))
+    }
+    return array;

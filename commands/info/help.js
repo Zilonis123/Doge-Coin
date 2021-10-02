@@ -30,11 +30,12 @@ module.exports = {
                 commands: getCommands,
             };
         });
-        const channel = await client.guilds.cache.get('873965279665860628').channels.cache.get('873969937230757938');
+        const guild = await client.guilds.cache.get('873965279665860628');
+        const channel = await guild.channels.cache.get('873969937230757938');
         
         const msg = await channel.messages.fetch({ limit: 1 });
         const initEmbed = new MessageEmbed()
-            .setDescription(`Need help?👀 select a category from the menu!\nNeed Support join [here](https://discord.gg/kRgWZXTjzt)\nLatest update (${msg.createdAt}):\n${msg.content}`)
+            .setDescription(`Need help?👀 select a category from the menu!\nNeed Support join [here](https://discord.gg/kRgWZXTjzt)\n\nLatest update (${msg.first().createdAt}):\n${msg.first().content}`)
             .setColor('YELLOW');
 
         const components = (state) => [

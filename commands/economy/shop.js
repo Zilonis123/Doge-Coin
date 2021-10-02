@@ -50,7 +50,7 @@ module.exports = {
             });
         }
         else {
-            const chunking = sorted.map((v) => `- ${v.emoji} **${v.item}** - \`${v.price}\`<a:${coin.name}:${coin.id}>\n- ${v.description} - **${v.type}**`).join('\n\n');
+            const chunking = sorted.map((v) => `- ${v.emoji} **${v.item}** - \`${v.price.toLocaleString()}\`<a:${coin.name}:${coin.id}>\n- ${v.description} - **${v.type}**`).join('\n\n');
 
             message.channel.send({
                 embeds: [

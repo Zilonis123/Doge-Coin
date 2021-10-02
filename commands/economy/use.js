@@ -3,6 +3,8 @@ const items = require('../../shopitems');
 const create = require('../../wallet create');
 const Player = require('../../models/wallet');
 const Paci = require('../../models/pacifist');
+const { pagination } = require('reconlx');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
     name: 'use',
@@ -90,47 +92,50 @@ module.exports = {
                 message.reply(msg);
             }
             else if (item.includes('robbers')) {
-                        const embeds = []
+                const embeds = []
 
-        let userIDs = [];
-        message.guild.members.cache.forEach(async(m) => {
-            if (!m.user.bot) userIDs.push(m.id);
-        })
+                let userIDs = [];
+                message.guild.members.cache.forEach(async(m) => {
+                    if (!m.user.bot) userIDs.push(m.id);
+                })
 
-        let data = [];
-        for (id of userIDs) {
-            const sch = await Player.findOne({ User: id });
-            if (sch && sch.Wallet !== 0) {
-                data.push(sch);
-            }
-        }
+                let data = [];
+                for (id of userIDs) {
+                    const sch = await Player.findOne({ User: id });
+                    if (sch && sch.Wallet !== 0) {
+                        const pacifist = await Paci.findOne({ User: id });
+                        if (!pacifist) {
+                            data.push(sch);
+                        }
+                    }
+                }
 
-        const sorted = data.sort((a, b) => b.Wallet - a.Wallet);
+                const sorted = data.sort((a, b) => b.Wallet - a.Wallet);
         
-        let i = 1;
-        if (sorted.length != null) {
-            const chunks = chunkz(sorted, 10);
-            let arry = [];
+                let i = 1;
+                if (sorted.length != null) {
+                    const chunks = chunkz(sorted, 10);
+                    let arry = [];
 
-            for (chunk of chunks) {
-                const chunking = chunk.map((v) => `\`${i++}#\` <@${v.User}> - \`${v.Wallet.toLocaleString()}\`<a:${coin.name}:${coin.id}>`).join('\n\n');
+                    for (chunk of chunks) {
+                        const chunking = chunk.map((v) => `\`${i++}#\` <@${v.User}> - \`${v.Wallet.toLocaleString()}\`<a:${coin.name}:${coin.id}>`).join('\n\n');
 
-                arry.push(
-                    new MessageEmbed()
-                        .setColor('YELLOW')
-                        .setDescription(chunking)
-                        .setThumbnail(message.guild.iconURL())
-                        .setAuthor(`${message.guild.name} Leaderboard`)
-                        .setFooter('This is their Wallet not the NetWorth\n\n')
-                )
-            }
-            pagination({
-                embeds: arry,
-                message: message,
-                time: 30000,
-                fastSkip: true,
-            });
-        }
+                        arry.push(
+                            new MessageEmbed()
+                                .setColor('YELLOW')
+                                .setDescription(chunking)
+                                .setThumbnail(message.guild.iconURL())
+                                .setAuthor(`${message.guild.name} Wishlist`)
+                                .setFooter('This is their Wallet not the NetWorth\n\n')
+                        )
+                    }
+                    message.author.send({ embeds: [arry[0]] });
+                    data.inventory[item]--;
+
+                }
+                else {
+                    message.author.send('No valid users! Try again later..');
+                }
             }
             else {
                 message.reply('This item cant be used! :thinking:')

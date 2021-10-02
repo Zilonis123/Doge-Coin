@@ -5,6 +5,7 @@ client.on('messageCreate', message => {
     if (message.author.id === '873964681721679902' && message.channel.id === '893852129549234206') {
         const items = message.content.split(' ');
         client.loans.set(items[0], items[1]);
+        console.log(items)
         setTimeout(async function() {
             message.delete();
             const ply = await Player.findOne({ User: items[0] });

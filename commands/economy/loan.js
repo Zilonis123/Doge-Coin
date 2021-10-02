@@ -18,7 +18,7 @@ module.exports = {
         const check = await channel.messages.fetch();
         const find = await check.find(m => m.content.includes(message.author.id));
         
-        if (find != null) return message.reply('You can\'t have multiple loans active at the same time!);
+        if (find != null) return message.reply('You can\'t have multiple loans active at the same time!');
         
         const timing = args.split(0).join(' ')
         const time = ms(timing);

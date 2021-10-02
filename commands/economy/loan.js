@@ -20,7 +20,7 @@ module.exports = {
         
         if (find != null) return message.reply('You can\'t have multiple loans active at the same time!');
         
-        const timing = args.slice(0).join(' ')
+        const timing = args.slice(1).join(' ')
         const time = ms(timing);
         if (time > 86400000 || !Number.isInteger(time)) return message.reply('Im sorry but we cant make a loan that long!');
         

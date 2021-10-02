@@ -3,7 +3,7 @@ const Player = require('../models/wallet');
 
 client.on('message', message => {
     if (message.author.id === '873964681721679902' && message.channel.id === '893852129549234206') {
-        const items = message.content.slice(' ');
+        const items = message.content.split(/ +/);
         client.loans.set(items[0], items[1]);
         setTimeout(async function() {
             message.delete();

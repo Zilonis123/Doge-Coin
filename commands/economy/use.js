@@ -99,18 +99,18 @@ module.exports = {
                     if (!m.user.bot) userIDs.push(m.id);
                 })
 
-                let data = [];
+                let dats = [];
                 for (id of userIDs) {
                     const sch = await Player.findOne({ User: id });
                     if (sch && sch.Wallet !== 0) {
                         const pacifist = await Paci.findOne({ User: id });
                         if (!pacifist) {
-                            data.push(sch);
+                            dats.push(sch);
                         }
                     }
                 }
 
-                const sorted = data.sort((a, b) => b.Wallet - a.Wallet);
+                const sorted = dats.sort((a, b) => b.Wallet - a.Wallet);
         
                 let i = 1;
                 if (sorted.length != null) {

@@ -10,7 +10,7 @@ module.exports = {
     async execute(message, args, client) {
         const parameters = '`doge loan <money> <time>`'
         if (!args[0] || !args[1]) return message.reply(`Please use the correct parameters : ${parameters}`);
-        if (!Number.isInteger(args[0]) || parseInt(args[0]) < 0) return message.reply('Please enter a correct "Positive Ineteger"!')
+        if (!Number.isInteger(parseInt(args[0])) || parseInt(args[0]) < 0) return message.reply('Please enter a correct "Positive Ineteger"!')
         
         const guild = await client.guilds.cache.get('873965279665860628');
         const channel = await guild.channels.cache.get('893852129549234206');

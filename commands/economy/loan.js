@@ -1,6 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const Player = require('../../modules/wallet');
 const ms = require('ms');
+const create = require('../../wallet create')
 
 module.exports = {
     name: 'loan',
@@ -25,8 +26,19 @@ module.exports = {
         
         const interest = parseInt(args[0]) / 10;
         await message.reply(`${message.author.username}, you are gonna be getting **${args[0]} money** and paying back **${interest} money** in ${timing}. Is that correct?`);
+        const filter = m => m.author.id === message.author.id;
+        const ans = await message.channel.awaitMessages({ filter, max: 1, time: 20000, errors: ['time'] }).catch((err) => {});
+        if (ans.first().content.toLowerCase().include('no')) return message.reply('Have a nice day!');
         
-        
+        const schema = await Player.findOne({ User: message.author.id });
+        if (!schema) {
+            // create(message, parseInt(args[0]), 0);
+        }
+        else {
+            // schema.Wallet += parseInt(args[0]);
+            // schema.save();
+        }
         channel.send(`${message.author.id} ${interest} he-getting-${args[0]}`);
+        message.reply('Have a great day! And remember that we automatically take the money back!');
     }
 }

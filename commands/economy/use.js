@@ -66,7 +66,7 @@ module.exports = {
                 })
                 data.Inventory[item]--;
             }
-            else if (item === 'loot') {
+            else if (item.includes('loot')) {
                 let banknote = Math.floor(Math.random() * 2);
                 if (banknote === 1) banknote = true;
                 if (banknote === 0) banknote = false;
@@ -87,6 +87,9 @@ module.exports = {
                 }
                 data.Inventory[item]--;
                 message.reply(msg);
+            }
+            else if (item.includes('robbers')) {
+                // Nothing
             }
             else {
                 message.reply('This item cant be used! :thinking:')

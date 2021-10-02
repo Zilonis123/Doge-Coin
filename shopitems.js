@@ -13,7 +13,7 @@ module.exports = [
         price: 50000,
         type: 'Special item',
         emoji: '🚗',
-        onShop: true,
+        onShop: false,
     },
     {
         item: 'police car',
@@ -21,7 +21,7 @@ module.exports = [
         price: 100000,
         type: 'Special item',
         emoji: '🚓',
-        onShop: true,
+        onShop: false,
     },
     {
         item: 'grapes',
@@ -48,11 +48,19 @@ module.exports = [
         onShop: true,
     },
     {
-        item: 'loot box',
-        description: 'a loot box lol',
+        item: 'lootbox',
+        description: 'a lootbox lol',
         type: 'Item',
         price: 100000,
         emoji: '📦',
         onShop: true,
+    },
+    {
+        item: 'robbers wishlist',
+        description: 'dm\'s a list of richest non pacifist players to the user',
+        type: 'Item',
+        price: 100000,
+        emoji: '📄',
+        onShop: false,
     }
 ]

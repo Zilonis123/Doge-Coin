@@ -24,7 +24,7 @@ module.exports = {
         const time = ms(timing);
         if (time > 86400000 || !Number.isInteger(time)) return message.reply('Im sorry but we cant make a loan that long!');
         
-        const interest = Math.Floor((parseInt(args[0]) / 10) + parseInt(args[0]));
+        const interest = Math.floor((parseInt(args[0]) / 10) + parseInt(args[0]));
         await message.reply(`${message.author.username}, you are gonna be getting **${args[0]} money** and paying back **${interest} money** in ${timing}. Is that correct?`);
         const filter = m => m.author.id === message.author.id;
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 20000, errors: ['time'] }).catch((err) => {});
@@ -32,11 +32,11 @@ module.exports = {
         
         const schema = await Player.findOne({ User: message.author.id });
         if (!schema) {
-            // create(message, parseInt(args[0]), 0);
+            create(message, parseInt(args[0]), 0);
         }
         else {
-            // schema.Wallet += parseInt(args[0]);
-            // schema.save();
+            schema.Wallet += parseInt(args[0]);
+            schema.save();
         }
         channel.send(`${message.author.id} ${interest} ${args[0]} ${time}`);
         message.reply('Have a great day! And remember that we automatically take the money back!');

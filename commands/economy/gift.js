@@ -16,6 +16,15 @@ module.exports = {
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         const input = args[1];
         const num = parseInt(args[1]);
+        if (args[1].toLowerCase() === 'all') {
+            const schems = await schems.findOne({ User: user.id });
+            const all = sch.Wallet;
+            sch.Wallet -= all;
+            sch.save();
+            if (!schems) return create(user, all, 0);
+            schems.Wallet += all;
+            schems.save();
+        }
         if (!Number.isInteger(num)) return message.reply('You can\'t gift anything else than money!');
         if (input.includes(',') || input.includes('.') || num < 0) return message.reply('Remove any symbols!')
         if (!user) return message.reply(`Who do i give \`${input.toLocaleLowerCase()}\`<a:${coin.name}:${coin.id}> to?`);

@@ -24,6 +24,7 @@ module.exports = {
             if (!schems) return create(user, all, 0);
             schems.Wallet += all;
             schems.save();
+            return;
         }
         if (!Number.isInteger(num)) return message.reply('You can\'t gift anything else than money!');
         if (input.includes(',') || input.includes('.') || num < 0) return message.reply('Remove any symbols!')

@@ -17,7 +17,7 @@ module.exports = {
         const input = args[1];
         const num = parseInt(args[1]);
         if (args[1].toLowerCase() === 'all') {
-            const schems = await schems.findOne({ User: user.id });
+            const schems = await schema.findOne({ User: user.id });
             const all = sch.Wallet;
             sch.Wallet -= all;
             sch.save();

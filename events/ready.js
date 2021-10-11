@@ -17,6 +17,7 @@ client.on('ready', async() => {
         client.user.setActivity(messages[random], { type: 'WATCHING' });
         const guild = await client.guilds.cache.get('873965279665860628');
         const servers = await guild.channels.cache.get('883741475282747472');
+        const serv_members = await guild.channels.cache.get('897059296846684221');
         const members = await guild.channels.cache.get('883741475358261318');
         let mc = 0;
         await client.guilds.cache.forEach((g) => {
@@ -24,5 +25,6 @@ client.on('ready', async() => {
         });
         servers.setName(`😮Supporters - ${client.guilds.cache.size}`);
         members.setName(`😎Serving ${mc}`);
+        serv_members.setName(`😁Members ${guild.memberCount}`);
     }, 3600000);
 })

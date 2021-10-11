@@ -75,7 +75,7 @@ module.exports = {
                     )
             )
         ];
-        const initalMessage = await message.reply({ content: 'Please choose a shop filter from bellow!', components: components(false) });
+        const initalMessage = await message.channel.send({ content: `<@${message.author.id}>, Please choose a shop filter from bellow!`, components: components(false) });
         
         const filter = (interaction) => interaction.user.id === message.author.id;
         const collector = message.channel.createMessageComponentCollector({
@@ -95,6 +95,7 @@ module.exports = {
                 });
                 return;
             }
+            console.log('low to high')
             pagination({
                 message: message,
                 embeds: lowToHigh,

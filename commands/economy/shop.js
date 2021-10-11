@@ -89,7 +89,7 @@ module.exports = {
         collector.on('collect', (interaction) => {
             const [ type ] = interaction.values;
             initalMessage.delete();
-            const thing = lowToHigh;
+            let thing = lowToHigh;
             if (type === 'htl') {
                 thing = highToLow;
             }

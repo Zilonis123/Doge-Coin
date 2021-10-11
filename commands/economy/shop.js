@@ -86,7 +86,6 @@ module.exports = {
         
         collector.on('collect', (interaction) => {
             if (interaction.value === 'htl') {
-                initalMessage.delete();
                 pagination({
                     message: message,
                     embeds: highToLow,
@@ -95,7 +94,6 @@ module.exports = {
                 });
                 return;
             }
-            initalMessage.delete();
             console.log('low to high')
             pagination({
                 message: message,
@@ -103,6 +101,9 @@ module.exports = {
                 time: 30000,
                 fastSkip: true,
             });
+        });
+        collector.on('end', (interaction) => {
+            initalMessage.edit({ components: components(true) })
         });
     }
 }

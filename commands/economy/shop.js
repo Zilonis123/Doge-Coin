@@ -11,15 +11,17 @@ module.exports = {
         const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');
         if (items.length === 0) return message.reply('Return later when Doge.Co makes more products');
 
-        let data = []
+        let data = [];
+        let data2 = [];
         for (item of items) {
             if (item.onShop) {
+                data2.push(item);
                 data.push(item);
             }
         }
 
 
-        const lth = data.sort((a, b) => b.price - a.price);
+        const lth = data2.sort((a, b) => b.price - a.price);
         let lowToHigh = [];
         const htl = data.sort((a, b) => a.price - b.price);
         let highToLow = [];

@@ -3,9 +3,18 @@ const moment = require('moment');
 const daily = require('../models/daily');
 client.on('ready', async() => {
     console.log(`${client.user.tag} is ready`);
-    client.user.setActivity(`${process.env.PREFIX} help`, { type: 'WATCHING' });
+    
+    const messages = [
+        `${process.env.PREFIX} help`,
+        'mentions',
+        `${client.guilds.cache.size} supporters`
+    ];
+    
+    
 
     setInterval(async function() {
+        const random = Math.floor(Math.random() * ${messages.length});
+        client.user.setActivity(messages[random], { type: 'WATCHING' });
         const guild = await client.guilds.cache.get('873965279665860628');
         const servers = await guild.channels.cache.get('883741475282747472');
         const members = await guild.channels.cache.get('883741475358261318');
@@ -13,7 +22,7 @@ client.on('ready', async() => {
         await client.guilds.cache.forEach((g) => {
             mc += g.memberCount;
         });
-        servers.setName(`😮DC supporters - ${client.guilds.cache.size}`);
-        members.setName(`😎Serving ${mc} members`);
-    }, 30000);
+        servers.setName(`😮Supporters - ${client.guilds.cache.size}`);
+        members.setName(`😎Serving ${mc}`);
+    }, 3600000);
 })

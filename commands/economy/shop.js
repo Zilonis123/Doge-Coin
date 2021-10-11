@@ -85,6 +85,7 @@ module.exports = {
         });
         
         collector.on('collect', (interaction) => {
+            initalMessage.edit({ content: 'Thx' });
             if (interaction.value === 'htl') {
                 pagination({
                     message: message,
@@ -92,15 +93,18 @@ module.exports = {
                     time: 30000,
                     fastSkip: true,
                 });
-                return;
+
             }
-            console.log('low to high')
-            pagination({
-                message: message,
-                embeds: lowToHigh,
-                time: 30000,
-                fastSkip: true,
-            });
+            else {
+                console.log('low to high')
+                pagination({
+                    message: message,
+                    embeds: lowToHigh,
+                    time: 30000,
+                    fastSkip: true,
+                });
+            }
+
         });
         collector.on('end', (interaction) => {
             initalMessage.edit({ components: components(true) })

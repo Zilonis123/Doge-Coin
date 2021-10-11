@@ -13,7 +13,7 @@ client.on('ready', async() => {
     
 
     setInterval(async function() {
-        const random = Math.floor(Math.random() * ${messages.length});
+        const random = Math.floor(Math.random() * messages.length);
         client.user.setActivity(messages[random], { type: 'WATCHING' });
         const guild = await client.guilds.cache.get('873965279665860628');
         const servers = await guild.channels.cache.get('883741475282747472');

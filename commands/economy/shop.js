@@ -85,8 +85,9 @@ module.exports = {
         });
         
         collector.on('collect', (interaction) => {
-            initalMessage.edit({ content: 'Thx' });
-            if (interaction.value === 'htl') {
+            const [ type ] = interaction.values;
+            initalMessage.delete();
+            if (type === 'htl') {
                 pagination({
                     message: message,
                     embeds: highToLow,
@@ -105,9 +106,6 @@ module.exports = {
                 });
             }
 
-        });
-        collector.on('end', (interaction) => {
-            initalMessage.edit({ components: components(true) })
         });
     }
 }

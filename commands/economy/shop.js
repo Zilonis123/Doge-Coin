@@ -63,13 +63,13 @@ module.exports = {
                         [
                             {
                                 label: 'High To Low',
-                                value: highToLow,
+                                value: 'htl',
                                 description: 'Get the shop items sorted from HIGH to LOW',
                                 emoji: '⬆',
                             },
                             {
                                 label: 'Low To High',
-                                value: lowToHigh,
+                                value: 'lth',
                                 description: 'Get the shop items sorted from LOW to HIGH',
                                 emoji: '⬇',
                             }
@@ -89,9 +89,13 @@ module.exports = {
         collector.on('collect', (interaction) => {
             const [ type ] = interaction.values;
             initalMessage.delete();
+            const thing = lowToHigh;
+            if (type === 'htl') {
+                thing = highToLow;
+            }
             pagination({
                 message: message,
-                embeds: type,
+                embeds: thing,
                 time: 30000,
                 fastSkip: true,
             });

@@ -85,7 +85,7 @@ module.exports = {
         });
         
         collector.on('collect', (interaction) => {
-            if (interaction.value == 'htl') {
+            if (interaction.value === 'htl') {
                 initalMessage.delete();
                 pagination({
                     message: message,

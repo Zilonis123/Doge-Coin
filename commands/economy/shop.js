@@ -55,7 +55,7 @@ module.exports = {
             new MessageActionRow().addComponents(
                 new MessageSelectMenu()
                     .setCustomId('shop')
-                    .setPlaceHolder('Please select a filter!')
+                    .setPlaceholder('Please select a filter!')
                     .setDisabled(state)
                     .addOptions(
                         [

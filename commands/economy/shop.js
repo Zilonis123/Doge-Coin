@@ -19,9 +19,9 @@ module.exports = {
         }
 
 
-        const lth = data.sort((a, b) => a.price - b.price);
+        const lth = data.sort((a, b) => b.price - a.price);
         let lowToHigh = [];
-        const htl = data.sort((a, b) => b.price - a.price);
+        const htl = data.sort((a, b) => a.price - b.price);
         let highToLow = [];
 
         if (data.length != 0) {
@@ -38,14 +38,14 @@ module.exports = {
                 lowToHigh.push(embed)
             }
         }
-        const chunks = await chunkz(htl, 5);
+        const chnks = await chunkz(htl, 5);
 
-            for (chunk of chunks) {
-                const chunking = chunk.map((v) => `- ${v.emoji} **${v.item}** - \`${v.price.toLocaleString()}\`<a:${coin.name}:${coin.id}>\n- ${v.description} - **${v.type}**`).join('\n\n');
+            for (chunk of chnks) {
+                const hcnkn = chunk.map((v) => `- ${v.emoji} **${v.item}** - \`${v.price.toLocaleString()}\`<a:${coin.name}:${coin.id}>\n- ${v.description} - **${v.type}**`).join('\n\n');
 
                 const embed = new MessageEmbed()
                     .setColor('YELLOW')
-                    .setDescription(chunking)
+                    .setDescription(hcnkn)
                     .setAuthor('Shop')
                 
                 highToLow.push(embed)

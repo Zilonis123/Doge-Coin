@@ -95,6 +95,7 @@ module.exports = {
                 });
                 return;
             }
+            initalMessage.delete();
             console.log('low to high')
             pagination({
                 message: message,

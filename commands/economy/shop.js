@@ -21,9 +21,9 @@ module.exports = {
         }
 
 
-        const lth = data2.sort((a, b) => b.price - a.price);
+        const lth = data2.sort((a, b) => a.price - b.price);
         let lowToHigh = [];
-        const htl = data.sort((a, b) => a.price - b.price);
+        const htl = data.sort((a, b) => b.price - a.price);
         let highToLow = [];
 
         if (data.length != 0) {
@@ -63,13 +63,13 @@ module.exports = {
                         [
                             {
                                 label: 'High To Low',
-                                value: 'htl',
+                                value: highToLow,
                                 description: 'Get the shop items sorted from HIGH to LOW',
                                 emoji: '⬆',
                             },
                             {
                                 label: 'Low To High',
-                                value: 'lth',
+                                value: lowToHigh,
                                 description: 'Get the shop items sorted from LOW to HIGH',
                                 emoji: '⬇',
                             }
@@ -91,7 +91,7 @@ module.exports = {
             initalMessage.delete();
             pagination({
                 message: message,
-                embeds: highToLow,
+                embeds: type,
                 time: 30000,
                 fastSkip: true,
             });

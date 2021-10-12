@@ -7,6 +7,7 @@ client.on('messageCreate', async(message) => {
     const embed = new MessageEmbed()
         .setColor('YELLOW')
         .setDescription('This is all the info you should know about me! :D')
-        .addField('Info', `My current prefix : ${process.env.PREFIX}\nMy current help command: ${process.env.PREFIX}help`, true);
+        .addField('Prefix❗', `${process.env.PREFIX}`)
+        .addField('Help cmd🆘', `${process.env.PREFIX}help`);
     message.reply({ embeds: [embed] });
 });

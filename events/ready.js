@@ -10,8 +10,8 @@ client.on('ready', async() => {
         `${client.guilds.cache.size} supporters`
     ];
     
-    
-
+    const random = Math.floor(Math.random() * messages.length);
+    client.user.setActivity(messages[random], { type: 'WATCHING' });
     setInterval(async function() {
         const random = Math.floor(Math.random() * messages.length);
         client.user.setActivity(messages[random], { type: 'WATCHING' });

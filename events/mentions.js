@@ -2,7 +2,7 @@ const client = require('../index.js');
 const { MessageEmbed } = require('discord.js');
 
 client.on('messageCreate', async(message) => {
-    if (message.content !== `<!@873964681721679902>` || !message.guild) return;
+    if (message.content.includes(`<@873964681721679902>`) || !message.guild) return;
     
     const embed = new MessageEmbed()
         .setColor('YELLOW')

@@ -1,0 +1,12 @@
+const client = require('../index.js');
+const { MessageEmbed } = require('discord.js');
+
+client.on('messageCreate', (message) => {
+    if (message.content !== `<@${client.user.id}>`) return;
+    
+    const embed = new MessageEmbed()
+        .setColor('YELLOW')
+        .setDescription('This is all the info you should know about me! :D')
+        .addField('Info', `My current prefix : ${process.env.prefix}\nMy current help command: ${process.env.prefix}help`, true);
+    message.reply({ embeds: [embed] });
+});

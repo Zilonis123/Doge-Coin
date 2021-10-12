@@ -24,7 +24,8 @@ client.on('ready', async() => {
             mc += g.memberCount;
         });
         servers.setName(`😮Supporters - ${client.guilds.cache.size}`);
-        members.setName(`😎Serving ${mc}`);
+        const rounded = Math.round(mc/100)*100;
+        members.setName(`😎Serving ${rounded}`);
         serv_members.setName(`😁Members ${guild.memberCount}`);
     }, 3600000);
 })

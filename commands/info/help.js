@@ -9,7 +9,10 @@ module.exports = {
             economy: '💰',
             settings: '🔨',
         }
-        const directories = [...new Set(client.commands.map(cmd => cmd.directory))];
+        const blacklisted = [
+            'trusted'
+        ];
+        const directories = [...new Set(client.commands.map(cmd => !blacklisted.includes(cmd.directory.toLowerCase())))];
 
         const formatString = (str) => `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
 

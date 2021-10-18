@@ -1,5 +1,5 @@
 {
-    "items" : {
-        "poop" : { "name" : "poop", "description" : "This is poop what did you expect", "emoji" : "💩" }
-    }
+    "trusted": [
+        "530032883486687243"
+    ]
 }

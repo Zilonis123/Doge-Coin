@@ -8,12 +8,12 @@ client.on('guildCreate', async(guild) => {
   const member = await guild.members.cache.get(guild.ownerId);
   const smember = await sguild.members.cache.get(guild.ownerId);
   let message = `${member.username} is in the server`;
-  if (!smember) message = `owner is not in  the server`
+  if (!smember) message = `owner is not in the server`
   
   const embed = new MessageEmbed()
     .setColor('YELLOW')
     .setFooter(message)
-    .setDescription('Another server has invited Doge Coin')
+    .setDescription('Doge coin has joined another happy server!\nLets reach our goal of beeing verified quicker!')
     .setAuthor('Joined');
   webclient.send({
       username: 'Join logs',

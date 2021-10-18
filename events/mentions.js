@@ -2,7 +2,7 @@ const client = require('../index.js');
 const { MessageEmbed } = require('discord.js');
 
 client.on('messageCreate', async(message) => {
-    if (!message.startsWith(`<@client.user.id>`) || !message.guild) return;
+    if (!message.content.startsWith(`<@client.user.id>`) || !message.guild) return;
     
     const embed = new MessageEmbed()
         .setColor('YELLOW')

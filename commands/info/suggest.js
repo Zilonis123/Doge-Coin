@@ -10,7 +10,7 @@ module.exports = {
         const msg = await webclient.send({
             username: message.author.tag,
             avatarURL: message.author.displayAvatarURL(),
-            content: `${args.join(' ')}\n\nUser id : \`${message.author.id}\``,
+            content: `${args.join(' ')}`,
         });
 
         message.reply('Succsesfully send your suggestion to the support server! You may earn a reward');

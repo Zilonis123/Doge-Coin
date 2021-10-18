@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: 'eval',
-  description: 'ok how did you get here?'
+  description: 'ok how did you get here?',
   aliases: ['exec', 'execute'],
   async execute(message, args, client) {
     if (!config.trusted.include(message.author.id)) return;

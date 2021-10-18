@@ -13,7 +13,7 @@ module.exports = {
     if (!code) message.reply('Add some code please!');
     
     try {
-      const result = await eval(code);\
+      const result = await eval(code);
       let output = result;
       
       if (typeof result !== 'string') {

@@ -23,7 +23,7 @@ module.exports = {
         output = inspect(result);
       }
       
-      message.channel.send({ content: `${output}`})
+      message.channel.send({ content: `\`\`\`js\n${output}\`\`\``})
     } catch (error) {
       message.channel.send('Evaluated content is too long to display!')
     }

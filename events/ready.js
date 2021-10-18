@@ -23,9 +23,9 @@ client.on('ready', async() => {
         await client.guilds.cache.forEach((g) => {
             mc += g.memberCount;
         });
-        servers.setName(`😮Supporters - ${client.guilds.cache.size}`);
+        servers.setName(`😮Servers ${client.guilds.cache.size}`);
         const rounded = Math.round(mc/100)*100;
-        members.setName(`😎Serving ${rounded}`);
-        serv_members.setName(`😁Members ${guild.memberCount}`);
+        members.setName(`😎Users ${rounded}`);
+        serv_members.setName(`😁SMembers ${guild.memberCount}`);
     }, 3600000);
 })

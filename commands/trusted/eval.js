@@ -7,7 +7,7 @@ module.exports = {
   description: 'ok how did you get here?',
   aliases: ['exec', 'execute'],
   async execute(message, args, client) {
-    if (!config.trusted.include(message.author.id)) return;
+    if (!config.trusted.includes(message.author.id)) return;
     
     const code = args.join(' ');
     if (!code) message.reply('Add some code please!');

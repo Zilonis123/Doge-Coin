@@ -24,7 +24,7 @@ module.exports = {
       }
       
       let msg = `\`\`\`js\n${output}\`\`\``;
-      if (msg.length > 600) msg = '```js\nToo long to display!```'
+      if (msg.length > 1000) msg = '```js\nToo long to display!```'
       const embed = new MessageEmbed()
         .setColor('YELLOW')
         .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL())

@@ -10,7 +10,10 @@ module.exports = {
     if (!config.trusted.includes(message.author.id)) return;
     
     const code = args.join(' ');
-    if (!code) message.reply('Add some code please!');
+    if (!code) {
+      message.reply('Add some code please!');
+      return;
+    }
     
     try {
       const result = await eval(code);

@@ -12,13 +12,13 @@ module.exports = {
         const blacklisted = [
             'trusted'
         ];
-        const directories = [...new Set(client.commands.map(cmd => !blacklisted.includes(cmd.directory.toLowerCase())))];
+        const directories = [...new Set(client.commands.map(cmd => (cmd.directory.toLowerCase()))];
 
         const formatString = (str) => `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
 
         const categories  = directories.map((dir) => {
             const getCommands = client.commands.filter(
-                (cmd) => cmd.directory === dir
+                (cmd) => cmd.directory === dir && !blacklisted.includes(cmd.directory)
             ).map(cmd => {
                 return {
                     name: cmd.name || 'In progress',

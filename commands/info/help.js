@@ -12,7 +12,7 @@ module.exports = {
         const blacklisted = [
             'trusted'
         ];
-        const directories = [...new Set(client.commands.map(cmd => (cmd.directory.toLowerCase()))];
+        const directories = [...new Set(client.commands.map(cmd => cmd.directory.toLowerCase()))];
 
         const formatString = (str) => `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
 

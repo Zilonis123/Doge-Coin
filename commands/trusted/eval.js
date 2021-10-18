@@ -1,6 +1,7 @@
 const config = require('../../config.json');
 const { inspect } = require('util');
 const { MessageEmbed } = require('discord.js');
+const { post } = require('node-superfetch');
 
 module.exports = {
   name: 'eval',
@@ -15,6 +16,11 @@ module.exports = {
       return;
     }
     
+    const embed = new MessageEmbed()
+        .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL())
+        .setAuthor('Eval command!')
+        .addField('Input', "```js\n" + code + "```");
+    
     try {
       const result = await eval(code);
       let output = result;
@@ -23,17 +29,36 @@ module.exports = {
         output = inspect(result);
       }
       
-      let msg = `\`\`\`js\n${output}\`\`\``;
-      if (msg.length > 1000) msg = '```js\nToo long to display!```'
-      const embed = new MessageEmbed()
-        .setColor('YELLOW')
-        .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL())
-        .setAuthor('Eval command!')
-        .addField('code', `\`\`\`js\n${code}\`\`\``)
-        .addField('result', `${msg}`)
+      output = clean(output);
+      if (output.length > 1024) {
+        const {body} = await post('https://hastebin.com/documents').send(output);
+        embed.addField('Output', `https://hastebin.com/${body.key}.js`).setColor('GREEN');
+      }
+      else {
+        embed.addField('Output', "```js\n" + output + "```").setColor('GREEN');
+      }
+      
       message.channel.send({ embeds: [embed] })
     } catch (error) {
-      message.channel.send('Evaluated content is too long to display!')
+      let err = clean(error);
+      if (err.length > 1024) {
+        const {body} = await post('https://hastebin.com/documents').send(err);
+        embed.addField('Output', `https://hastebin.com/${body.key}.js`).setColor('GREEN');
+      }
+      else {
+        embed.addField('Output', "```js\n" + err + "```").setColor('RED');
+        
+      }
+      message.channel.send({ embeds: [embed] })
     }
+  }
+}
+function clean(string) {
+  if (typeof text === "string") {
+    return string.replace(/`/g, "`" + String.fromCharCode(8203))
+    .replace(/@/g, "@");
+  }
+  else {
+    return string;
   }
 }

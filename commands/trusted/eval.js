@@ -22,8 +22,13 @@ module.exports = {
       if (typeof result !== 'string') {
         output = inspect(result);
       }
-      
-      message.channel.send({ content: `\`\`\`js\n${output}\`\`\``})
+      const embed = new MessageEmbed()
+        .setColor('YELLOW')
+        .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL())
+        .setAuthor('Eval command!')
+        .addField('code', `\`\`\`js\n${code}\`\`\``)
+        .addField('result', `\`\`\`js\n${output}\`\`\``)
+      message.channel.send({ embeds: [embed] })
     } catch (error) {
       message.channel.send('Evaluated content is too long to display!')
     }

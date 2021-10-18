@@ -22,7 +22,6 @@ module.exports = {
       
       message.channel.send({ content: `${output}`})
     } catch (error) {
-      console.log(err)
       message.channel.send('Evaluated content is too long to display!')
     }
   }

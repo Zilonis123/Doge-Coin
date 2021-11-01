@@ -27,13 +27,10 @@ client.on('guildCreate', async(guild) => {
 client.on('guildDelete', async(guild) => {
   const sguild = await client.guilds.cache.get('873965279665860628');
   const role = await sguild.roles.cache.get('899593005172924427');
-  const smember = await sguild.members.cache.get(guild.ownerId);
-  let message = `servers owner is not in the server`;
-  if (!smember) message = `${smember.username} is in the server`;
   
   const embed = new MessageEmbed()
     .setColor('YELLOW')
-    .setFooter(message)
+    .setFooter('RIP')
     .setDescription('Doge coin has left a guild.. really sad hopefully noone says anything in general!')
     .setAuthor('Left a server');
   webclient.send({

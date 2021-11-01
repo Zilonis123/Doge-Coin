@@ -24,7 +24,7 @@ client.on('guildCreate', async(guild) => {
   })
 });
 
-client.on('guildDelete', async(guild) => {
+client.on('guildRemove', async(guild) => {
   const sguild = await client.guilds.cache.get('873965279665860628');
   const role = await sguild.roles.cache.get('899593005172924427');
   const member = await guild.members.cache.get(guild.ownerId);

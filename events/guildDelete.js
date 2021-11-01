@@ -5,7 +5,7 @@ const webclient = new WebhookClient({ id: '899596753622429706', token: '-1MVdaYh
 
 client.on('guildDelete', async(guild) => {
   const sguild = await client.guilds.cache.get('873965279665860628');
-  if (!client.isReady() || guild.available)
+  if (!client.isReady() || guild.available) return;
   
   const role = await sguild.roles.cache.get('899593005172924427');
   

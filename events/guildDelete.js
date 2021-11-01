@@ -1,4 +1,7 @@
 const client = require('../index.js');
+const { MessageEmbed, WebhookClient } = require('discord.js');
+
+const webclient = new WebhookClient({ id: '899596753622429706', token: '-1MVdaYhVUila7XWIvoAFhJzSBaTPkWRH-Gmx6yKU408TLEOl613vCERcjhdUA3VZyJI' });
 
 client.on('guildDelete', async(guild) => {
   const sguild = await client.guilds.cache.get('873965279665860628');

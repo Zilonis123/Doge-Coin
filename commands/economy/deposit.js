@@ -20,8 +20,9 @@ module.exports = {
         if (!Number.isInteger(number) && input.toLowerCase() !== 'all' && input.toLowerCase() !== 'max') return message.reply(`I cant put \`${input}\` into your bank.. <a:${lmfao.name}:${lmfao.id}>`);
         if (input.includes(',') || input.includes('.') || input.includes('-') || input.includes('@')) return message.reply('Please remove any commas or dots!');
         if (input.toLowerCase() === 'max' || input.toLowerCase() === 'all') {
-            let all = sch.Wallet + sch.Bank;
-            if ((sch.Wallet + sch.Bank) > sch.BankMax) all = sch.BankMax - sch.Bank;
+            let all = sch.BankMax - sch.Bank;
+
+            if (all !== sch.Wallet || all > sch.Wallet) all = sch.Wallet;
             const price = sch.Wallet - all;
             sch.Bank = all;
             sch.Wallet = price;

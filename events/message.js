@@ -5,15 +5,21 @@ const ms = require('ms');
 
 client.on('messageCreate', async(message) => {
 	let prefixes = [`${process.env.PREFIX.toLowerCase()}`, `<@!${client.user.id}>`, <@${client.user.id}>, 'doge'];
-        ler passing = false;
-	for (prefix of prefixes) {
-             if (!message.content.toLowerCase().startsWith(prefix)) continue;
-             passing = true;
-        }
-        if (!passing) return;
 	if (message.webhookId || !message.guild) return;
-	const args = message.content.slice(prefix.length).split(/ +/);
-	const cmdName = args.shift().toLowerCase();
+        let args, cmdName;
+        for (prefix in prefixes) {
+            prefix = prefixes[prefix];
+
+            if (message.content.toLowerCase().startsWith(prefix)) {
+                 let content = message.content.slice(prefix.length);
+                 if (!content) break;
+            
+                 args = content.split(' ')[1] ? content.split(' ').slice(1) : [];
+      
+                 cmdName = content.split(' ')[0].toLowerCase();
+
+            }
+        }
 	const command = client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
 	if(!command) return;
 	if (!message.member.permissions.has(command.permissions || [])) return message.channel.send(`You need \`${command.permissions}\` to run this command`);

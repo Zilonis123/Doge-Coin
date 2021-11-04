@@ -4,7 +4,7 @@ const inventory = require('../models/inventory');
 const ms = require('ms');
 
 client.on('messageCreate', async(message) => {
-	let prefixes = [`${process.env.PREFIX.toLowerCase()}`, `<@!${client.user.id}>`, `<@${client.user.id}>`, 'doge'];
+	let prefixes = [`${process.env.PREFIX.toLowerCase()}`, `<@!${client.user.id}>`, `<@${client.user.id}>`, 'doge', `<@${client.user.id}> `, `<@!${client.user.id}> `];
 	if (message.webhookId || !message.guild) return;
         let args, cmdName;
         for (prefix in prefixes) {

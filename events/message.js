@@ -4,10 +4,13 @@ const inventory = require('../models/inventory');
 const ms = require('ms');
 
 client.on('messageCreate', async(message) => {
-	let prefix = process.env.PREFIX + ' ';
-	if (!message.content.toLowerCase().startsWith(prefix)) {
-		return;
-	}
+	let prefixes = [`${process.env.PREFIX.toLowerCase()}`, `<@!${client.user.id}>`, <@${client.user.id}>, 'doge'];
+        ler passing = false;
+	for (prefix of prefixes) {
+             if (!message.content.toLowerCase().startsWith(prefix)) continue;
+             passing = true;
+        }
+        if (!passing) return;
 	if (message.webhookId || !message.guild) return;
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const cmdName = args.shift().toLowerCase();

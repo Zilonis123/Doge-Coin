@@ -22,7 +22,7 @@ module.exports = {
         if (input.toLowerCase() === 'max' || input.toLowerCase() === 'all') {
             let all = sch.BankMax - sch.Bank;
 
-            if (all !== sch.Wallet || all > sch.Wallet) all = sch.Wallet;
+            if (all !== sch.Wallet && all > sch.Wallet) all = sch.Wallet;
             const price = sch.Wallet - all;
             sch.Bank = all;
             sch.Wallet = price;

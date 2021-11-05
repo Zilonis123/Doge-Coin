@@ -36,7 +36,8 @@
     "text-to-image": "^4.0.0",
     "transformer.base64-to-buffer": "^0.0.2",
     "util": "^0.12.4",
-    "node-superfetch": "^0.2.3"
+    "node-superfetch": "^0.2.3",
+    "sourcebin": "^4.2.5"
 
   }
 }

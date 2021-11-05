@@ -1,7 +1,7 @@
 const config = require('../../config.json');
 const { inspect } = require('util');
 const { MessageEmbed } = require('discord.js');
-const { post } = require('node-superfetch');
+const sourcebin = require('sourcebin');
 
 module.exports = {
   name: 'eval',
@@ -31,8 +31,8 @@ module.exports = {
       
       output = clean(output);
       if (output.length > 1024) {
-        const {body} = await post('https://hastebin.com/documents').send(output);
-        embed.addField('Output', `https://hastebin.com/${body.key}.js`).setColor('GREEN');
+        const bin = await sourcebin.create([{content:`${output}`, language: 'js'}], {title:'Eval Command', description: 'Eval Command From "Doge Coin"'});
+        embed.addField('Output', `${bin}`).setColor('GREEN');
       }
       else {
         embed.addField('Output', "```js\n" + output + "```").setColor('GREEN');
@@ -42,8 +42,9 @@ module.exports = {
     } catch (error) {
       let err = clean(error);
       if (err.length > 1024) {
-        const {body} = await post('https://hastebin.com/documents').send(err);
-        embed.addField('Output', `https://hastebin.com/${body.key}.js`).setColor('GREEN');
+          const bin = await sourcebin.create([{content:`${err}`, language: 'js'}], {title:'Eval Command', description: 'Eval Command From "Doge Coin"\nResulted in err0r'})
+
+          embed.addField('Output', `${bin}`).setColor('GREEN');
       }
       else {
         embed.addField('Output', "```js\n" + err + "```").setColor('RED');

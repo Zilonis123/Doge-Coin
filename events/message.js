@@ -2,6 +2,7 @@ const { Collection, MessageEmbed } = require('discord.js');
 const client = require('../index');
 const inventory = require('../models/inventory');
 const ms = require('ms');
+const config = require('../config.json')
 
 client.on('messageCreate', async(message) => {
 	let prefixes = [`${process.env.PREFIX.toLowerCase()} `, `<@!${client.user.id}>`, `<@${client.user.id}>`, `${process.env.PREFIX.toLowerCase()} `, `<@${client.user.id}> `, `<@!${client.user.id}> `];
@@ -22,6 +23,13 @@ client.on('messageCreate', async(message) => {
         }
 	const command = client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
 	if(!command) return;
+	if (command.directory.toLowerCase() === 'trusted') {
+	    let going = false;
+	    for (id in config.trusted) {
+	        if (message.author.id === config.trusted[id]) going = true;
+	    }
+            if (!going) return;
+	}
 	if (!message.member.permissions.has(command.permissions || [])) return message.channel.send(`You need \`${command.permissions}\` to run this command`);
 	if (!message.channel.permissionsFor(message.guild.me).has(command.botPermissions || [])) return message.channel.send(`I dont have \`${command.botpermissions}\`permissions to run this command`);
 	if (!message.channel.permissionsFor(message.guild.me).has('EMBED_LINKS')) return message.channel.send('I dont have `EMBED_LINKS` permission to run this command');

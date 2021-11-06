@@ -36,12 +36,12 @@ module.exports = {
         { 
             if (itemName.item == "clock" && data.Inventory[itemToBuy] > 0)
         {
-            return message.reply(`You already own a clock you cant buy another`);
+            return message.reply(`You already own a clock you cant own 2 clocks!`);
         }
         }
         
-        if (userBalance.Wallet < paying) return message.reply(`You dont have \`${paying}\`<a:${coin.name}:${coin.id}> in your wallet! <a:${lol.name}:${lol.id}>`);
-        message.reply(`Do you really want to buy **${count}** ${itemEmoji} **${itemName.item}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>?\nYes/No`);
+        if (userBalance.Wallet < paying) return message.reply(`You dont have \`${paying}\`${coin} in your wallet! <a:${lol.name}:${lol.id}>`);
+        message.reply(`Do you really want to buy **${count}** ${itemEmoji} **${itemName.item}** for \`${paying.toLocaleString()}\`${coin}?\nYes/No`);
         const filter = m => m.author.id === message.author.id && (m.content.toLowerCase() === 'yes' || m.content.toLowerCase() === 'no');
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 20000, errors: ['time'] }).catch((err) => {});
         if (!ans) return message.reply('Cancelling..');
@@ -71,7 +71,7 @@ module.exports = {
         }
 
         };
-        message.reply(`You succsesfully bought **${count}** ${itemEmoji} **${itemName.item}** for \`${paying.toLocaleString()}\`<a:${coin.name}:${coin.id}>`)
+        message.reply(`You succsesfully bought **${count}** ${itemEmoji} **${itemName.item}** for \`${paying.toLocaleString()}\`${coin}`)
     })
     }
 }

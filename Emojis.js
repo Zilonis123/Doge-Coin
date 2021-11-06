@@ -3,7 +3,7 @@ const client = require('./index.js');
 modules.exports = async(emoji) => {
     // Require the guild
     const guild = await client.guilds.cache.get('873965279665860628');
-    if (emoji.includes('coin') {
+    if (emoji.includes('coin')) {
         // Require coin emoji from the guild and return the emoji
         const emoji_coin = await guild.emojis.cache.get('874290622201221211');
         return emoji_coin;

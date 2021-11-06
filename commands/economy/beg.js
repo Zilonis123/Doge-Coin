@@ -7,7 +7,7 @@ module.exports = {
     cooldown: 60,
     async execute(message, args, client) {
         const lol = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577305928888360');
-        const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');
+        const coin = await global.emojis('coin');
         const lmfao = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577308927811594');
         const troll = client.guilds.cache.get('873965279665860628').emojis.cache.get('874624861337690142');
         const Nomessages = [
@@ -47,27 +47,27 @@ module.exports = {
         const Yesmessages = [
             {
                 name: 'Yo, homie',
-                message: `Wanna Netflix and chill? \`{money}\`<a:${coin.name}:${coin.id}>`,
+                message: `Wanna Netflix and chill? \`{money}\`${coin}`,
             },
             {
                 name: 'Grape-Man#9106',
-                message: `Oh you poor child take some money \`{money}\`<a:${coin.name}:${coin.id}>`
+                message: `Oh you poor child take some money \`{money}\`${coin}`
             },
             {
                 name: 'A child',
-                message: `Take this \`{money}\`<a:${coin.name}:${coin.id}> you peace of shit! **You take the money and think where did this child learn this**`,
+                message: `Take this \`{money}\` ${coin} you peace of shit! **You take the money and think where did this child learn this**`,
             },
             {
                 name: 'The news',
-                message: `**AUTO TUNE THIS ** \`{money}\`<a:${coin.name}:${coin.id}>`,
+                message: `**AUTO TUNE THIS ** \`{money}\` ${coin}`,
             },
             {
                 name: 'Sad guy',
-                message: `My wife just left me \`{money}\`<a:${coin.name}:${coin.id}> take it please dont become like me`,
+                message: `My wife just left me \`{money}\`${coin} take it please dont become like me`,
             },
             {
                 name: 'Youtuber',
-                message: `Today im jumping off a cliff for \`{money}\`<a:${coin.name}:${coin.id}>, Haters gonna say its fake`,
+                message: `Today im jumping off a cliff for \`{money}\`${coin}, Haters gonna say its fake`,
             },
             {
                 name: 'Steve Harwell',
@@ -79,11 +79,11 @@ module.exports = {
             },
             {
                 name: 'A weird man',
-                message: `Thats what she said, i didnt give her the money tho you take it \`{money}\`<a:${coin.name}:${coin.id}>`,
+                message: `Thats what she said, i didnt give her the money tho you take it \`{money}\`${coin}`,
             },
             {
                 name: 'A teenage girl',
-                message: `I'll give you \`{money}\`<a:${coin.name}:${coin.id}> if you tell me what do you thing about this face **Does the duckface**`,
+                message: `I'll give you \`{money}\`${coin} if you tell me what do you thing about this face **Does the duckface**`,
             },
             {
                 name: '...',

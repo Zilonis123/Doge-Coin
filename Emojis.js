@@ -1,4 +1,4 @@
-const client = require('index.js');
+const client = require('./index.js');
 
 module.exports = async(emoji) => {
     // Require the guild

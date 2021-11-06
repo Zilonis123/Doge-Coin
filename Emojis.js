@@ -14,5 +14,7 @@ module.exports = async(emoji) => {
 
 const transform = (emoji, type='') => {
     const em = `<${type}:${emoji.name}:${emoji.id}>`;
+    console.log(emoji)
+    console.log(em)
     return em;
 }

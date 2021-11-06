@@ -26,8 +26,8 @@ const client = new Client({
 client.commands = new Collection();
 client.slashCommands = new Collection();
 client.cooldowns = new Collection();
-client.loans = new Collection();
-client.config = require('./config.json');
+global.config = require('./config.json');
+global.emojis = require('./Emojis.js')
 
 module.exports = client;
 

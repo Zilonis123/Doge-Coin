@@ -9,7 +9,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
     name: 'use',
     description: 'Use an item',
-    aliases: ['u'],
+    aliases: ['u', 'using'],
     async execute(message, args, client) {
         const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');
 

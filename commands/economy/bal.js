@@ -7,7 +7,6 @@ module.exports = {
     description: 'Check your or someone elses balance',
     cooldown: 5,
     async execute(message, args, client) {
-        const coin = global.emojis('coin');
         let user = message.mentions.users.first();
         if (!user) user = await message.guild.members.cache.get(args[0]);
         if (!user) user = message.author;

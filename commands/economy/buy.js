@@ -53,10 +53,10 @@ module.exports = {
             if (data) {
             const hasItem = Object.keys(data.Inventory).includes(itemToBuy);
             if (!hasItem) {
-                data.Inventory[itemToBuy] = count;
+                data.Inventory[itemName.item] = count;
             }
             else {
-                data.Inventory[itemToBuy] += count;
+                data.Inventory[itemName.item] += count;
             }
             console.log(data);
             await inventory.findOneAndUpdate({ User: message.author.id }, data)

@@ -21,15 +21,18 @@ const client = new Client({
 	partials: ['MESSAGE', 'REACTION', 'CHANNEL'],
         allowedMentions: { parse: ['users'], repliedUser: true } 
 });
+// Exporting the client
+module.exports = client;
 
 // Collections
 client.commands = new Collection();
 client.slashCommands = new Collection();
 client.cooldowns = new Collection();
+// Adding global stuff
 global.config = require('./config.json');
 global.emojis = require('./Emojis.js')
 
-module.exports = client;
+
 
 require('./handler')(client);
 // Database

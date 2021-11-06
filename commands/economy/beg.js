@@ -37,7 +37,7 @@ module.exports = {
             },
             {
                 name: 'Subaru',
-                message: `eww, why would i give <a:${coin.name}:${coin.id}> to you, im subaru not a donor`,
+                message: `eww, why would i give ${coin} to you, im subaru not a donor`,
             },
             {
                 name: 'Juggernaut',

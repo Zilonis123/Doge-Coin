@@ -24,7 +24,7 @@ module.exports = {
 
             if (all !== sch.Wallet && all > sch.Wallet) all = sch.Wallet;
             const price = sch.Wallet - all;
-            sch.Bank = all;
+            sch.Bank = sch.BankMax;
             sch.Wallet = price;
             sch.save();
             return message.reply(`Succsesfully deposited \`${all.toLocaleString()}\`<a:${coin.name}:${coin.id}> into your bank!`);

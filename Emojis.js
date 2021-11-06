@@ -6,7 +6,9 @@ module.exports = async(emoji) => {
     if (emoji.includes('coin')) {
         // Require coin emoji from the guild and return the emoji
         const emoji_coin = await guild.emojis.cache.get('874290622201221211');
-        return transform(emoji_coin, 'a');
+        // Transform the Object to a usable emoji
+        const transformed = transform(emoji_coin, 'a');
+        return transformed;
     }
 }
 

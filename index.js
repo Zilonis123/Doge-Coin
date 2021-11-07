@@ -30,7 +30,7 @@ client.slashCommands = new Collection();
 client.cooldowns = new Collection();
 // Adding global stuff
 global.config = require('./config.json');
-global.emojis = require('./Emojis.js')
+global.emojis = require('./Shorteners/Emojis.js')
 
 
 

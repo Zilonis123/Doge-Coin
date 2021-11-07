@@ -6,14 +6,14 @@ module.exports = {
     description: 'Use this if you are poor as me',
     cooldown: 60,
     async execute(message, args, client) {
-        const lol = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577305928888360');
+        const lol = await global.emojis('lol');
         const coin = await global.emojis('coin');
         const lmfao = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577308927811594');
         const troll = client.guilds.cache.get('873965279665860628').emojis.cache.get('874624861337690142');
         const Nomessages = [
             {
                 name: 'Subaru',
-                message: `**Broom Broom** <a:${lol.name}:${lol.id}>`,
+                message: `**Broom Broom** ${lol} ${lol}`,
             },
             {
                 name: 'Mr.Crab',
@@ -89,6 +89,10 @@ module.exports = {
                 name: '...',
                 message: `...{money}...`,
             },
+            {
+                name: 'cr player',
+                message: '👹HEHEH3H@\n\`{money}\`${coin}`
+            }
         ];
         const random = Math.floor(Math.random() * 100) + 1;
         if (random >= 60) {

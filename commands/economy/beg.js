@@ -90,8 +90,8 @@ module.exports = {
                 message: `...{money}...`,
             },
             {
-                name: 'cr player',
-                message: '👹HEHEH3H@\n\`{money}\`${coin}`
+                name: 'clash royale player',
+                message: `👹HEHEH3H@\n\`{money}\`${coin}`
             }
         ];
         const random = Math.floor(Math.random() * 100) + 1;

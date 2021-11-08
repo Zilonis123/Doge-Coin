@@ -8,12 +8,14 @@ module.exports = {
     aliases: ['inv'],
     description: 'Open your inventory',
     async execute(message, args, client) {
-        let user = message.mentions.users.first() || message.guild.users.cache.get(args[0]);
+        let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         const lol = await global.emojis('lol');
         if (!user) user = message.author;
         const player = await schema.findOne({ User: user.id });
+        let tag = user.tag;
+        if (!user) tag = 'Private';
         if (!player) {
-            return message.reply(`${user.tag} doesn't have an inventory, what a looser! ${lol}`);
+            return message.reply(`${tag} doesn't have an inventory, what a looser! ${lol}`);
         }
         const mappedData = Object.keys(player.Inventory).map((key) => {
             if (player.Inventory[key] === 0 || isNaN(player.Inventory[key])) return;
@@ -25,7 +27,7 @@ module.exports = {
         }).join('\n');
         const embed = new MessageEmbed()
             .setColor('YELLOW')
-            .setAuthor(`${user.username}'s Inventory`)
+            .setAuthor(`${tag}'s Inventory`)
             .addField('Items :', `${mappedData}`);
         message.reply({ embeds: [embed] });
     }

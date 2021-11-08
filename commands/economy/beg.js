@@ -98,8 +98,8 @@ module.exports = {
         if (random >= 60) {
             // calculate money and multiplier
             let money = Math.floor(Math.random() * 5000) + 1;
-            let multiplier;
-            money, multiplier = await global.multiplier(message.guild, message.author.id, money);
+            const multiplier = await global.multiplier(message.guild, message.author.id);
+            money = money * multiplier;
             // get the messages number
             const num = Math.floor(Math.random() * Yesmessages.length);
             // Get the message

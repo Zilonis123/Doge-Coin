@@ -18,7 +18,7 @@ module.exports = {
         let cash = await global.multiplier(message.guild.id, message.author.id);
         cash = cash * 25000
         if (random === 1) {
-            text = text.replace('{items}', `\`${cash.toLocaleLowerCase()}\`${coin}\n\`1\` - 📦loot box`);
+            text = text.replace('{items}', `\`${cash.toLocaleString()}\`${coin}\n\`1\` - 📦loot box`);
             inventory.findOne({ User: message.author.id }, async(err, data) => {
                 if (data) {
                     const hasItem = Object.keys(data.Inventory).includes('loot');
@@ -40,11 +40,11 @@ module.exports = {
                 }
             });
         }
-        text = text.replace('{items}', `\`${cash.toLocaleLowerCase()}\`${coin}`)
+        text = text.replace('{items}', `\`${cash.toLocaleString()}\`${coin}`)
 
         if (!sch) {
             await create(message.author, cash, 0);
-            return message.channel.send({ embeds: [new MessageEmbed().setColor('YELLOW').setDescription(`You got \`${cash.toLocaleLowerCase()}\`${coin}\n\nCome back in ${moment().seconds(number).fromNow()}`).setAuthor(`${message.author.tag} here is your daily`)] });
+            return message.channel.send({ embeds: [new MessageEmbed().setColor('YELLOW').setDescription(`You got \`${cash.toLocaleString()}\`${coin}\n\nCome back in ${moment().seconds(number).fromNow()}`).setAuthor(`${message.author.tag} here is your daily`)] });
         }
         message.channel.send({ embeds: [new MessageEmbed().setColor('YELLOW').setAuthor(`${message.author.tag}`, message.author.displayAvatarURL()).setDescription(`${text}`)] });
         sch.Wallet += 25000,

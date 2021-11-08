@@ -2,6 +2,7 @@ const schema = require('../../models/wallet');
 const create = require('../../wallet create');
 const { MessageEmbed, MessageAttachment } = require('discord.js');
 const fs = require('fs');
+const textToImage = require('text-to-image');
 
 module.exports = {
     name: 'work',

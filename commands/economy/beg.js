@@ -123,10 +123,12 @@ module.exports = {
         }
         const num = Math.floor(Math.random() * Nomessages.length);
         const msg = Nomessages[num].message;
+        const multiplier = await global.multiplier(message.guild, message.author.id);
         const embed = new MessageEmbed()
             .setColor('YELLOW')
             .setAuthor(`${Nomessages[num].name}`)
-            .setDescription(`${msg}`);
+            .setDescription(`${msg}`)
+            .setFooter(`${multiplier}x multiplier`);
         message.reply({ embeds: [embed] });
         const schems = await schema.findOne({ User: message.author.id });
         if (!schems) {

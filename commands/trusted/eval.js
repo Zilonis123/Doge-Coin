@@ -1,4 +1,4 @@
-const config = require('../../config.json');
+const config = global.config;
 const { inspect } = require('util');
 const { MessageEmbed } = require('discord.js');
 const sourcebin = require('sourcebin');

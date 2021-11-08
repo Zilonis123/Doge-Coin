@@ -96,10 +96,15 @@ module.exports = {
         ];
         const random = Math.floor(Math.random() * 100) + 1;
         if (random >= 60) {
-            const money = Math.floor(Math.random() * 5000) + 1;
+            // calculate money and multiplier
+            let money = Math.floor(Math.random() * 5000) + 1;
+            money = await global.multiplier(message.guild, message.author.id, money);
+            // get the messages number
             const num = Math.floor(Math.random() * Yesmessages.length);
+            // Get the message
             let msg = Yesmessages[num].message;
             msg = msg.replace('{money}', `${money.toLocaleString()}`);
+            // create the embed
             const embed = new MessageEmbed()
                 .setColor('YELLOW')
                 .setAuthor(`${Yesmessages[num].name}`)

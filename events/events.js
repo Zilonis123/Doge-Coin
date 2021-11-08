@@ -19,7 +19,7 @@ const goldRush = async(message) => {
 client.on('messageCreate', async(message) => {
     if (message.webhookId) return;
     const prefix = process.env.PREFIX + ' ';
-    const random = Math.floor(Math.random() * 1000);
+    const random = Math.floor(Math.random() * 100);
     const args = message.content.slice(prefix.length).split(/ +/);
     const loading = client.guilds.cache.get("873965279665860628").emojis.cache.get('876456105289580544');
     const cmdName = args.shift().toLowerCase();
@@ -27,12 +27,12 @@ client.on('messageCreate', async(message) => {
     if (!command) return;
     if (!message.guild) return message.reply('What do i look like?, You cant use me here invite me you lazy!');
     if (command.directory !== 'economy') return;
-    if (random < 990 || !message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
-    const gameMode = Math.floor(Math.random() * 2);
+    if (random > 0 || !message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
+    const gameMode = Math.floor(Math.random() * 1);
     // Gold rush gamem0de
     if (gameMode === 0) {
-        const leaving = Math.floor(Math.random() * 10);
-        if (leaving !== 1) return;
+        const leaving = Math.floor(Math.random() * 1);
+        if (leaving !== 0) return;
         goldRush(message);
         return;
     }

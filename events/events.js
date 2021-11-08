@@ -8,7 +8,7 @@ const textToImage = require('text-to-image');
 const { pagination } = require('reconlx');
 
 const goldRush = async(message) => {
-    client.goldRush.add(message.guild.id);
+    client.goldRush.set(message.guild.id);
     const lasting = Math.floor(Math.random() * 180000) + 300000;
     await message.channel.send(`🤑💰💶**GOLD RUSH**💶💰🤑 has started anyone running a command in this server will get a 5x multiplier\nThis event lasts - \`ms(lasting)\``);
     setTimeout(function() {

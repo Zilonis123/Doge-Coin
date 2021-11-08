@@ -8,8 +8,8 @@ module.exports = {
     description: 'Guess a number',
     cooldown: 60,
     async execute(message, args, client) {
-        const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');
-        const lol = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577305928888360');
+        const coin = await global.emojis('coin');
+        const lol = await global.emojis('lol');
 
         const sch = await schema.findOne({ User: message.author.id });
 
@@ -35,16 +35,17 @@ module.exports = {
 
         const msg = ans.first().content.toLowerCase();
         if ((msg.includes('bigger') && guess > realNum) || (msg.includes('smaller') && guess < realNum) || (msg.includes('exact') && guess === realNum)) {
-            const money = random(10000);
+            const multiplier = await global.multiplier(message.guild, message.author.id);
+            const money = random(10000) * multiplier;
             if (!sch) create(message.author, money, 0);
             else {
                sch.Wallet += money;
                 sch.save();
             }
-            return message.reply(`You got \`${money}\`<a:${coin.name}:${coin.id}> for guessing right!`);
+            return message.reply(`You got \`${money}\`${coin} (**${multiplier}x multiplier**) for guessing right!`);
         }
         else {
-            return message.reply(`Incorrect, the number was \`${realNum}\``);
+            return message.reply(`Incorrect, the hidden number was \`${realNum}\`${lol}${lol}`);
         } 
     }
 }

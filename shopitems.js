@@ -17,9 +17,9 @@ module.exports = [
     },
     {
         item: 'police car',
-        description: 'Yes you can own one',
-        price: 100000,
-        type: 'Special item',
+        description: 'adds 0.3x to your multiplier',
+        price: 1000000,
+        type: 'Multiplier',
         emoji: '🚓',
         onShop: false,
     },

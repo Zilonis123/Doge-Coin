@@ -21,7 +21,7 @@ module.exports = [
         price: 1000000,
         type: 'Multiplier',
         emoji: '🚓',
-        onShop: false,
+        onShop: true,
     },
     {
         item: 'grapes',

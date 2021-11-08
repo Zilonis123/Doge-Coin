@@ -1,10 +1,17 @@
-const client = require('../index.js');  
+const client = require('../index.js');
+const inventory = require('../models/invetory')
 
-module.exports = multiplier = async(guild, playerId) => {
+module.exports = multiplier = async(guild, userId) => {
   // define the multiplier
   let multi = 1;
   // check if the current server has a gold rush
   if (client.goldRush.has(guild.id)) multi += 5;
+  // require the inventory
+  const inventory await inventory.findOne({ User: userId });
+  if (inventory && inventory['police car'] > 0) {
+    const times = inventory['police car'];
+    multi += times * 0.3;
+  }
   
   return parseInt(multi);
 }

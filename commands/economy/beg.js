@@ -98,7 +98,8 @@ module.exports = {
         if (random >= 60) {
             // calculate money and multiplier
             let money = Math.floor(Math.random() * 5000) + 1;
-            money = await global.multiplier(message.guild, message.author.id, money);
+            let multiplier;
+            money, multiplier = await global.multiplier(message.guild, message.author.id, money);
             // get the messages number
             const num = Math.floor(Math.random() * Yesmessages.length);
             // Get the message
@@ -108,7 +109,8 @@ module.exports = {
             const embed = new MessageEmbed()
                 .setColor('YELLOW')
                 .setAuthor(`${Yesmessages[num].name}`)
-                .setDescription(`${msg}`);
+                .setDescription(`${msg}`)
+                .setFooter(`${multiplier}x multiplier`)
             message.reply({ embeds: [embed] });
             const schems = await schema.findOne({ User: message.author.id });
             if (!schems) {

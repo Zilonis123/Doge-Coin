@@ -9,14 +9,14 @@ module.exports = {
     description: 'Open your inventory',
     async execute(message, args, client) {
         let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-        const lol = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577305928888360');
+        const lol = await global.emojis('lol');
         if (!user) user = message.author;
         const player = await schema.findOne({ User: user.id });
         if (!player) {
-            return message.reply(`${user.tag} doesn't have an inventory, what a looser! <a:${lol.name}:${lol.id}>`);
+            return message.reply(`${user.tag} doesn't have an inventory, what a looser! ${lol}`);
         }
         const mappedData = Object.keys(player.Inventory).map((key) => {
-            if (player.Inventory[key] <= 0 || isNaN(player.Inventory[key])) return;
+            if (player.Inventory[key] === 0 || isNaN(player.Inventory[key])) return;
             const itemName = items.find((val) => (val.item.toLowerCase().includes(key)));
             const itemDescription = items.find((val) => (val.item.toLowerCase().includes(key))).description;
             const itemPower = items.find((val) => (val.item.toLowerCase().includes(key))).type;

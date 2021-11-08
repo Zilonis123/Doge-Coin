@@ -1,5 +1,5 @@
 const client = require('../index.js');
-const inventory = require('../models/invetory')
+const inventory = require('../models/inventory')
 
 module.exports = multiplier = async(guild, userId) => {
   // define the multiplier

@@ -13,6 +13,8 @@ module.exports = multiplier = async(guild, userId) => {
     console.log(inv.Inventory['police car'])
     const times = inv.Inventory['police car'];
     multi += times * 0.3;
+    console.log(times * 0.3);
+    console.log(multi)
   }
   
   return parseInt(multi);

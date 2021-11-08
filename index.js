@@ -32,7 +32,7 @@ client.goldRush = new Collection();
 // Adding global stuff
 global.config = require('./config.json');
 global.emojis = require('./Shorteners/Emojis.js');
-global.multiplier = require('./Shorteners/Emojis.js');
+global.multiplier = require('./Shorteners/multiplier.js');
 
 
 

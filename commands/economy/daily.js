@@ -16,7 +16,7 @@ module.exports = {
         let text = `You got {items}\n\nCome back in \`1 day\``
         const random = Math.floor(Math.random() * 10);
         let cash = await global.multiplier(message.guild, message.author.id);
-        cash = cash * 25000
+        cash = Math.floor(cash * 25000);
         if (random === 1) {
             text = text.replace('{items}', `\`${cash.toLocaleString()}\`${coin}\n\`1\` - 📦loot box`);
             inventory.findOne({ User: message.author.id }, async(err, data) => {

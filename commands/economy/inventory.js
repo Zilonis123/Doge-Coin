@@ -8,7 +8,7 @@ module.exports = {
     aliases: ['inv'],
     description: 'Open your inventory',
     async execute(message, args, client) {
-        let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
+        let user = message.mentions.users.first() || message.guild.users.cache.get(args[0]);
         const lol = await global.emojis('lol');
         if (!user) user = message.author;
         const player = await schema.findOne({ User: user.id });

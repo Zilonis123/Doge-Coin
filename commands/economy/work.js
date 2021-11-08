@@ -31,7 +31,7 @@ module.exports = {
             ]
         }
         
-        const multiplier = await global.multiplier(message.guild.id, message.author);
+        const multiplier = await global.multiplier(message.guild, message.author.id);
         // Job type
         const type = Math.floor(Math.random() * 3);
         if (type === 2) {

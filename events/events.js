@@ -10,7 +10,7 @@ const { pagination } = require('reconlx');
 const goldRush = async(message) => {
     client.goldRush.set(message.guild.id);
     const lasting = Math.floor(Math.random() * 180000) + 300000;
-    await message.channel.send(`🤑💰💶**GOLD RUSH**💶💰🤑 has started anyone running a command in this server will get a 5x multiplier\nThis event lasts - \`ms(lasting)\``);
+    await message.channel.send(`🤑💰💶**GOLD RUSH**💶💰🤑 has started anyone running a command in this server will get a 5x multiplier\nThis event lasts - \`${ms(lasting)}\``);
     setTimeout(function() {
         client.goldRush.delete(message.guild.id);
     }, lasting)
@@ -27,12 +27,12 @@ client.on('messageCreate', async(message) => {
     if (!command) return;
     if (!message.guild) return message.reply('What do i look like?, You cant use me here invite me you lazy!');
     if (command.directory !== 'economy') return;
-    if (random < 0 || !message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
+    if (random !== 1 || !message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
     const gameMode = Math.floor(Math.random() * 1);
     // Gold rush gamem0de
     if (gameMode === 0) {
-        const leaving = Math.floor(Math.random() * 1);
-        if (leaving !== 0) return;
+        const leaving = Math.floor(Math.random() * 10);
+        if (leaving !== 1) return;
         goldRush(message);
         return;
     }

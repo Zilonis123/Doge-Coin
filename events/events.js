@@ -27,7 +27,7 @@ client.on('messageCreate', async(message) => {
     if (!command) return;
     if (!message.guild) return message.reply('What do i look like?, You cant use me here invite me you lazy!');
     if (command.directory !== 'economy') return;
-    if (random > 0 || !message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
+    if (random < 0 || !message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
     const gameMode = Math.floor(Math.random() * 1);
     // Gold rush gamem0de
     if (gameMode === 0) {

@@ -66,7 +66,7 @@ module.exports = {
         ] })
         const msgPing = m.createdTimestamp - message.createdTimestamp;
 
-        m.edit(
+        m.edit({ embeds: [
             new Discord.MessageEmbed()
                 .setAuthor("Stats 📊", client.user.displayAvatarURL())
                 .setColor('YELLOW')
@@ -105,7 +105,7 @@ module.exports = {
                         inline: true,
                     },
                 )
-        )
+        ] })
 
     }
 }

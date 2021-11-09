@@ -27,7 +27,7 @@ module.exports = {
         let m = await message.reply({ embeds: [
             new Discord.MessageEmbed()
                 .setAuthor("Stats 📊", client.user.displayAvatarURL())
-                .setColor('#A9E9F6')
+                .setColor('YELLOW')
                 .addFields(
                     {
                         name: 'Ping',
@@ -69,7 +69,7 @@ module.exports = {
         m.edit(
             new Discord.MessageEmbed()
                 .setAuthor("Stats 📊", client.user.displayAvatarURL())
-                .setColor('#A9E9F6')
+                .setColor('YELLOW')
                 .addFields(
                     {
                         name: 'Ping',

@@ -1,7 +1,7 @@
 const os = require('os');
 const moment = require('moment')
 const { utc } = require('moment');
-consr Discord = require('discord.js');
+const Discord = require('discord.js');
 
 module.exports = {
     name: 'stats',
@@ -106,8 +106,7 @@ module.exports = {
                         value: `\`${days}, ${hr}, ${min} and ${sec}\``,
                         inline: true,
                     },
-                )   
-                .setFooter(`NearBot v1`)         
+                )
         )
 
     }

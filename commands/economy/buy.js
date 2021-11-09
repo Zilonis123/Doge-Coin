@@ -20,11 +20,11 @@ module.exports = {
         {
             itemToBuy = "grapes";
         }
+        const itemName = items.find((val) => (val.item.toLowerCase().includes(itemToBuy)));
+        if (!itemName) return message.reply(`That item isnt for sale <:${bruh.name}:${bruh.id}>`);
         const validItem = items.find((val) => val.item.toLowerCase().includes(itemToBuy)).onShop;
-        if (!validItem) return message.reply(`That item isnt for sale <:${bruh.name}:${bruh.id}>`);
         const itemPrice = items.find((val) => (val.item.toLowerCase().includes(itemToBuy))).price;
         const itemEmoji = items.find((val) => (val.item.toLowerCase().includes(itemToBuy))).emoji;
-        const itemName = items.find((val) => (val.item.toLowerCase().includes(itemToBuy)));
         inventory.findOne({ User: message.author.id }, async(err, data) => {
         let userBalance = await Player.findOne({ User: message.author.id });
         if (!userBalance) {

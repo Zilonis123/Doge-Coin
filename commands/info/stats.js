@@ -63,7 +63,6 @@ module.exports = {
                         inline: true,
                     },
                 )
-                .setFooter(`NearBot v1`)
         ] })
         const msgPing = m.createdTimestamp - message.createdTimestamp;
 

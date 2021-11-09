@@ -24,7 +24,7 @@ module.exports = {
         const hr = uptime.hours() == 1 ? `${uptime.hours()} hours` : `${uptime.hours()} hours`;
         const days = uptime.days() == 1 ? `${uptime.days()} days` : `${uptime.days()} days`;
 
-        let m = await message.lineReply(
+        let m = await message.reply({ embeds: [
             new Discord.MessageEmbed()
                 .setAuthor("Stats 📊", client.user.displayAvatarURL())
                 .setColor('#A9E9F6')
@@ -64,7 +64,7 @@ module.exports = {
                     },
                 )
                 .setFooter(`NearBot v1`)
-        )
+        ] })
         const msgPing = m.createdTimestamp - message.createdTimestamp;
 
         m.edit(

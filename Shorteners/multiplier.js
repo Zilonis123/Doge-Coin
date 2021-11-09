@@ -13,6 +13,7 @@ module.exports = multiplier = async(guild, userId) => {
     multi += times * 0.3;
   }
   if (guild.ownerId === userId) multi += 1;
+  console.log(multi);
   
   return multi;
 }

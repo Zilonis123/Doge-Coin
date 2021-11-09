@@ -10,10 +10,9 @@ module.exports = multiplier = async(guild, userId) => {
   const inv = await inventory.findOne({ User: userId });
   if (inv.Inventory['police car'] > 0) {
     const times = inv.Inventory['police car'];
-    multi += times * 0.3;
+    multi += (times * 0.3).toFixed(1);
   }
   if (guild.ownerId === userId) multi += 1;
-  console.log(multi);
   
   return multi;
 }

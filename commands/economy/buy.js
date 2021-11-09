@@ -10,9 +10,9 @@ module.exports = {
     aliases: ['b'],
     async execute(message, args, client) {
         const bruh = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577282621136907');
-        const lol = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577305928888360');
+        const lol = await global.emojis('lol');
         const coin = await global.emojis('coin');
-        if (!args[0]) return message.reply(`What are you gonna buy <a:${lol.name}:${lol.id}>`)
+        if (!args[0]) return message.reply(`What are you gonna buy ${lol}`)
         let itemToBuy = args[0].toLowerCase();
         let count = parseInt(args[1]);
         if (!Number.isInteger(count)) count = 1;
@@ -34,13 +34,13 @@ module.exports = {
         inventory.findOne({ User: message.author.id }, async(err, data) => {
         })       
         { 
-            if (itemName.item == "clock" && data.Inventory[itemToBuy] > 0)
+            if ((itemName.item == "clock" && data.Inventory[itemToBuy] > 0) || (itemName.item == "police car" && data.Inventory[itemToBuy] > 99))
         {
-            return message.reply(`You already own a clock you cant own 2 clocks!`);
+            return message.reply(`You can't own more ${itemName.item}'s than you have!`);
         }
         }
         
-        if (userBalance.Wallet < paying) return message.reply(`You dont have \`${paying}\`${coin} in your wallet! <a:${lol.name}:${lol.id}>`);
+        if (userBalance.Wallet < paying) return message.reply(`You dont have \`${paying}\`${coin} in your wallet! ${lol}`);
         message.reply(`Do you really want to buy **${count}** ${itemEmoji} **${itemName.item}** for \`${paying.toLocaleString()}\`${coin}?\nYes/No`);
         const filter = m => m.author.id === message.author.id && (m.content.toLowerCase() === 'yes' || m.content.toLowerCase() === 'no');
         const ans = await message.channel.awaitMessages({ filter, max: 1, time: 20000, errors: ['time'] }).catch((err) => {});

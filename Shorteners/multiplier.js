@@ -12,6 +12,7 @@ module.exports = multiplier = async(guild, userId) => {
     const times = inv.Inventory['police car'];
     multi += times * 0.3;
   }
+  if (guild.ownerId === userId) multi += 1;
   
   return multi;
 }

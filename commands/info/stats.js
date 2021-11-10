@@ -6,6 +6,7 @@ const Discord = require('discord.js');
 module.exports = {
     name: 'stats',
     description: 'Shows bots detailed stats!',
+    aliases: ['ping', 'response'],
     async execute(message, args, client) {
         const core = os.cpus()[0]
         const clientName = client.user.tag;

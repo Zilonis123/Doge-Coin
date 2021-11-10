@@ -15,6 +15,8 @@ module.exports = {
 
         if (!args[0]) return message.reply('What are you going to use?');
         let item = args[0].toLowerCase();
+        item = items.find(i => i.item.includes(item));
+        item = item.item;
         if(item == "grape")
         {
             item = "grapes"

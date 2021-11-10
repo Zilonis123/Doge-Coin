@@ -10,7 +10,7 @@ const { pagination } = require('reconlx');
 const goldRush = async(message) => {
     client.goldRush.set(message.guild.id);
     const lasting = Math.floor(Math.random() * 180000) + 300000;
-    await message.channel.send(`🤑💰💶**GOLD RUSH**💶💰🤑 has started anyone running a command in this server will get a 5x multiplier\nThis event lasts - \`${ms(lasting)}\``);
+    await message.channel.send(`🤑💰💶**GOLD RUSH**💶💰🤑 has started anyone running a command in this server will get a 10x multiplier\nThis event lasts - \`${ms(lasting)}\``);
     setTimeout(function() {
         client.goldRush.delete(message.guild.id);
     }, lasting)
@@ -127,8 +127,8 @@ client.on('messageCreate', async(message) => {
     collector.on('end', async(collected) => {
         if (people.length < 1) return message.channel.send('Noone has participated! :sob:')
         let i = 1;
-        let mony = 15000;
-        if (collected.size >= 10) mony += 2000;
+        let mony = 500000;
+        if (collected.size >= 10) mony += 20000;
     
         const chunking = people.map((v) => `\`${i++}#\` <@${v}> `).join('\n\n');
 

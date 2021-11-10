@@ -11,13 +11,9 @@ module.exports = multiplier = async(guild, userId) => {
   if (inv.Inventory['police car']) {
     const times = inv.Inventory['police car'];
     const val = times * 0.3;
-    multi += financial(val);
+    multi += val;
   }
   if (guild.ownerId === userId) multi += 1;
   
   return multi;
-}
-// functions
-function financial(x) {
-  return Number.parseFloat(x).toFixed(2);
 }

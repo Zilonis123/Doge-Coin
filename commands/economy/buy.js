@@ -34,7 +34,7 @@ module.exports = {
         inventory.findOne({ User: message.author.id }, async(err, data) => {
         })       
         { 
-            if ((itemName.item == "clock" && data.Inventory[itemToBuy] > 0) || (itemName.item == "police car" && data.Inventory[itemToBuy] > 99))
+            if (((itemName.item == "clock" && data.Inventory[itemName.item] > 0) || count > 1) || ((itemName.item == "police car" && data.Inventory[itemName.item] > 99) || count > 99))
         {
             return message.reply(`You can't own more ${itemName.item}'s than you have!`);
         }

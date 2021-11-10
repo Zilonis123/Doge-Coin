@@ -36,7 +36,7 @@ module.exports = {
         const msg = ans.first().content.toLowerCase();
         if ((msg.includes('bigger') && guess > realNum) || (msg.includes('smaller') && guess < realNum) || (msg.includes('exact') && guess === realNum)) {
             const multiplier = await global.multiplier(message.guild, message.author.id);
-            const money = random(10000) * multiplier;
+            const money = Math.floor(random(10000) * multiplier);
             if (!sch) create(message.author, money, 0);
             else {
                sch.Wallet += money;

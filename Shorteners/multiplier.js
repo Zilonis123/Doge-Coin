@@ -5,7 +5,7 @@ module.exports = multiplier = async(guild, userId) => {
   // define the multiplier
   let multi = 1;
   // check if the current server has a gold rush
-  if (client.goldRush.has(guild.id)) multi += 5;
+  if (client.goldRush.has(guild.id)) multi += 10;
   // require the inventory
   const inv = await inventory.findOne({ User: userId });
   if (inv.Inventory['police car']) {

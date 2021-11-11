@@ -34,11 +34,11 @@ module.exports = {
         inventory.findOne({ User: message.author.id }, async(err, data) => {
         })       
         { 
-            if (!data) break;
-            if (((itemName.item == "clock" && data.Inventory[itemName.item] > 0) || (count > 1 && itemName.item === 'clock')) || ((itemName.item == "police car" && data.Inventory[itemName.item] > 99) || (count > 99 && itemName.item === 'police car' || (count + data.Inventory['police car'] >= 100))))
-        {
-            return message.reply(`You can't own more ${itemName.item}'s than you have!`);
-        }
+            if (data) {
+                if (((itemName.item == "clock" && data.Inventory[itemName.item] > 0) || (count > 1 && itemName.item === 'clock')) || ((itemName.item == "police car" && data.Inventory[itemName.item] > 99) || (count > 99 && itemName.item === 'police car' || (count + data.Inventory['police car'] >= 100)))) {
+                     return message.reply(`You can't own more ${itemName.item}'s than you have!`);
+                }
+            }
         }
         
         if (userBalance.Wallet < paying) return message.reply(`You dont have \`${paying}\`${coin} in your wallet! ${lol}`);

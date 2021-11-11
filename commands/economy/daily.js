@@ -45,7 +45,7 @@ module.exports = {
 
         if (!sch) {
             await create(message.author, cash, 0);
-            return message.channel.send({ embeds: [new MessageEmbed().setColor('YELLOW').setDescription(`You got \`${cash.toLocaleString()}\`${coin}\n\nCome back in ${moment().seconds(number).fromNow()}`).setAuthor(`${message.author.tag} here is your daily`).setFooter(cash/25000 + 'x multiplier')] });
+            return message.channel.send({ embeds: [new MessageEmbed().setColor('YELLOW').setDescription(`You got \`${cash.toLocaleString()}\`${coin}\n\nCome back in a day`).setAuthor(`${message.author.tag} here is your daily`).setFooter(cash/25000 + 'x multiplier')] });
         }
         message.channel.send({ embeds: [new MessageEmbed().setColor('YELLOW').setAuthor(`${message.author.tag}`, message.author.displayAvatarURL()).setDescription(`${text}`).setFooter(cash/25000 + 'x multiplier')] });
         sch.Wallet += cash,

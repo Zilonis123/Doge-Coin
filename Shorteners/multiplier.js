@@ -16,6 +16,7 @@ module.exports = multiplier = async(guild, userId) => {
     }
   }
   if (guild.ownerId === userId) multi += 1;
+  if (guild.id === global.config.guild) multi += 2;
   
   return multi;
 }

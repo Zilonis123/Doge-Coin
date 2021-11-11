@@ -51,7 +51,7 @@ module.exports = {
         inventory.findOne({ User: message.author.id }, async(err, data) => {})
         {
             if (data) {
-            const hasItem = Object.keys(data.Inventory).includes(itemToBuy);
+            const hasItem = Object.keys(data.Inventory).includes(itemName.item);
             if (!hasItem) {
                 data.Inventory[itemName.item] = count;
             }

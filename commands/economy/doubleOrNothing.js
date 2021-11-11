@@ -3,9 +3,9 @@ const schema = require('../../models/wallet');
 
 module.exports = {
     name: 'gamble',
-    aliases: ['doubleOrNothing'],
+    aliases: ['doubleOrNothing', 'cf', 'coinflip'],
     description: 'Double or nothing command',
-    cooldown: 600,
+    cooldown: 60,
     async execute(message, args, client) {
         const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');
         const lol = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577305928888360');

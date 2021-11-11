@@ -8,10 +8,12 @@ module.exports = multiplier = async(guild, userId) => {
   if (client.goldRush.has(guild.id)) multi += 10;
   // require the inventory
   const inv = await inventory.findOne({ User: userId });
-  if (inv.Inventory['police car']) {
+  if (inv) {
     const times = inv.Inventory['police car'];
-    const val = times * 0.3;
-    multi += val;
+    if (times) {
+        const val = times * 0.3;
+        multi += val;
+    }
   }
   if (guild.ownerId === userId) multi += 1;
   

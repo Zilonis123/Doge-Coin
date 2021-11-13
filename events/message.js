@@ -56,6 +56,7 @@ client.on('messageCreate', async(message) => {
 	timestamps.set(message.author.id, now);
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 	try {
+                client.executed.set(message.author.id, command.name);
 		command.execute(message, args, client);
 	}
 	catch (error) {

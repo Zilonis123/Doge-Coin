@@ -29,6 +29,7 @@ client.commands = new Collection();
 client.slashCommands = new Collection();
 client.cooldowns = new Collection();
 client.goldRush = new Collection();
+client.executed = new Collection();
 // Adding global stuff
 global.config = require('./config.json');
 global.emojis = require('./Shorteners/Emojis.js');

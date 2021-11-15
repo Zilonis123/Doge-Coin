@@ -35,6 +35,12 @@ global.config = require('./config.json');
 global.emojis = require('./Shorteners/Emojis.js');
 global.multiplier = require('./Shorteners/multiplier.js');
 
+process.on('uncaughtException', (err, origin) => {
+  const guild = client.guilds.cache.get(global.config.guild);
+  const channel = guild.channels.cache.get('873969940602978345');
+  channel.send(`Exception origin: ${origin}`);
+});
+
 
 
 require('./handler')(client);

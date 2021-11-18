@@ -17,6 +17,8 @@ module.exports = multiplier = async(guild, userId) => {
   }
   if (guild.ownerId === userId) multi += 1;
   if (guild.id === global.config.guild) multi += 2;
+  // Give subaru his multiplier
+  if (userId === '449491647558975489') multi += 5;
   
   return multi;
 }

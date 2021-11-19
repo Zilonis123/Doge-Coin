@@ -35,7 +35,7 @@ module.exports = {
         })       
         { 
             if (data) {
-                if ((itemName.item === 'clock' && (count > 0 || data.Inventory['clock'] > 0)) || (itemName.item === 'police car' && (count > 99 || data.Inventory['police car'] >= 99))) {
+                if ((itemName.item === 'clock' && (count > 1 || data.Inventory['clock'] > 0)) || (itemName.item === 'police car' && (count > 99 || data.Inventory['police car'] >= 99))) {
                      return message.reply(`You can't own more \`${itemName.item}'s\` than you allready own! Or you cant buy that much`);
                 }
             }

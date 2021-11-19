@@ -16,9 +16,10 @@ module.exports = {
         const betting = parseInt(args[0]);
         if (args[0].includes('-') || args[0].includes(',') || args[0].includes('.')) return message.reply('You can only bet money.. lol')
         if (!sch || sch.Wallet < betting) return message.reply(`You dont have enough money in your wallet! <a:${lol.name}:${lol.id}>`);
+        if (betting > 1000000) return message.reply('You cant bet more than one million.. because someone (Kel8Lus) exploited it');
 
         function random() {
-            const num = Math.floor(Math.random() * 3);
+            const num = Math.floor(Math.random() * 4);
             return num === 1;
         }
 

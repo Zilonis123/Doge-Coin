@@ -16,12 +16,10 @@ module.exports = {
         let itemToBuy = args[0].toLowerCase();
         let count = parseInt(args[1]);
         if (!Number.isInteger(count)) count = 1;
-        if(itemToBuy == "grape")
-        {
-            itemToBuy = "grapes";
-        }
+        // Check if item exists
         const itemName = items.find((val) => (val.item.toLowerCase().includes(itemToBuy)));
         if (!itemName) return message.reply(`That item isnt for sale <:${bruh.name}:${bruh.id}>`);
+        // Require the items
         const validItem = items.find((val) => val.item.toLowerCase().includes(itemToBuy)).onShop;
         const itemPrice = items.find((val) => (val.item.toLowerCase().includes(itemToBuy))).price;
         const itemEmoji = items.find((val) => (val.item.toLowerCase().includes(itemToBuy))).emoji;
@@ -35,7 +33,7 @@ module.exports = {
         })       
         { 
             if (data) {
-                if ((itemName.item === 'clock' && (count > 1 || data.Inventory['clock'] > 0)) || (itemName.item === 'police car' && (count > 99 || data.Inventory['police car'] >= 99))) {
+                if ((itemName.item === 'clock' && (count > 1 || data.Inventory['clock'] > 0)) || (itemName.item === 'police car' && (count > 99 || data.Inventory['police car'] >= 99)) || count > 999) {
                      return message.reply(`You can't own more \`${itemName.item}'s\` than you allready own! Or you cant buy that much`);
                 }
             }
@@ -48,7 +46,6 @@ module.exports = {
         if (!ans) return message.reply('Cancelling..');
         if (ans.first().content.toLowerCase() === 'no') return ans.first().reply('Canceling the request..')
         userBalance.Wallet -= paying;
-        userBalance.save();
         inventory.findOne({ User: message.author.id }, async(err, data) => {})
         {
             if (data) {
@@ -59,19 +56,19 @@ module.exports = {
             else {
                 data.Inventory[itemName.item] += count;
             }
-            console.log(data);
-            await inventory.findOneAndUpdate({ User: message.author.id }, data)
+            await inventory.findOneAndUpdate({ User: message.author.id }, data).catch(err => {message.reply('something went wrong')})
         }
         else {
             new inventory({
                 User: message.author.id,
                 Inventory: {
-                    [itemToBuy]: 1
+                    [itemName.item]: 1
                 },
             }).save();
         }
 
         };
+        userBalance.save();
         message.reply(`You succsesfully bought **${count}** ${itemEmoji} **${itemName.item}** for \`${paying.toLocaleString()}\`${coin}`)
     })
     }

@@ -35,8 +35,8 @@ module.exports = {
         })       
         { 
             if (data) {
-                if (((itemName.item == "clock" && data.Inventory[itemName.item] > 0) || (count > 1 && itemName.item === 'clock')) || ((itemName.item == "police car" && data.Inventory[itemName.item] > 99) || (count > 99 && itemName.item === 'police car' || (count + data.Inventory['police car'] >= 100)))) {
-                     return message.reply(`You can't own more ${itemName.item}'s than you have!`);
+                if ((itemName.item === 'clock' && (count > 0 || data.Inventory['clock'] > 0)) || (itemName.item === 'police car' && (count > 99 || data.Inventory['police car'] >= 99))) {
+                     return message.reply(`You can't own more \`${itemName.item}'s\` than you allready own! Or you cant buy that much`);
                 }
             }
         }

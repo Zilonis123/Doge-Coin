@@ -17,6 +17,8 @@ const goldRush = async(message) => {
 }
 
 client.on('messageCreate', async(message) => {
+    // If lockdown leave
+    if (global.lockdown && !global.config.trusted.includes(message.author.id)) return;
     if (message.webhookId) return;
     const prefix = process.env.PREFIX + ' ';
     const random = Math.floor(Math.random() * 100);

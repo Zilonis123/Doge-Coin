@@ -30,6 +30,8 @@ client.on('messageCreate', async(message) => {
 	    }
             if (!going) return;
 	}
+        // If lockdown leave and message them
+        if (global.lockdown && !global.config.trusted.includes(message.author.id)) return message.reply('Our team of developers have found a bug! Please try this again or join my support server');
 	if (!message.member.permissions.has(command.permissions || [])) return message.channel.send(`You need \`${command.permissions}\` to run this command`);
 	if (!message.channel.permissionsFor(message.guild.me).has(command.botPermissions || [])) return message.channel.send(`I dont have \`${command.botpermissions}\`permissions to run this command`);
 	if (!message.channel.permissionsFor(message.guild.me).has('EMBED_LINKS')) return message.channel.send('I dont have `EMBED_LINKS` permission to run this command');

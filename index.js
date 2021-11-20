@@ -34,6 +34,7 @@ client.executed = new Collection();
 global.config = require('./config.json');
 global.emojis = require('./Shorteners/Emojis.js');
 global.multiplier = require('./Shorteners/multiplier.js');
+global.lockdown = false;
 
 process.on('uncaughtException', (err, origin) => {
   const guild = client.guilds.cache.get(global.config.guild);

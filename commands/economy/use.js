@@ -157,9 +157,12 @@ module.exports = {
                                 .setFooter('This is their Wallet not the NetWorth\n\n')
                         )
                     }
-                    message.author.send({ embeds: [arry[0]] });
-                    data.Inventory[item]--;
-
+                    try {
+                        message.author.send({ embeds: [arry[0]] });
+                        data.Inventory[item]--;
+                    } catch (err => {
+                        message.reply("I couldn't dm you the list please change your settings and try again!");
+                    })
                 }
                 else {
                     message.author.send('No valid users! Try again later..');

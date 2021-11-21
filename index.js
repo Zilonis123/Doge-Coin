@@ -36,16 +36,7 @@ global.emojis = require('./Shorteners/Emojis.js');
 global.multiplier = require('./Shorteners/multiplier.js');
 global.lockdown = false;
 
-process.on('uncaughtException', (err, origin) => {
-  if (!client.isReady()) return;
-  const guild = client.guilds.cache.get(global.config.guild);
-  if (!guild.available) return;
-  const channel = guild.channels.cache.get('873969940602978345');
-  channel.send(`Exception origin: ${origin}`);
-});
-
-
-
+// handler
 require('./handler')(client);
 // Database
 const mongoose = require("mongoose");

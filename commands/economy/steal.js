@@ -34,8 +34,9 @@ module.exports = {
         const money = Math.floor(Math.random() * m) + 1;
         let msg = '';
         if (money < m / 5) msg = `You stole a super 💲tiny propotion \`${money}\`<a:${coin.name}:${coin.id}>`;
-        if (money > m / 3) msg = `You stole a 💰LARGE propotion \`${money}\`<a:${coin.name}:${coin.id}>`;
-        if (money > m / 2) msg = `You stole a 💰💰💰SUPER LARGE propotion \`${money}\`<a:${coin.name}:${coin.id}>`;
+        else if (money > m / 3) msg = `You stole a 💰LARGE propotion \`${money}\`<a:${coin.name}:${coin.id}>`;
+        else if (money > m / 2) msg = `You stole a 💰💰💰SUPER LARGE propotion \`${money}\`<a:${coin.name}:${coin.id}>`;
+        else msg = 'Maybe try again idk?';
         sch.Wallet += money;
         userSch.Wallet -= money;
         sch.save();

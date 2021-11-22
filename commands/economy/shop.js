@@ -65,13 +65,13 @@ module.exports = {
                                 label: 'High To Low',
                                 value: 'htl',
                                 description: 'Get the shop items sorted from HIGH to LOW',
-                                emoji: '⬆',
+                                emoji: '⬇',
                             },
                             {
                                 label: 'Low To High',
                                 value: 'lth',
                                 description: 'Get the shop items sorted from LOW to HIGH',
-                                emoji: '⬇',
+                                emoji: '⬆',
                             }
                         ]
                     )

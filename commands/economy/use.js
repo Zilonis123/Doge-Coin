@@ -160,9 +160,9 @@ module.exports = {
                     try {
                         message.author.send({ embeds: [arry[0]] });
                         data.Inventory[item]--;
-                    } catch (err, {
+                    } catch (err) {
                         message.reply("I couldn't dm you the list please change your settings and try again!");
-                    })
+                    };
                 }
                 else {
                     message.author.send('No valid users! Try again later..');

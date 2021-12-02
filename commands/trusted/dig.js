@@ -72,7 +72,10 @@ module.exports = {
       if (h === 1) desc += '2 '
       if (h === 2) desc += '3 '
       for (let w = 0; w < WIDTH; w++) {
-        if (level[list][item] === 'O') continue desc += `${diamond} `;
+        if (level[list][item] === 'O') {
+          desc += `${diamond} `;
+          continue;
+        }
         desc += `ROCK `;
       }
       desc += '\n'

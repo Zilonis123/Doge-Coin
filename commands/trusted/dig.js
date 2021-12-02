@@ -41,7 +41,7 @@ module.exports = {
       .setDescription(`${desc}`)
       .setFooter(`Miner : ${message.author.username}`, message.author.displayAvatarURL())
       .setTitle('The mines');
-    const mesg = message.channel.send({ embeds: [embed] });
+    const msg = message.channel.send({ embeds: [embed] });
     
     // getting commands from user
     let item = 0;

@@ -46,7 +46,8 @@ module.exports = {
     // getting commands from user
     let item = '';
     let list = '';
-    while item = '' {
+    let done = true;
+    while done {
       // waiting for reply
       message.reply('Please send a tile id (example : `a1`)');
       const filter = m => m.author.id === message.author.id);
@@ -60,6 +61,7 @@ module.exports = {
         continue;
       }
       item = keys[list].findIndex(element => element.includes(key));
+      done = false;
     }
     if (item === '') return message.reply('You took too long');
     

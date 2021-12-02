@@ -77,7 +77,7 @@ module.exports = {
       if (h === 1) desc += '2 '
       if (h === 2) desc += '3 '
       for (let w = 0; w < WIDTH; w++) {
-        if (level[list][item] === 'O') {
+        if (level[h][w] === 'O') {
           desc += `${diamond} `;
           continue;
         }

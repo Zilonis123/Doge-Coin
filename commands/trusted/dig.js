@@ -47,7 +47,7 @@ module.exports = {
     let item = '';
     let list = '';
     let done = true;
-    while done {
+    While done {
       // waiting for reply
       message.reply('Please send a tile id (example : `a1`)');
       const filter = m => m.author.id === message.author.id);

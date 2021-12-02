@@ -13,7 +13,11 @@ module.exports = async(emoji) => {
          const emoji_laughingpepe = await guild.emojis.cache.get('874577305928888360');
          return transform(emoji_laughingpepe, 'a');
     }
-    return null;
+    if (emoji.includes('loading')) 
+        const emoji_loading = await guild.emojis.cache.get('876456105289580544');
+        return transform(emoji_loading, 'a');
+    }
+    return ':smile:';
 }
 
 const transform = (emoji, type='') => {

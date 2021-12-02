@@ -25,7 +25,7 @@ module.exports = {
       }
     }
     // make the list readable for the user
-    let desc = 'A B C\n';
+    let desc = '  A B C\n';
     for (let h = 0; h < HEIGHT; h++) {
       if (h === 0) desc += '1 '
       if (h === 1) desc += '2 '
@@ -66,10 +66,11 @@ module.exports = {
       item = keys[list].findIndex(element => element.includes(key));
       done = false;
     }
-    if (item === 0) return message.reply('You took too long');
+    if (done) return message.reply('You took too long');
     
     const recieved = recieved = level[list].splice(item, 1, 'MINED');
     // editing embed
+    desc = '  A B C\n'
     for (let h = 0; h < HEIGHT; h++) {
       if (h === 0) desc += '1 '
       if (h === 1) desc += '2 '

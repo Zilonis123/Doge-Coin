@@ -12,8 +12,8 @@ module.exports = {
     // creating level
     let level = [[], [], []];
     const keys = [['a1', 'a2', 'a3'], ['b1', 'b2', 'b3'], ['c1', 'c2', 'c3']];
-    const WIDTH = 3;
-    const HEIGHT = 3;
+    const WIDTH = 2;
+    const HEIGHT = 2;
     for (let lvl = 0; lvl < HEIGHT; lvl++) {
       for (let w = 0; w < WIDTH; w++) {
         const random = Math.floor(Math.random() * 5);

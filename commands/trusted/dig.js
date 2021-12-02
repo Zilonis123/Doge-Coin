@@ -41,15 +41,15 @@ module.exports = {
       .setDescription(`${desc}`)
       .setFooter(`Miner : ${message.author.username}`, message.author.displayAvatarURL())
       .setTitle('The mines');
-    
+    const mesg = message.channel.send({ embeds: [embed] });
     
     // getting commands from user
-    let item = '';
-    let list = '';
+    let item = 0;
+    let list = 0;
     let done = true;
+    message.reply('Please send a tile id (example : `a1`)');
     while (done) {
       // waiting for reply
-      message.reply('Please send a tile id (example : `a1`)');
       const filter = m => m.author.id === message.author.id;
       const ans = await message.channel.awaitMessages({ filter, max: 1, time: 30000, errors: ['time'] }).catch((err) => {});
       if (!ans) break;
@@ -63,10 +63,21 @@ module.exports = {
       item = keys[list].findIndex(element => element.includes(key));
       done = false;
     }
-    if (item === '') return message.reply('You took too long');
+    if (item === 0) return message.reply('You took too long');
     
+    const recieved = recieved = level[list].splice(item, 1, 'MINED');
+    // editing embed
+    for (let h = 0; h < HEIGHT; h++) {
+      if (h === 0) desc += '1 '
+      if (h === 1) desc += '2 '
+      if (h === 2) desc += '3 '
+      for (let w = 0; w < WIDTH; w++) {
+        if (level[list][item] === 'O') continue desc += `${diamond} `;
+        desc += `ROCK `;
+      }
+      desc += '\n'
+    }
     
-    const recieved = level[list].splice(item, 1, 'MINED');
     if (recieved === 'O') return message.reply(`You are lucky you found a diamond ${diamond}`);
     message.reply('You found a regular rock better luck next time..')
   }

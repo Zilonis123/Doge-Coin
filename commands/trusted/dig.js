@@ -85,7 +85,7 @@ module.exports = {
       }
       desc += '\n'
     }
-    embed.description(`${desc}`).author('The map');
+    embed.setDescription(`${desc}`).author('The map');
     msg.edit({ embeds: [embed] })
     
     if (recieved === 'O') return message.reply(`You are lucky you found a diamond ${diamond}`);

@@ -50,7 +50,7 @@ module.exports = {
     while (done) {
       // waiting for reply
       message.reply('Please send a tile id (example : `a1`)');
-      const filter = m => m.author.id === message.author.id);
+      const filter = m => m.author.id === message.author.id;
       const ans = await message.channel.awaitMessages({ filter, max: 1, time: 30000, errors: ['time'] }).catch((err) => {});
       if (!ans) break;
       const key = ans.first().content.toLowerCase();

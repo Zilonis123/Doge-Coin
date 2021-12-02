@@ -57,8 +57,10 @@ module.exports = {
       console.log(key, level)
 
       list = keys.findIndex(element => element.includes(key));
+      console.log(list, keys)
+
       if (list < 0 || !list) {
-        message.channel.send('You entered a non existing tile or its allready mined!');
+        if (ans.first()) ans.first().delete();
         continue;
       }
       item = keys[list].findIndex(element => element.includes(key));

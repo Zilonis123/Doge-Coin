@@ -17,6 +17,10 @@ module.exports = async(emoji) => {
         const emoji_loading = await guild.emojis.cache.get('876456105289580544');
         return transform(emoji_loading, 'a');
     }
+    if (emoji.includes('diamond')) {
+        const emoji_diamond = await guild.emojis.cache.get('915978592146563073');
+        return transform(emoji_diamond, 'a')
+    }
     return ':smile:';
 }
 

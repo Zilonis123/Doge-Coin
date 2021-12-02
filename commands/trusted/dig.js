@@ -56,6 +56,7 @@ module.exports = {
       const key = ans.first().content.toLowerCase();
       console.log(key, level)
 
+      // Finding the list and item index
       list = keys.findIndex(element => element.includes(key));
       console.log(list, keys)
 

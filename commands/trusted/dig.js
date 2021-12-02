@@ -59,7 +59,7 @@ module.exports = {
       list = keys.findIndex(element => element.includes(key));
       console.log(list, keys)
 
-      if (list < 0 || !list) {
+      if (list < 0) {
         if (ans.first()) ans.first().delete();
         continue;
       }

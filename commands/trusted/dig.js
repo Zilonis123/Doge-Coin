@@ -54,7 +54,7 @@ module.exports = {
       const ans = await message.channel.awaitMessages({ filter, max: 1, time: 30000, errors: ['time'] }).catch((err) => {});
       if (!ans) break;
       const key = ans.first().content.toLowerCase();
-      console.log(key)
+      console.log(key, level)
 
       list = keys.findIndex(element => element.includes(key));
       if (list < 0 || !list) {

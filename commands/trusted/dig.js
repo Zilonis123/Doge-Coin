@@ -36,7 +36,7 @@ module.exports = {
       desc += '\n'
     }
     // sending the message with the image and creating the embed
-    const embed = new MessageEmbed()
+    let embed = new MessageEmbed()
       .setColor('BLACK')
       .setDescription(`${desc}`)
       .setFooter(`Miner : ${message.author.username}`, message.author.displayAvatarURL())
@@ -80,6 +80,8 @@ module.exports = {
       }
       desc += '\n'
     }
+    embed.description(`${desc}`).author('The map');
+    msg.edit({ embeds: [embed] })
     
     if (recieved === 'O') return message.reply(`You are lucky you found a diamond ${diamond}`);
     message.reply('You found a regular rock better luck next time..')

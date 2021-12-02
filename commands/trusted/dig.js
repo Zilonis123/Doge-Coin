@@ -68,7 +68,7 @@ module.exports = {
     }
     if (done) return message.reply('You took too long');
     
-    const recieved = recieved = level[list].splice(item, 1, 'MINED');
+    const recieved = level[list].splice(item, 1, 'MINED');
     // editing embed
     desc = '  A B C\n'
     for (let h = 0; h < HEIGHT; h++) {

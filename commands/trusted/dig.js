@@ -69,7 +69,7 @@ module.exports = {
     }
     if (done) return message.reply('You took too long');
     
-    const recieved = level[list].splice(item, 1, 'MINED');
+    
     // editing embed
     desc = '  A B C\n'
     for (let h = 0; h < HEIGHT; h++) {
@@ -77,7 +77,7 @@ module.exports = {
       if (h === 1) desc += '2 '
       if (h === 2) desc += '3 '
       for (let w = 0; w < WIDTH; w++) {
-        if (level[w][h] === 'O') {
+        if (level[h][w] === 'O') {
           desc += `${diamond} `;
           continue;
         }
@@ -88,7 +88,7 @@ module.exports = {
     embed.setDescription(`${desc}`).setAuthor('The map');
     msg.edit({ embeds: [embed], content: `${recieved}` })
     
-    if (recieved === 'O') return message.reply(`You are lucky you found a diamond ${diamond}`);
+    if (level[list][item].toLowerCase() === 'o') return message.reply(`You are lucky you found a diamond ${diamond}`);
     message.reply('You found a regular rock better luck next time..')
   }
 }

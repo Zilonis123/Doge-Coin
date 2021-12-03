@@ -86,7 +86,7 @@ module.exports = {
       desc += '\n'
     }
     embed.setDescription(`${desc}`).setAuthor('The map');
-    msg.edit({ embeds: [embed], content: `${recieved}` })
+    msg.edit({ embeds: [embed] })
     
     if (level[list][item].toLowerCase() === 'o') return message.reply(`You are lucky you found a diamond ${diamond}`);
     message.reply('You found a regular rock better luck next time..')

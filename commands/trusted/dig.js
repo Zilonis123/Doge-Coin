@@ -25,11 +25,11 @@ module.exports = {
       }
     }
     // make the list readable for the user
-    let desc = '  A B C\n';
+    let desc = '    1 2 3\n';
     for (let h = 0; h < HEIGHT; h++) {
-      if (h === 0) desc += '1 '
-      if (h === 1) desc += '2 '
-      if (h === 2) desc += '3 '
+      if (h === 0) desc += 'A '
+      if (h === 1) desc += 'B '
+      if (h === 2) desc += 'C '
       for (let w = 0; w < WIDTH; w++) {
         desc += `${loading} `;
       }
@@ -71,11 +71,11 @@ module.exports = {
     
     
     // editing embed
-    desc = '  A B C\n'
+    desc = '    1 2 3\n'
     for (let h = 0; h < HEIGHT; h++) {
-      if (h === 0) desc += '1 '
-      if (h === 1) desc += '2 '
-      if (h === 2) desc += '3 '
+      if (h === 0) desc += 'A '
+      if (h === 1) desc += 'B '
+      if (h === 2) desc += 'C '
       for (let w = 0; w < WIDTH; w++) {
         if (level[h][w] === 'O') {
           desc += `${diamond} `;

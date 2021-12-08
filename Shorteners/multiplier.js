@@ -15,10 +15,12 @@ module.exports = multiplier = async(guild, userId) => {
         multi += val;
     }
   }
-  if (guild.ownerId === userId) multi += 1;
   if (guild.id === global.config.guild) multi += 2;
   // Give subaru his multiplier
   if (userId === '449491647558975489') multi += 5;
+  // Check if user has voted and give him a multiplier
+  const hasVoted = await global.api.hasVoted(userId);
+  if (hasVoted) multi += 1;
   
   return multi;
 }

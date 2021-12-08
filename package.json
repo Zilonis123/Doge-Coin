@@ -1,7 +1,7 @@
 {
-  "name": "remindr",
+  "name": "Doge Coin",
   "version": "1.0.0",
-  "description": "a remindeer bot",
+  "description": "a discord economy bot",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

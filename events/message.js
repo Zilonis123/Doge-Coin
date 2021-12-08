@@ -3,7 +3,7 @@ const client = require('../index');
 const inventory = require('../models/inventory');
 const ms = require('ms');
 const config = require('../config.json');
-const Topgg = require("@top.gg/sdk");
+const Topgg = require("@top-gg/sdk");
 const api = new Topgg.Api(process.env.TOPGG);
 
 

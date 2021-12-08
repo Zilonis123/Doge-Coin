@@ -5,6 +5,7 @@ module.exports = {
     name: 'beg',
     description: 'Use this if you are poor as me',
     cooldown: 60,
+    voteOnly: true,
     async execute(message, args, client) {
         const lol = await global.emojis('lol');
         const coin = await global.emojis('coin');

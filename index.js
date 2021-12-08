@@ -1,5 +1,6 @@
 const { Client, Collection, MessageEmbed } = require('discord.js');
 require('dotenv').config();
+const Topgg = require(`@top-gg/sdk`)
 const client = new Client({
 	intents: [
 		'GUILDS',
@@ -35,6 +36,7 @@ global.config = require('./config.json');
 global.emojis = require('./Shorteners/Emojis.js');
 global.multiplier = require('./Shorteners/multiplier.js');
 global.lockdown = false;
+global.api = new Topgg.Api(process.env.TOPGG);
 
 // handler
 require('./handler')(client);

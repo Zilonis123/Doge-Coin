@@ -9,7 +9,7 @@ module.exports = {
     options: [
         {
             name: 'someone',
-            description: 'a someone whos balance you want to check!',
+            description: 'a someone who you wanna check',
             type: 'USER',
             required: false,
         },

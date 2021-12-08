@@ -1,4 +1,4 @@
-const { Collection, MessageEmbed } = require('discord.js');
+const { Collection, MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 const client = require('../index');
 const inventory = require('../models/inventory');
 const ms = require('ms');
@@ -35,6 +35,33 @@ client.on('messageCreate', async(message) => {
 	if (!message.member.permissions.has(command.permissions || [])) return message.channel.send(`You need \`${command.permissions}\` to run this command`);
 	if (!message.channel.permissionsFor(message.guild.me).has(command.botPermissions || [])) return message.channel.send(`I dont have \`${command.botpermissions}\`permissions to run this command`);
 	if (!message.channel.permissionsFor(message.guild.me).has('EMBED_LINKS')) return message.channel.send('I dont have `EMBED_LINKS` permission to run this command');
+	// Check if has voted
+	const hasVoted = await global.api.hasVoted(message.author.id);
+	if (!command.voteOnly && command.directory !== 'economy') {
+	    if (!hasVoted) {
+	    	// create the message embed
+		const vote_embed = new MessageEmbed()
+	 	    .setColor('RED')
+		    .setAuthor('Vote required')
+		    .setDescription('You have to [vote](https://top.gg/bot/873964681721679902/vote/) to use this command..\nVoting also helps us if you have any questions join the [support](https://discord.gg/kRgWZXTjzt) server!')
+	    	    .setFooter(`User: ${message.author.tag}`, message.author.displayAvatarURL());
+		
+		const row = new MessageActionRow.addComponents(
+		    new MessageButton()
+			.setStyle('LINK')
+			.setLabel('Vote')
+			.setURL('https://top.gg/bot/873964681721679902/vote/'),
+		    new MessageButton()
+			.setStyle('LINK')
+			.setLabel('Support')
+			.setURL('https://discord.gg/kRgWZXTjzt')
+		);
+		message.channel.send({ embeds: [vote_embed], components: [row] });
+		return;
+	    }
+	}
+
+	// handle cooldowns
 	const { cooldowns } = client;
 	if (!cooldowns.has(command.name)) {
 		cooldowns.set(command.name, new Collection());

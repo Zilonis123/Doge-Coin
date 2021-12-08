@@ -36,7 +36,6 @@ global.config = require('./config.json');
 global.emojis = require('./Shorteners/Emojis.js');
 global.multiplier = require('./Shorteners/multiplier.js');
 global.lockdown = false;
-global.api = new Topgg.Api(process.env.TOPGG);
 
 // handler
 require('./handler')(client);

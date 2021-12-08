@@ -2,7 +2,10 @@ const { Collection, MessageEmbed, MessageActionRow, MessageButton } = require('d
 const client = require('../index');
 const inventory = require('../models/inventory');
 const ms = require('ms');
-const config = require('../config.json')
+const config = require('../config.json');
+const Topgg = require("@top.gg/sdk");
+const api = new Topgg.Api(process.env.TOPGG);
+
 
 client.on('messageCreate', async(message) => {
 	let prefixes = [`${process.env.PREFIX.toLowerCase()} `, `<@!${client.user.id}>`, `<@${client.user.id}>`, `${process.env.PREFIX.toLowerCase()} `, `<@${client.user.id}> `, `<@!${client.user.id}> `];
@@ -36,7 +39,7 @@ client.on('messageCreate', async(message) => {
 	if (!message.channel.permissionsFor(message.guild.me).has(command.botPermissions || [])) return message.channel.send(`I dont have \`${command.botpermissions}\`permissions to run this command`);
 	if (!message.channel.permissionsFor(message.guild.me).has('EMBED_LINKS')) return message.channel.send('I dont have `EMBED_LINKS` permission to run this command');
 	// Check if has voted
-	const hasVoted = await global.api.hasVoted(message.author.id);
+	const hasVoted = await api.hasVoted(message.author.id);
 	if (!command.voteOnly && command.directory !== 'economy') {
 	    if (!hasVoted) {
 	    	// create the message embed

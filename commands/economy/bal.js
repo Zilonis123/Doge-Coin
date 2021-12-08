@@ -6,6 +6,7 @@ module.exports = {
     aliases: ['balance'],
     description: 'Check your or someone elses balance',
     cooldown: 5,
+    voteOnly: true,
     async execute(message, args, client) {
         let user = message.mentions.users.first();
         if (!user) user = await message.guild.members.cache.get(args[0]);

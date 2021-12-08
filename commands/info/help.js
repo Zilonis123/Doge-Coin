@@ -86,7 +86,7 @@ module.exports = {
                     category.commands.map((cmd) => {
                         return {
                             name: `\`${cmd.name}\``,
-                            value: cmd.description,
+                            value: cmd.voteOnly ? `${cmd.description}\n**- This command does not require vote**` : cmd.description,
                             inline: true,
                         };
                     })

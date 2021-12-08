@@ -1,6 +1,6 @@
 const client = require('../index.js');
 const inventory = require('../models/inventory');
-const topgg = require("@top.gg/sdk");
+const Topgg = require("@top.gg/sdk");
 const api = new Topgg.Api(process.env.TOPGG);
 
 

@@ -65,10 +65,10 @@ module.exports = {
     const canvas = createCanvas(132, 132);
     const ctx = canvas.getContext('2d');
     // loading images
-    loadImage('img/grid.png').then((image) => {
+    loadImage('grid.png').then((image) => {
       ctx.drawImage(image, 0, 0, 132, 132);
     })
-    const dimond = await loadImage('img/diamond.png');
+    const dimond = await loadImage('diamond.png');
     for (let h = 0; h < HEIGHT; h++) {
       for (let w = 0; w < WIDTH; w++) {
         if (level[h][w] === 'O') {

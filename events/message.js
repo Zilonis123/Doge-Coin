@@ -49,7 +49,7 @@ client.on('messageCreate', async(message) => {
 		    .setDescription('You have to [vote](https://top.gg/bot/873964681721679902/vote/) to use this command..\nVoting also helps us if you have any questions join the [support](https://discord.gg/kRgWZXTjzt) server!')
 	    	    .setFooter(`User: ${message.author.tag}`, message.author.displayAvatarURL());
 		
-		const row = new MessageActionRow.addComponents(
+		const row = new MessageActionRow().addComponents(
 		    new MessageButton()
 			.setStyle('LINK')
 			.setLabel('Vote')

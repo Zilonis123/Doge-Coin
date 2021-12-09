@@ -30,7 +30,7 @@ module.exports = {
     let embed = new MessageEmbed()
       .setColor('BLACK')
       .setDescription('Please send a tile id (example : `a1`)')
-      .setImage('attachment://img/grid.png')
+      .setImage('attachment://grid.png')
       .setFooter(`Miner : ${message.author.username}`, message.author.displayAvatarURL())
       .setTitle('The mines');
     const msg = await message.channel.send({ embeds: [embed] });
@@ -79,9 +79,17 @@ module.exports = {
         }
       }
     }
-    const complete = new MessageAttachment(canvas.toBuffer(), 'complete_grid.png');
-    embed.setDescription('Goodjob').setAuthor('The map').setImage(complete);
-    msg.edit({ embeds: [embed] })
+    await fs.writeFile(`${message.author.id}-dig.png`, canvas.toDataURL(), 'base64', function(err) {
+        if (err) {
+           console.log(err);
+        }
+    });
+    embed.setDescription('Goodjob').setAuthor('The map').setImage(`attachment://${message.author.id}-dig.png`);
+    msg.edit({ embeds: [embed] });
+    
+    fs.unlink(`${message.author.id}-dig.png`, function (err) {
+      if (err) throw err;
+    }); 
     
     if (level[list][item].toLowerCase() === 'o') return message.reply(`You are lucky you found a diamond ${diamond}`);
     message.reply('You found a regular rock better luck next time..')

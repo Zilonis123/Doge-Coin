@@ -81,12 +81,14 @@ module.exports = {
         }
       }
     }
+    console.log(canvas.toDataURL())
     await fs.writeFile(`${message.author.id}-dig.png`, canvas.toDataURL(), 'base64', function(err) {
         if (err) {
            console.log(err);
         }
     });
-    const edited_attach = new MessageAttachment(`commands/trusted/${message.author.id}-dig.png`);
+    const edited_attach = new MessageAttachment(`${message.author.id}-dig.png`);
+    console.log("...")
     const new_embed = new MessageEmbed().setDescription('Goodjob').setAuthor('The map').setImage(`attachment://${message.author.id}-dig.png`).setColor('GREEN');
     message.reply({ embeds: [new_embed], files: [edited_attach] })
     

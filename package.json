@@ -38,7 +38,7 @@
     "util": "^0.12.4",
     "node-superfetch": "^0.2.3",
     "sourcebin": "^4.2.5",
-    "canvas": "^2.8.0",
+    "canvas": "^2.8.0"
 
   }
 }

@@ -22,8 +22,9 @@ module.exports = multiplier = async(guild, userId) => {
   // Check if user has voted and give him a multiplier
   const api = new Topgg.Api(process.env.TOPGG);
   const hasVoted = await api.hasVoted(userId);
-  console.log(hasVoted)
+  console.log(hasVoted, multi)
   if (hasVoted) multi += 1;
+  console.log(multi)
   
   return multi;
 }

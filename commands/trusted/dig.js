@@ -1,4 +1,5 @@
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, MessageAttachment } = require('discord.js');
+const { createCanvas, loadImage } = require('canvas');
 
 module.exports = {
   name: 'mine',
@@ -24,21 +25,13 @@ module.exports = {
       level[lvl].push('O')
       }
     }
-    // make the list readable for the user
-    let desc = '    1 2 3\n';
-    for (let h = 0; h < HEIGHT; h++) {
-      if (h === 0) desc += 'A '
-      if (h === 1) desc += 'B '
-      if (h === 2) desc += 'C '
-      for (let w = 0; w < WIDTH; w++) {
-        desc += `${loading} `;
-      }
-      desc += '\n'
-    }
+    
     // sending the message with the image and creating the embed
+    const attachmen = new MessageAttachment('../../img/grid', 'grid.png');
     let embed = new MessageEmbed()
       .setColor('BLACK')
-      .setDescription(`${desc}`)
+      .setDescription('Please send a tile id (example : `a1`)')
+      .setImage(attachmen)
       .setFooter(`Miner : ${message.author.username}`, message.author.displayAvatarURL())
       .setTitle('The mines');
     const msg = await message.channel.send({ embeds: [embed] });
@@ -47,7 +40,6 @@ module.exports = {
     let item = 0;
     let list = 0;
     let done = true;
-    message.reply('Please send a tile id (example : `a1`)');
     while (done) {
       // waiting for reply
       const filter = m => m.author.id === message.author.id;
@@ -70,22 +62,26 @@ module.exports = {
     if (done) return message.reply('You took too long');
     
     
-    // editing embed
-    desc = '    1 2 3\n'
+    // editing embed and creating the image
+    const canvas = createCanvas(132, 132);
+    const ctx = canvas.getContext('2d');
+    // loading images
+    loadImage('img/grid.png').then((image) => {
+      ctx.drawImage(image, 0, 0, 132, 132);
+    })
+    const diamond = await loadImage('img/diamond.png');
     for (let h = 0; h < HEIGHT; h++) {
-      if (h === 0) desc += 'A '
-      if (h === 1) desc += 'B '
-      if (h === 2) desc += 'C '
       for (let w = 0; w < WIDTH; w++) {
         if (level[h][w] === 'O') {
-          desc += `${diamond} `;
+          const pos_x = (w * 32) + 32;
+          const pos_y = (h * 32) + 32;
+          ctx.drawImage(diamond, pos_x, pos_y, 32, 32);
           continue;
         }
-        desc += `ROCK `;
       }
-      desc += '\n'
     }
-    embed.setDescription(`${desc}`).setAuthor('The map');
+    const complete = new MessageAttachment(canvas.toBuffer(), 'complete_grid.png');
+    embed.setDescription('Goodjob').setAuthor('The map').setImage(complete);
     msg.edit({ embeds: [embed] })
     
     if (level[list][item].toLowerCase() === 'o') return message.reply(`You are lucky you found a diamond ${diamond}`);

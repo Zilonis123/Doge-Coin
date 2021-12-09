@@ -1,6 +1,5 @@
 const { Client, Collection, MessageEmbed } = require('discord.js');
 require('dotenv').config();
-const Topgg = require(`@top-gg/sdk`)
 const client = new Client({
 	intents: [
 		'GUILDS',

@@ -34,7 +34,7 @@ module.exports = {
       .setImage('attachment://grid.png')
       .setFooter(`Miner : ${message.author.username}`, message.author.displayAvatarURL())
       .setTitle('The mines');
-    const msg = await message.channel.send({ embeds: [embed], attahcments: [attach] });
+    const msg = await message.channel.send({ embeds: [embed], files: [attach] });
     
     // getting commands from user
     let item = 0;
@@ -87,7 +87,7 @@ module.exports = {
     });
     const edited_attach = new MessageAttachment(`${message.author.id}-dig.png`, `${message.author.id}-dig.png`);
     embed.setDescription('Goodjob').setAuthor('The map').setImage(`attachment://${message.author.id}-dig.png`);
-    msg.edit({ embeds: [embed], attachments: [edited_attach] });
+    msg.edit({ embeds: [embed], files: [edited_attach] });
     
     fs.unlink(`${message.author.id}-dig.png`, function (err) {
       if (err) throw err;

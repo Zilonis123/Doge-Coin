@@ -86,8 +86,8 @@ module.exports = {
            console.log(err);
         }
     });
-    const edited_attach = new MessageAttachment(`${message.author.id}-dig.png`, `${message.author.id}-dig.png)
-    const new_embed = new MessageEmbed().setDescription('Goodjob').setAuthor('The map').setImage(`attachment://${message.author.id}-dig.png`).setColor('GREEN');
+    const edited_attach = new MessageAttachment(`${message.author.id}-dig.png`, `dig.png)
+    const new_embed = new MessageEmbed().setDescription('Goodjob').setAuthor('The map').setImage(`attachment://dig.png`).setColor('GREEN');
     await message.reply({ embeds: [new_embed], files: [edited_attach] })
     
     fs.unlink(`${message.author.id}-dig.png`, function (err) {

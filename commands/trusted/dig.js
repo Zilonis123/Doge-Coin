@@ -88,7 +88,17 @@ module.exports = {
     });
     const edited_attach = new MessageAttachment(`${message.author.id}-dig.png`, `${message.author.id}-dig.png`);
     embed.setDescription('Goodjob').setAuthor('The map').setImage(`attachment://${message.author.id}-dig.png`);
-    msg.edit({ embeds: [embed], files: [edited_attach] });
+    try {
+        msg.edit({ embeds: [embed], files: [edited_attach] });
+    } catch (error) {
+        console.log('There was an error with dig.js editing message.. retrying')
+        try {
+            msg.edit({ embeds: [embed], files: [edited_attach] });
+        } catch (error) {
+            console.log('It happened again.. SHIT')
+          
+        }
+    }
     
     fs.unlink(`${message.author.id}-dig.png`, function (err) {
       if (err) throw err;

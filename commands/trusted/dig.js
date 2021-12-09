@@ -27,11 +27,10 @@ module.exports = {
     }
     
     // sending the message with the image and creating the embed
-    const attachmen = new MessageAttachment('../../img/grid', 'grid.png');
     let embed = new MessageEmbed()
       .setColor('BLACK')
       .setDescription('Please send a tile id (example : `a1`)')
-      .setImage(attachmen)
+      .setImage('attachment://img/grid.png')
       .setFooter(`Miner : ${message.author.username}`, message.author.displayAvatarURL())
       .setTitle('The mines');
     const msg = await message.channel.send({ embeds: [embed] });

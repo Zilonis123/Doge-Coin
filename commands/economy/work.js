@@ -64,13 +64,14 @@ module.exports = {
                 ],
                 footballer: [
                     'ball',
-                    'couch',
                     'broken',
                     'rain',
                     'goal',
                     'cheerleaders',
                     'football',
-                    '69'
+                    '69',
+                    'winner',
+                    'win'
                 ]
             }
             const word = Math.floor(Math.random() * words[job].length);
@@ -85,7 +86,9 @@ module.exports = {
     
             var base64Data = dataUri.replace(/^data:image\/png;base64,/, "");
             await fs.writeFile(`${message.author.id}.png`, base64Data, 'base64', function(err) {
-                console.log(err);
+                if (err) {
+                    console.log(err);
+                }
             });
             
             const file = new MessageAttachment(`${message.author.id}.png`);

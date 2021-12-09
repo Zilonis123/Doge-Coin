@@ -27,13 +27,14 @@ module.exports = {
     }
     
     // sending the message with the image and creating the embed
+    const attach = new MessageAttachment('grid.png', 'grid.png');
     let embed = new MessageEmbed()
       .setColor('BLACK')
       .setDescription('Please send a tile id (example : `a1`)')
       .setImage('attachment://grid.png')
       .setFooter(`Miner : ${message.author.username}`, message.author.displayAvatarURL())
       .setTitle('The mines');
-    const msg = await message.channel.send({ embeds: [embed] });
+    const msg = await message.channel.send({ embeds: [embed], attahcments: [attach] });
     
     // getting commands from user
     let item = 0;
@@ -84,8 +85,9 @@ module.exports = {
            console.log(err);
         }
     });
+    const edited_attach = new MessageAttachment(`${message.author.id}-dig.png`, `${message.author.id}-dig.png`);
     embed.setDescription('Goodjob').setAuthor('The map').setImage(`attachment://${message.author.id}-dig.png`);
-    msg.edit({ embeds: [embed] });
+    msg.edit({ embeds: [embed], attachments: [edited_attach] });
     
     fs.unlink(`${message.author.id}-dig.png`, function (err) {
       if (err) throw err;

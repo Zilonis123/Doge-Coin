@@ -40,7 +40,7 @@ client.on('messageCreate', async(message) => {
 	if (!message.channel.permissionsFor(message.guild.me).has('EMBED_LINKS')) return message.channel.send('I dont have `EMBED_LINKS` permission to run this command');
 	// Check if has voted
 	const hasVoted = await api.hasVoted(message.author.id);
-	if (!command.voteOnly && command.directory !== 'economy') {
+	if (!command.voteOnly && command.directory === 'economy') {
 	    if (!hasVoted) {
 	    	// create the message embed
 		const vote_embed = new MessageEmbed()

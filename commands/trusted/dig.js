@@ -69,7 +69,7 @@ module.exports = {
     loadImage('grid.png').then((image) => {
       ctx.drawImage(image, 0, 0, 132, 132);
     })
-    const dimond = await loadImage('diamond.png');
+    const dimond = await loadImage('commands/trusted/diamond.png');
     for (let h = 0; h < HEIGHT; h++) {
       for (let w = 0; w < WIDTH; w++) {
         if (level[h][w] === 'O') {

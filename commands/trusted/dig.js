@@ -1,11 +1,19 @@
 const { MessageEmbed, MessageAttachment } = require('discord.js');
 const { createCanvas, loadImage } = require('canvas');
+const inv = require("../../models/inventory")
 
 module.exports = {
   name: 'mine',
   description: 'Mine for some ores',
   aliases: ['dig', 'ores'],
   async execute(message, args, client) {
+    // Checking if has pickaxe
+    const player = await inv.findOne({ User: message.author.id });
+    if (player.Inventory["pickaxe"] < 1) return message.channel.send("You need a ⛏️pickaxe to use this command");
+    
+    // Removing the pickaxe
+    player.Inventory["pickaxe"]--;
+    player.save();
     // getting emojis
     const loading = await global.emojis('loading');
     const diamond = await global.emojis('diamond');

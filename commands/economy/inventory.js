@@ -33,10 +33,10 @@ module.exports = {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.beginPath();
         ctx.rect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = '#616A6B';
         ctx.fill();
         ctx.lineWidth = 7;
-        ctx.strokeStyle = '#17A589';
+        ctx.strokeStyle = '#F1C40F';
         ctx.stroke();
         
         // declare the font
@@ -53,12 +53,12 @@ module.exports = {
             let emoji = items.find((val) => (val.item.toLowerCase().includes(key))).emoji;
             
             // add text
-            ctx.fillStyle = '#5DADE2';
+            ctx.fillStyle = '#3498DB';
             ctx.fillText(itemName.item, pos_x, pos_y);
             
             // add the amount
             const lenght = ctx.measureText(itemName.item).width;
-            ctx.fillStyle = '#3498DB';
+            ctx.fillStyle = '#2471A3';
             ctx.fillText(` - ${player.Inventory[key].toLocaleString()}`, pos_x + lenght, pos_y)
             
             // add some value to pos_x and pos_y
@@ -73,9 +73,8 @@ module.exports = {
         // create the embed with the attachment
         const embed = new MessageEmbed()
             .setColor('YELLOW')
-            .setAuthor(`${tag}'s Inventory`)
+            .setAuthor(`${tag}'s Inventory:`)
             .setImage('attachment://inventory.png')
-            .addField('Items :', `${mappedData}`);
         message.reply({ embeds: [embed], files: [attachment] });
     }
 }

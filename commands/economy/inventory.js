@@ -28,11 +28,23 @@ module.exports = {
         })
         const canvas = createCanvas(60, (50 * len) + 25);
         const ctx = canvas.getContext('2d');
+        
+        // make the background look nice
+        ctx.clearRect(0, 0, 300, 300 );
+        ctx.beginPath();
+        ctx.rect(100, 100, 200, 200);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+        ctx.lineWidth = 7;
+        ctx.strokeStyle = '#17A589';
+        ctx.stroke();
+        
+        // declare the font
         ctx.font = 'Oswald';
         
         // go through the data
-        let pos_x = 0;
-        let pos_y = 25;
+        let pos_x = 7;
+        let pos_y = 32;
         const mappedData = Object.keys(player.Inventory).map(async(key) => {
             if (player.Inventory[key] === 0 || isNaN(player.Inventory[key])) return;
             const itemName = items.find((val) => (val.item.toLowerCase().includes(key)));
@@ -47,7 +59,7 @@ module.exports = {
             // add the amount
             const lenght = ctx.measureText(itemName.item).width;
             ctx.fillStyle = '#3498DB';
-            ctx.fillText(`- ${player.Inventory[key].toLocaleString()}`, pos_x + lenght, pos_y)
+            ctx.fillText(` - ${player.Inventory[key].toLocaleString()}`, pos_x + lenght, pos_y)
             
             // add some value to pos_x and pos_y
             pos_y += 50

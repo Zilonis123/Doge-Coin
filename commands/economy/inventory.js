@@ -22,8 +22,8 @@ module.exports = {
         
         // create the canvas
         let len = 0
-        const test_idk = Object.keys(player.Inventory).map((key) => {
-            if (player.inventory.key === 0 || isNaN(player.Inventory[key])) return;
+        Object.keys(player.Inventory).map((key) => {
+            if (player.inventory[key] === 0 || isNaN(player.Inventory[key])) return;
             len += 1;
         })
         const canvas = createCanvas(60, (50 * len) + 25);

@@ -32,7 +32,7 @@ module.exports = {
         // make the background look nice
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.beginPath();
-        ctx.rect(14, 14, canvas.width-14, canvas.height-14));
+        ctx.rect(14, 14, canvas.width-14, canvas.height-14);
         ctx.fillStyle = 'white';
         ctx.fill();
         ctx.lineWidth = 7;

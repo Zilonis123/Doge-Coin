@@ -40,9 +40,13 @@ module.exports = {
             const itemPower = items.find((val) => (val.item.toLowerCase().includes(key))).type;
             let emoji = items.find((val) => (val.item.toLowerCase().includes(key))).emoji;
             
-            // turn emoji to .png and draw it
+            // add text
+            ctx.fillStyle = '#5DADE2';
             ctx.fillText(itemName.item, pos_x, pos_y);
+            
+            // add the amount
             const lenght = ctx.measureText(itemName.item).width;
+            ctx.fillStyle = '#3498DB';
             ctx.fillText(`- ${player.Inventory[key].toLocaleString()}`, pos_x + lenght, pos_y)
             
             // add some value to pos_x and pos_y

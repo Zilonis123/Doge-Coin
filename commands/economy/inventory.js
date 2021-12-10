@@ -26,7 +26,7 @@ module.exports = {
             if (player.Inventory[key] === 0 || isNaN(player.Inventory[key])) return;
             len += 1;
         })
-        const canvas = createCanvas(60, (50 * len) + 25);
+        const canvas = createCanvas(100, (50 * len) + 25);
         const ctx = canvas.getContext('2d');
         
         // make the background look nice

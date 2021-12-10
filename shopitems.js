@@ -62,5 +62,13 @@ module.exports = [
         price: 100000,
         emoji: '📄',
         onShop: true,
+    },
+    {
+        item: "pickaxe",
+        description: "allows you to use dig and earn money",
+        type: 'Token',
+        price: 10000,
+        emoji: "⛏️",
+        onShop: true
     }
 ]

@@ -21,8 +21,9 @@ module.exports = {
         }
         
         // create the canvas
-        const canvas = createCanvas(220, 320);
+        const canvas = createCanvas(320, 420);
         const ctx = canvas.getContext('2d');
+        ctx.font = '30px Impact';
         
         // go through the data
         let pos_x = 0;
@@ -35,10 +36,9 @@ module.exports = {
             let emoji = items.find((val) => (val.item.toLowerCase().includes(key))).emoji;
             
             // turn emoji to .png and draw it
-            emoji = await toolkit.toImage(emoji);
-            loadImage(emoji).then((image) => {
-                ctx.drawImage(emoji, pos_x, pos_y);
-            });
+            ctx.fillText(itemName, pos_x, pos_y);
+            const lenght = ctx.measureText(itemName);
+            ctx.fillText(`- ${player.Inventory[key].toLocaleString()}`, pos_x + lenght, pos_y)
             
             // add some value to pos_x and pos_y
             pos_y += 32

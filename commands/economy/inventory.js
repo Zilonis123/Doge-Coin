@@ -3,7 +3,7 @@ const create = require('../../inventory create');
 const items = require('../../shopitems');
 const { MessageEmbed, MessageAttachment } = require('discord.js');
 const { loadImage, createCanvas} = require('canvas');
-const toolkit = require('emoji_toolkit');
+const toolkit = require('emoji-toolkit');
 
 module.exports = {
     name: 'inventory',

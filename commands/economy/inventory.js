@@ -22,7 +22,7 @@ module.exports = {
         
         // create the canvas
         let len = 0
-        Object.keys(player.Inventory).map((key) => {
+        const test_idk = Object.keys(player.Inventory).map((key) => {
             if (player.inventory.key === 0 || isNaN(player.Inventory[key])) return;
             len += 1;
         })

@@ -30,9 +30,9 @@ module.exports = {
         const ctx = canvas.getContext('2d');
         
         // make the background look nice
-        ctx.clearRect(0, 0, 300, 300 );
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.beginPath();
-        ctx.rect(100, 100, 200, 200);
+        ctx.rect(14, 14, canvas.width-14, canvas.height-14));
         ctx.fillStyle = 'white';
         ctx.fill();
         ctx.lineWidth = 7;

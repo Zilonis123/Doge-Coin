@@ -23,7 +23,7 @@ module.exports = {
         // create the canvas
         const canvas = createCanvas(320, 420);
         const ctx = canvas.getContext('2d');
-        ctx.font = '30px Impact';
+        ctx.font = 'Oswald';
         
         // go through the data
         let pos_x = 0;
@@ -41,7 +41,7 @@ module.exports = {
             ctx.fillText(`- ${player.Inventory[key].toLocaleString()}`, pos_x + lenght, pos_y)
             
             // add some value to pos_x and pos_y
-            pos_y += 32
+            pos_y += 50
 
             return `${emoji} **${itemName.item}** - ${player.Inventory[key].toLocaleString()}\n- ${itemDescription} - **${itemPower}**`
         }).join('\n');

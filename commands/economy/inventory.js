@@ -33,7 +33,7 @@ module.exports = {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.beginPath();
         ctx.rect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#330000';
+        ctx.fillStyle = '#424242';
         ctx.fill();
         ctx.lineWidth = 7;
         ctx.strokeStyle = '#515A5A';

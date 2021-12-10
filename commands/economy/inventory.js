@@ -36,11 +36,11 @@ module.exports = {
         ctx.fillStyle = '#616A6B';
         ctx.fill();
         ctx.lineWidth = 7;
-        ctx.strokeStyle = '#F1C40F';
+        ctx.strokeStyle = '#515A5A';
         ctx.stroke();
         
         // declare the font
-        ctx.font = 'Oswald';
+        ctx.font = 'Source Sans 3';
         
         // go through the data
         let pos_x = 7;
@@ -53,13 +53,13 @@ module.exports = {
             let emoji = items.find((val) => (val.item.toLowerCase().includes(key))).emoji;
             
             // add text
-            ctx.fillStyle = '#3498DB';
-            ctx.fillText(itemName.item, pos_x, pos_y);
+            ctx.fillStyle = '#283747';
+            ctx.fillText(`${itemName.item} - `, pos_x, pos_y);
             
             // add the amount
             const lenght = ctx.measureText(itemName.item).width;
-            ctx.fillStyle = '#2471A3';
-            ctx.fillText(` - ${player.Inventory[key].toLocaleString()}`, pos_x + lenght, pos_y)
+            ctx.fillStyle = '#A93226';
+            ctx.fillText(player.Inventory[key].toLocaleString(), pos_x + lenght, pos_y)
             
             // add some value to pos_x and pos_y
             pos_y += 50

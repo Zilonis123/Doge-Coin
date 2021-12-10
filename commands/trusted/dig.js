@@ -46,11 +46,9 @@ module.exports = {
       const ans = await message.channel.awaitMessages({ filter, max: 1, time: 30000, errors: ['time'] }).catch((err) => {});
       if (!ans) break;
       const key = ans.first().content.toLowerCase();
-      console.log(key, level)
 
       // Finding the list and item index
       list = keys.findIndex(element => element.includes(key));
-      console.log(list, keys)
 
       if (list < 0) {
         if (ans.first()) ans.first().delete();

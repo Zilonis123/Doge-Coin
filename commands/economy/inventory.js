@@ -21,13 +21,18 @@ module.exports = {
         }
         
         // create the canvas
-        const canvas = createCanvas(320, 420);
+        let len = 0
+        Object.keys(player.Inventory).map((key) => {
+            if (player.inventory.key === 0 || isNaN(player.Inventory[key])) return;
+            len += 1;
+        })
+        const canvas = createCanvas(60, (50 * len) + 25);
         const ctx = canvas.getContext('2d');
         ctx.font = 'Oswald';
         
         // go through the data
         let pos_x = 0;
-        let pos_y = 0;
+        let pos_y = 25;
         const mappedData = Object.keys(player.Inventory).map(async(key) => {
             if (player.Inventory[key] === 0 || isNaN(player.Inventory[key])) return;
             const itemName = items.find((val) => (val.item.toLowerCase().includes(key)));
@@ -37,7 +42,7 @@ module.exports = {
             
             // turn emoji to .png and draw it
             ctx.fillText(itemName.item, pos_x, pos_y);
-            const lenght = ctx.measureText(itemName.item);
+            const lenght = ctx.measureText(itemName.item).width;
             ctx.fillText(`- ${player.Inventory[key].toLocaleString()}`, pos_x + lenght, pos_y)
             
             // add some value to pos_x and pos_y

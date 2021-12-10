@@ -9,7 +9,8 @@ module.exports = {
   async execute(message, args, client) {
     // Checking if has pickaxe
     const player = await inv.findOne({ User: message.author.id });
-    if (player.Inventory["pickaxe"] < 1) return message.channel.send("You need a ⛏️pickaxe to use this command");
+    const has = Object.keys(player.Inventory);
+    if (player.Inventory["pickaxe"] < 1 || has['Pickaxe'] || has['Pickaxe'] < 1) return message.channel.send("You need a ⛏️pickaxe to use this command");
     
     // Removing the pickaxe
     player.Inventory["pickaxe"]--;

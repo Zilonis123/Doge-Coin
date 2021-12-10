@@ -36,8 +36,8 @@ module.exports = {
             let emoji = items.find((val) => (val.item.toLowerCase().includes(key))).emoji;
             
             // turn emoji to .png and draw it
-            ctx.fillText(itemName, pos_x, pos_y);
-            const lenght = ctx.measureText(itemName);
+            ctx.fillText(itemName.item, pos_x, pos_y);
+            const lenght = ctx.measureText(itemName.item);
             ctx.fillText(`- ${player.Inventory[key].toLocaleString()}`, pos_x + lenght, pos_y)
             
             // add some value to pos_x and pos_y

@@ -27,7 +27,7 @@ module.exports = {
         // go through the data
         let pos_x = 0;
         let pos_y = 0;
-        const mappedData = Object.keys(player.Inventory).map((key) => {
+        const mappedData = Object.keys(player.Inventory).map(async(key) => {
             if (player.Inventory[key] === 0 || isNaN(player.Inventory[key])) return;
             const itemName = items.find((val) => (val.item.toLowerCase().includes(key)));
             const itemDescription = items.find((val) => (val.item.toLowerCase().includes(key))).description;

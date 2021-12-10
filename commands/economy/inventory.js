@@ -21,7 +21,7 @@ module.exports = {
         }
         
         // create the canvas
-        const canvas = createCanvas(320, 120);
+        const canvas = createCanvas(220, 320);
         const ctx = canvas.getContext('2d');
         
         // go through the data
@@ -36,7 +36,9 @@ module.exports = {
             
             // turn emoji to .png and draw it
             emoji = await toolkit.toImage(emoji);
-            ctx.drawImage(emoji, pos_x, pos_y);
+            loadImage(emoji).then((image) => {
+                ctx.drawImage(emoji, pos_x, pos_y);
+            });
             
             // add some value to pos_x and pos_y
             pos_y += 32

@@ -74,8 +74,10 @@ module.exports = {
     for (let h = 0; h < HEIGHT; h++) {
       for (let w = 0; w < WIDTH; w++) {
         if (level[h][w] === 'O') {
-          const pos_x = (w * 32) + 32;
-          const pos_y = (h * 32) + 32;
+          let pos_x = (w * 32) + 32;
+          let pos_y = (h * 32) + 32;
+          if (w > 0) pos_x += w * 2;
+          if (h > 0) pos_y += h * 2;
           ctx.drawImage(dimond, pos_x, pos_y, 32, 32);
           continue;
         }

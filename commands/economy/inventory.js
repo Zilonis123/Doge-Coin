@@ -59,7 +59,7 @@ module.exports = {
             // add the amount
             const lenght = ctx.measureText(itemName.item).width;
             ctx.fillStyle = '#A93226';
-            ctx.fillText(' ' + player.Inventory[key].toLocaleString(), pos_x + lenght, pos_y)
+            ctx.fillText(` ${player.Inventory[key].toLocaleString()}`, pos_x + lenght, pos_y)
             
             // add some value to pos_x and pos_y
             pos_y += 50

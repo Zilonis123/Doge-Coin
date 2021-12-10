@@ -1,6 +1,5 @@
 const { MessageEmbed, MessageAttachment } = require('discord.js');
 const { createCanvas, loadImage } = require('canvas');
-const fs = require('fs');
 
 module.exports = {
   name: 'mine',
@@ -83,20 +82,13 @@ module.exports = {
         }
       }
     }
-    await fs.writeFile(`${message.author.id}-dig.png`, canvas.toDataURL(), 'base64', function(err) {
-        if (err) {
-           console.log(err);
-        }
-    });
+    // send a completed map
+    
+    let text = 'You found a regular rock better luck next time..'
+    if (level[list][item].toLowerCase() === 'o') text = `You are lucky you found a diamond ${diamond}`;
+    
     const edited_attach = new MessageAttachment(canvas.toBuffer(), `dig.png`)
     const new_embed = new MessageEmbed().setDescription('Goodjob').setAuthor('The map').setImage(`attachment://dig.png`).setColor('GREEN');
-    await message.reply({ embeds: [new_embed], files: [edited_attach] })
-    
-    fs.unlink(`${message.author.id}-dig.png`, function (err) {
-      if (err) throw err;
-    }); 
-    
-    if (level[list][item].toLowerCase() === 'o') return message.reply(`You are lucky you found a diamond ${diamond}`);
-    message.reply('You found a regular rock better luck next time..')
+    await message.reply({ embeds: [new_embed], files: [edited_attach], content: text })
   }
 }

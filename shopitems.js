@@ -70,5 +70,14 @@ module.exports = [
         price: 10000,
         emoji: "⛏️",
         onShop: true
+    },
+    {
+        item: "birthday cake",
+        description: "celebrate my one year birthday",
+        type: 'Item',
+        price: 10000,
+        emoji: "🎁",
+        onShop: true
     }
+
 ]

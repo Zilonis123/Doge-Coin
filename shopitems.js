@@ -74,9 +74,9 @@ module.exports = [
     {
         item: "birthday cake",
         description: "celebrate my one year birthday",
-        type: 'Item',
+        type: 'Limited Item',
         price: 10000,
-        emoji: "🎁",
+        emoji: "🎂",
         onShop: true
     }
 

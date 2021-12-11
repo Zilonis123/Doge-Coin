@@ -11,7 +11,7 @@ module.exports = {
     description: 'Use an item',
     aliases: ['u', 'using'],
     async execute(message, args, client) {
-        const coin = await global.emojis("coin");
+        const coin = await global.emojis('coin');
 
         if (!args[0]) return message.reply('What are you going to use?');
         let item = args[0].toLowerCase();

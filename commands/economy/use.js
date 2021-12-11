@@ -15,7 +15,7 @@ module.exports = {
 
         if (!args[0]) return message.reply('What are you going to use?');
         let item = args[0].toLowerCase();
-        item = items.find(i => i.item.includes(item)).item;
+        item = items.find(i => i.item.includes(usage)).item;
         let input;
         let number;
         if(!args[1])
@@ -32,7 +32,7 @@ module.exports = {
         }
         
         inventory.findOne({ User: message.author.id }, async (err, data) => {
-            if (!data || data.Inventory[item] > 0 || isNaN(data.Inventory[item])) return message.reply('You dont own this item! :thinking:');
+            if (!data || data.Inventory[item] < 1 || isNaN(data.Inventory[item])) return message.reply('You dont own this item! :thinking:');
 
             let hasItem = Object.keys(data.Inventory).includes(item);
             inventory.findOne({ User: message.author.id }, async (err, data) => {

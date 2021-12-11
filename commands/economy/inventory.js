@@ -56,10 +56,15 @@ module.exports = {
             ctx.fillStyle = '#D6DBDF';
             ctx.fillText(`${itemName.item} -`, pos_x, pos_y);
             
-            // add the amount
-            const lenght = ctx.measureText(itemName.item).width;
+            // Measure lenght
+            const lenght = ctx.measureText(itemName.item);
+            
+            // Add description
+            ctx.fillText(` - ${itemDescription}`, pos_x, pos_y + length.height + 4);
+
+            // Add amount
             ctx.fillStyle = '#5DADE2';
-            ctx.fillText(` ${player.Inventory[key].toLocaleString()}`, pos_x + lenght + 4, pos_y)
+            ctx.fillText(` ${player.Inventory[key].toLocaleString()}`, pos_x + lenght.width + 4, pos_y);
             
             // add some value to pos_x and pos_y
             pos_y += 50

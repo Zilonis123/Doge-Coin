@@ -58,9 +58,6 @@ module.exports = {
             
             // Measure lenght
             const lenght = ctx.measureText(itemName.item);
-            
-            // Add description
-            ctx.fillText(` - ${itemDescription}`, pos_x, pos_y + length.height + 4);
 
             // Add amount
             ctx.fillStyle = '#5DADE2';

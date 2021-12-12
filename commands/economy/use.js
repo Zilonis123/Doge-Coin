@@ -28,7 +28,7 @@ module.exports = {
             input = args[1];
             number = parseInt(args[1]);
             if(!Number.isInteger(number)) number = 1;
-            if (input.includes(',') || input.includes('.') || input.includes('-') || input.includes('@')) return message.reply('Please remove any symbols!');
+            if (input.includes('-') || input.includes('@')) return message.reply('Please remove any symbols!');
         }
         
         inventory.findOne({ User: message.author.id }, async (err, data) => {

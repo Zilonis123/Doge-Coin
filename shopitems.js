@@ -78,6 +78,14 @@ module.exports = [
         price: 10000,
         emoji: "🎂",
         onShop: false
+    },
+    {
+        item: "Giveaway winner",
+        description: "Only people who have won giveaways have this",
+        type: "Collectable",
+        price: 69,
+        emoji: "🏆",
+        onShop: false
     }
 
 ]

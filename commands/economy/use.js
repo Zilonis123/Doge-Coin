@@ -183,6 +183,8 @@ module.exports = {
 
                     caker.wallet += 1;
                     caker.save();
+                    console.log(user)
+                    return;
                     try {
                         user.send("🥰🎂🥰");
                     } catch (err) {

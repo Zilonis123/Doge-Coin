@@ -164,6 +164,32 @@ module.exports = {
                 }
                 message.reply('Check your dm\'s');
             }
+            else if (item === "birthday cake") {
+                // React to the message
+                message.react("🎂");
+
+                // Create a filter and collector
+                const filter = (reaction, user) => {
+	            return reaction.emoji.name === '🎂' && reaction.message.id === message.id;
+                };
+
+                const collector = message.createReactionCollector({ filter, time: 15000 });
+
+                // When collected give money
+                collector.on('collect', async(reaction, user) => {
+	            const caker = await Player.findOne({ User: user.id });
+                    if (!caker) return;
+                    // Give money
+
+                    caker.wallet += 1;
+                    caker.save();
+                    try {
+                        user.send("🥰🎂🥰");
+                    } catch (err) {
+                        console.log("couldn't direct message user!");
+                    }
+                });
+            }
             await inventory.findOneAndUpdate({ User: message.author.id }, data);
         })
     }

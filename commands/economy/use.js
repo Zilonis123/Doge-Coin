@@ -178,13 +178,11 @@ module.exports = {
                 // When collected give money
                 collector.on('collect', async(reaction, user) => {
 	            const caker = await Player.findOne({ User: user.id });
-                    if (!caker) return;
+                    if (!caker || user.bot) return;
                     // Give money
 
                     caker.wallet += 1;
                     caker.save();
-                    console.log(user)
-                    return;
                     try {
                         user.send("🥰🎂🥰");
                     } catch (err) {

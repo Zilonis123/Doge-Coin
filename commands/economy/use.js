@@ -173,7 +173,7 @@ module.exports = {
 	            return reaction.emoji.name === '🎂' && reaction.message.id === message.id;
                 };
 
-                const collector = message.createReactionCollector({ filter, time: 15000 });
+                const collector = message.createReactionCollector({ filter, time: 1200000 });
 
                 // When collected give money
                 collector.on('collect', async(reaction, user) => {

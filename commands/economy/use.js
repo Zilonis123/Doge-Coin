@@ -27,7 +27,7 @@ module.exports = {
         {
             input = args[1];
             number = parseInt(args[1]);
-            if(!Number.isInteger(number)) return message.reply(`I cant use ${input} of ${item} please insert a number instead`);
+            if(!Number.isInteger(number)) number = 1;
             if (input.includes(',') || input.includes('.') || input.includes('-') || input.includes('@')) return message.reply('Please remove any symbols!');
         }
         

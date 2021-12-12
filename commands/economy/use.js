@@ -179,12 +179,12 @@ module.exports = {
                 collector.on('collect', async(reaction, user) => {
 	            const caker = await Player.findOne({ User: user.id });
                     if (!caker || user.bot) return;
-                    // Give money
+                    // Do smth
 
-                    caker.wallet += 1;
-                    caker.save();
                     try {
-                        user.send("🥰🎂🥰");
+                        let text = "🎂";
+                        if (args[1]) text = args.slice(0).join(" ");
+                        user.send(text);
                     } catch (err) {
                         console.log("couldn't direct message user!");
                     }

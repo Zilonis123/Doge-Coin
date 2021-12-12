@@ -77,7 +77,7 @@ module.exports = [
         type: 'Limited Item',
         price: 10000,
         emoji: "🎂",
-        onShop: true
+        onShop: false
     }
 
 ]

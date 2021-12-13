@@ -26,7 +26,7 @@ module.exports = {
             if (player.Inventory[key] === 0 || isNaN(player.Inventory[key])) return;
             len += 1;
         })
-        const canvas = createCanvas(150, (50 * len) + 25);
+        const canvas = createCanvas(150, (80 * len) + 25);
         const ctx = canvas.getContext('2d');
         
         // make the background look nice
@@ -60,6 +60,7 @@ module.exports = {
                 });
             }
             ctx.fillStyle = '#D6DBDF';
+            ctx.fontSize = 15
             ctx.fillText(`${info.item} -`, pos_x, pos_y);
             
             // Measure lenght
@@ -71,12 +72,12 @@ module.exports = {
             
             // add description
             canvasTxt.align = 'left';
-            canvasTxt.fontSize = 10;
+            canvasTxt.fontSize = 15;
             canvasTxt.drawText(ctx, info.description, pos_x, pos_y + lenght.emHeightAscent + 4, canvas.width - 14, 5);
 
             
             // add some value to pos_x and pos_y
-            pos_y += 50
+            pos_y += 80
 
             return `${emoji} **${info.item}** - ${player.Inventory[key].toLocaleString()}\n- ${itemDescription} - **${itemPower}**`
         }).join('\n');

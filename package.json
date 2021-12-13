@@ -37,7 +37,7 @@
     "util": "^0.12.4",
     "sourcebin": "^4.2.5",
     "canvas": "^2.8.0",
-    "emoji-toolkit": "^6.6.0"
+    "canvas-txt": "^3.0.0"
 
   }
 }

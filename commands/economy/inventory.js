@@ -69,7 +69,7 @@ module.exports = {
             ctx.fillText(` ${player.Inventory[key].toLocaleString()}`, pos_x + lenght.width + 4, pos_y);
             
             // add description
-            console.log(length)
+            console.log(lenght)
             ctx.fillText(info.description, pos_x, pos_y + lenght.height + 4)
             
             // add some value to pos_x and pos_y

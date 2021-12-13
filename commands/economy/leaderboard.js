@@ -7,6 +7,7 @@ module.exports = {
     aliases: ['lb', 'rich'],
     cooldown: 5,
     description: 'Check the servers leaderboard',
+    voteOnly: true,
     async execute(message, args, client) {
         const coin = client.guilds.cache.get('873965279665860628').emojis.cache.get('874290622201221211');
 

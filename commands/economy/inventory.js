@@ -70,7 +70,7 @@ module.exports = {
             ctx.fillText(` ${player.Inventory[key].toLocaleString()}`, pos_x + lenght.width + 4, pos_y);
             
             // add description
-            canvasTxt.align('left')
+            canvasTxt.align = 'left';
             canvasTxt.drawText(ctx, item.description, pos_x, pos_y + lenght.emHeightAscent + 4, canvas.width - 14, 40);
 
             

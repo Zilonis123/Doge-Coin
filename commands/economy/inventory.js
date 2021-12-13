@@ -55,7 +55,7 @@ module.exports = {
             // add text
             if (info.image) {
                 console.log('ok')
-                consst image = await loadImage(`thumbnails/${info.image}`)
+                const image = await loadImage(`thumbnails/${info.image}`)
                 ctx.drawImage(image, pos_x, pos_y);
                 pos_x += 37;
             }

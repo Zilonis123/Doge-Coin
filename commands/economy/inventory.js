@@ -47,26 +47,35 @@ module.exports = {
         let pos_y = 32;
         const mappedData = Object.keys(player.Inventory).map(async(key) => {
             if (player.Inventory[key] === 0 || isNaN(player.Inventory[key])) return;
-            const itemName = items.find((val) => (val.item.toLowerCase().includes(key)));
+            const info = items.find((val) => (val.item.toLowerCase().includes(key)));
             const itemDescription = items.find((val) => (val.item.toLowerCase().includes(key))).description;
             const itemPower = items.find((val) => (val.item.toLowerCase().includes(key))).type;
             let emoji = items.find((val) => (val.item.toLowerCase().includes(key))).emoji;
             
             // add text
+            if (info.image) {
+                loadImage(`images/${info.image}`).then((image) => {
+                    ctx.drawImage(image, pos_x, pos_y);
+                    pos_x += image.width + 5;
+                });
+            }
             ctx.fillStyle = '#D6DBDF';
-            ctx.fillText(`${itemName.item} -`, pos_x, pos_y);
+            ctx.fillText(`${info.item} -`, pos_x, pos_y);
             
             // Measure lenght
-            const lenght = ctx.measureText(itemName.item);
+            const lenght = ctx.measureText(info.item);
 
             // Add amount
             ctx.fillStyle = '#5DADE2';
             ctx.fillText(` ${player.Inventory[key].toLocaleString()}`, pos_x + lenght.width + 4, pos_y);
             
+            // add description
+            ctx.fillText(info.description, pos_x, pos_y + lenght.height + 4)
+            
             // add some value to pos_x and pos_y
             pos_y += 50
 
-            return `${emoji} **${itemName.item}** - ${player.Inventory[key].toLocaleString()}\n- ${itemDescription} - **${itemPower}**`
+            return `${emoji} **${info.item}** - ${player.Inventory[key].toLocaleString()}\n- ${itemDescription} - **${itemPower}**`
         }).join('\n');
         
         // create the attachment

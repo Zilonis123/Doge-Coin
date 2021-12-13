@@ -55,10 +55,9 @@ module.exports = {
             // add text
             if (info.image) {
                 console.log('ok')
-                loadImage(`thumbnails/${info.image}`).then((image) => {
-                    ctx.drawImage(image, pos_x, pos_y);
-                    pos_x += 37;
-                });
+                consst image = await loadImage(`thumbnails/${info.image}`)
+                ctx.drawImage(image, pos_x, pos_y);
+                pos_x += 37;
             }
             ctx.fillStyle = '#D6DBDF';
             canvasTxt.fontSize = 15

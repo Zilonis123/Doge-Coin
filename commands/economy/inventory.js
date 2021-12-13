@@ -60,7 +60,7 @@ module.exports = {
                 });
             }
             ctx.fillStyle = '#D6DBDF';
-            ctx.fontSize = 15
+            canvasTxt.fontSize = 15
             ctx.fillText(`${info.item} -`, pos_x, pos_y);
             
             // Measure lenght
@@ -72,7 +72,6 @@ module.exports = {
             
             // add description
             canvasTxt.align = 'left';
-            canvasTxt.fontSize = 15;
             canvasTxt.drawText(ctx, info.description, pos_x, pos_y + lenght.emHeightAscent + 4, canvas.width - 14, 5);
 
             

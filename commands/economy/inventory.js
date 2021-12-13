@@ -71,7 +71,8 @@ module.exports = {
             
             // add description
             canvasTxt.align = 'left';
-            canvasTxt.drawText(ctx, info.description, pos_x, pos_y + lenght.emHeightAscent + 4, canvas.width - 14, 40);
+            canvasTxt.fontSize = 12;
+            canvasTxt.drawText(ctx, info.description, pos_x, pos_y + lenght.emHeightAscent + 4, canvas.width - 14);
 
             
             // add some value to pos_x and pos_y

@@ -18,7 +18,7 @@ module.exports = {
         if (!Number.isInteger(count)) count = 1;
         // Check if item exists
         const itemName = items.find((val) => (val.item.toLowerCase().includes(itemToBuy)));
-        if (!itemName) return message.reply(`That item isnt for sale <:${bruh.name}:${bruh.id}>`);
+        if (!itemName || !itemName.onShop) return message.reply(`That item isnt for sale <:${bruh.name}:${bruh.id}>`);
         // Require the items
         const validItem = items.find((val) => val.item.toLowerCase().includes(itemToBuy)).onShop;
         const itemPrice = items.find((val) => (val.item.toLowerCase().includes(itemToBuy))).price;

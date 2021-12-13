@@ -54,8 +54,10 @@ module.exports = {
             
             // add text
             if (info.image) {
+                console.log('ok')
                 loadImage(`images/${info.image}`).then((image) => {
                     ctx.drawImage(image, pos_x, pos_y);
+                    console.log(image)
                     pos_x += image.width + 5;
                 });
             }

@@ -25,7 +25,7 @@ module.exports = [
     },
     {
         item: 'grapes',
-        description: 'You may eat me!',
+        description: 'You can eat it i guess',
         type: 'Item',
         price: 1000,
         emoji: '🍇',
@@ -41,7 +41,7 @@ module.exports = [
     },
     {
         item: 'clock',
-        description: 'Makes all the cooldowns for you take half as much time, for a lifetime!',
+        description: 'Makes all the cooldowns take half as much time',
         type: 'Power Up',
         price: 1000000,
         emoji: '⏰',
@@ -49,7 +49,7 @@ module.exports = [
     },
     {
         item: 'lootbox',
-        description: 'a lootbox lol',
+        description: 'a lootbox with coins',
         type: 'Item',
         price: 100000,
         emoji: '📦',
@@ -57,7 +57,7 @@ module.exports = [
     },
     {
         item: 'robbers wishlist',
-        description: 'dm\'s a list of richest non pacifist players to the user',
+        description: 'dm\'s a list of richest non hippies players to the user',
         type: 'Item',
         price: 100000,
         emoji: '📄',
@@ -81,7 +81,7 @@ module.exports = [
     },
     {
         item: "Giveaway winner",
-        description: "Only people who have won giveaways have this",
+        description: "Read the item name",
         type: "Collectable",
         price: 69,
         emoji: "🏆",

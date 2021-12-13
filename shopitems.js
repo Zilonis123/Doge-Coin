@@ -69,7 +69,8 @@ module.exports = [
         type: 'Token',
         price: 10000,
         emoji: "⛏️",
-        onShop: true
+        onShop: true,
+        image: 'pickaxe.png'
     },
     {
         item: "birthday cake",

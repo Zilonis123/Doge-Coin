@@ -3,6 +3,7 @@ const create = require('../../inventory create');
 const items = require('../../shopitems');
 const { MessageEmbed, MessageAttachment } = require('discord.js');
 const { loadImage, createCanvas} = require('canvas');
+const canvasTxt = require('canvas-txt').default
 
 module.exports = {
     name: 'inventory',
@@ -69,8 +70,9 @@ module.exports = {
             ctx.fillText(` ${player.Inventory[key].toLocaleString()}`, pos_x + lenght.width + 4, pos_y);
             
             // add description
-            console.log(lenght)
-            ctx.fillText(info.description, pos_x, pos_y + lenght.emHeightAscent + 4)
+            canvasTxt.align('left')
+            canvasTxt.drawText(ctx, item.description, pos_x, pos_y + lenght.emHeightAscent + 4, canvas.width - 14, 40);
+
             
             // add some value to pos_x and pos_y
             pos_y += 50

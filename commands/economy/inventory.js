@@ -70,7 +70,7 @@ module.exports = {
             
             // add description
             console.log(lenght)
-            ctx.fillText(info.description, pos_x, pos_y + lenght.height + 4)
+            ctx.fillText(info.description, pos_x, pos_y + lenght.emHeightAscent + 4)
             
             // add some value to pos_x and pos_y
             pos_y += 50

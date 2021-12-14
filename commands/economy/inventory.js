@@ -89,7 +89,6 @@ module.exports = {
             .setColor('YELLOW')
             .setAuthor(`${tag}'s Inventory:`)
             .setDescription(mappedData)
-            .setImage('attachment://inventory.png')
-        message.reply({ embeds: [embed], files: [attachment] });
+        message.reply({ embeds: [embed] });
     }
 }

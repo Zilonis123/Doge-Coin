@@ -82,12 +82,13 @@ module.exports = {
         }).join('\n');
         
         // create the attachment
-        const attachment = new MessageAttachment(canvas.toBuffer(), 'inventory.png')
+        // const attachment = new MessageAttachment(canvas.toBuffer(), 'inventory.png')
         
         // create the embed with the attachment
         const embed = new MessageEmbed()
             .setColor('YELLOW')
             .setAuthor(`${tag}'s Inventory:`)
+            .setDescription(mappedData)
             .setImage('attachment://inventory.png')
         message.reply({ embeds: [embed], files: [attachment] });
     }

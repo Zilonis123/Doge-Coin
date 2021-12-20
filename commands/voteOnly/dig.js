@@ -45,7 +45,7 @@ module.exports = {
               continue;
             }
             allowed = true;
-            level[lvl].push('O')
+            level[lvl][w] === 'O'
           }
         }
     }

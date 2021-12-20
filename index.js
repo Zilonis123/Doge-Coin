@@ -35,6 +35,7 @@ require('./Shorteners/colors')(client);
 // Adding global stuff
 global.config = require('./config.json');
 global.emojis = require('./Shorteners/Emojis.js');
+client.emojis = require('./Shorteners/Emojis');
 global.multiplier = require('./Shorteners/multiplier.js');
 global.lockdown = false;
 client.Add = require('./Shorteners/Add');

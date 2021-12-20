@@ -8,6 +8,7 @@ module.exports = {
             info: '📰',
             economy: '💰',
             settings: '🔨',
+            voteonly: '🎟'
         }
         const blacklisted = [
             'trusted'
@@ -18,13 +19,11 @@ module.exports = {
 
         const categories  = directories.map((dir) => {
             const getCommands = client.commands.filter(
-                (cmd) => cmd.directory === dir
+                (cmd) => cmd.directory.toLowerCase() === dir.toLowerCase()
             ).map(cmd => {
                 return {
                     name: cmd.name || 'In progress',
-                    description: 
-                        cmd.description || 
-                        'Description is in progress',
+                    description: cmd.description || 'This command is in progress'
                 }
             });
 
@@ -86,7 +85,7 @@ module.exports = {
                     category.commands.map((cmd) => {
                         return {
                             name: `\`${cmd.name}\``,
-                            value: cmd.voteOnly ? `${cmd.description}\n**- This command does not require vote**` : cmd.description,
+                            value: cmd.description,
                             inline: true,
                         };
                     })

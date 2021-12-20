@@ -57,4 +57,4 @@ mongoose.connect(process.env.MONGO, {
     console.log(err);
 });
 
-client.login(process.env.TEST_TOKEN);
+client.login(process.env.TOKEN);

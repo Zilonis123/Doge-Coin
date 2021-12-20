@@ -37,7 +37,7 @@ module.exports = {
     const WIDTH = 3;
     const HEIGHT = 3;
     let allowed = false;
-    While !allowed {
+    while (!allowed) {
         for (let lvl = 0; lvl < HEIGHT; lvl++) {
           for (let w = 0; w < WIDTH; w++) {
             const random = Math.floor(Math.random() * 5);

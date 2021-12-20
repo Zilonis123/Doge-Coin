@@ -28,7 +28,7 @@ module.exports = {
         let m = await interaction.followUp({ embeds: [
             new MessageEmbed()
                 .setAuthor("Stats 📊", client.user.displayAvatarURL())
-                .setColor(global.colors.discordYellow)
+                .setColor(client.colors.discordYellow)
                 .addFields(
                     {
                         name: 'Ping',
@@ -70,7 +70,7 @@ module.exports = {
         m.edit({ embeds: [
             new MessageEmbed()
                 .setAuthor("Stats 📊", client.user.displayAvatarURL())
-                .setColor('YELLOW')
+                .setColor(client.colors.discordYellow)
                 .addFields(
                     {
                         name: 'Ping',

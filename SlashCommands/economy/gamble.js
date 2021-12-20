@@ -19,8 +19,8 @@ module.exports = {
      */
     async execute({ interaction, args, client }) {
         const [money] = args
-        const coin = global.emojis('coin');
-        const lol = global.emojis('lol');
+        const coin = await global.emojis('coin');
+        const lol = await global.emojis('lol');
         if (!money) return interaction.followUp(`What are you going to bet? ${lol}`);
         if (isNaN(money)) return interaction.followUp(`Did you think you can bet anything else then money? ${lol}`);
 

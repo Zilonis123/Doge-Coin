@@ -32,21 +32,22 @@ module.exports = {
     const coin = await global.emojis('coin');
     
     // creating level
-    let level = [[], [], []];
+    let level = [["S", "S", "S"], ["S", "S", "S"], ["S", "S", "S"]];
     const keys = [['a1', 'a2', 'a3'], ['b1', 'b2', 'b3'], ['c1', 'c2', 'c3']];
     const WIDTH = 3;
     const HEIGHT = 3;
     let allowed = false;
-    for (let lvl = 0; lvl < HEIGHT; lvl++) {
-      for (let w = 0; w < WIDTH; w++) {
-        const random = Math.floor(Math.random() * 5);
-        if (random < 3 || allowed === true) {
-          level[lvl].push('S');
-          continue;
+    While !allowed {
+        for (let lvl = 0; lvl < HEIGHT; lvl++) {
+          for (let w = 0; w < WIDTH; w++) {
+            const random = Math.floor(Math.random() * 5);
+            if (random < 3 || allowed === true) {
+              continue;
+            }
+            allowed = true;
+            level[lvl].push('O')
+          }
         }
-        allowed = true;
-        level[lvl].push('O')
-      }
     }
     
     // sending the message with the image and creating the embed

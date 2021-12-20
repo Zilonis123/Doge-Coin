@@ -43,42 +43,43 @@ module.exports = {
         ctx.font = 'Source Sans 3';
         
         // go through the data
-        let pos_x = 7;
-        let pos_y = 32;
+        // let pos_x = 7;
+        // let pos_y = 32;
         const mappedData = Object.keys(player.Inventory).map((key) => {
-            if (player.Inventory[key] === 0 || isNaN(player.Inventory[key])) return;
-            const info = items.find((val) => (val.item.toLowerCase().includes(key)));
-            const itemDescription = items.find((val) => (val.item.toLowerCase().includes(key))).description;
-            const itemPower = items.find((val) => (val.item.toLowerCase().includes(key))).type;
-            let emoji = items.find((val) => (val.item.toLowerCase().includes(key))).emoji;
-            
-            // add text
-            //if (info.image) {
-                //console.log('ok')
-                //const image = await loadImage(`thumbnails/${info.image}`)
-                //ctx.drawImage(image, pos_x, pos_y);
-                //pos_x += 37;
-            //}
-            //ctx.fillStyle = '#D6DBDF';
-            //canvasTxt.fontSize = 15
-            //ctx.fillText(`${info.item} -`, pos_x, pos_y);
-            
-            // Measure lenght
-            //const lenght = ctx.measureText(info.item);
+            if (player.Inventory[key] > 0 || !isNaN(player.Inventory[key])) {
+                const info = items.find((val) => (val.item.toLowerCase().includes(key)));
+                const itemDescription = items.find((val) => (val.item.toLowerCase().includes(key))).description;
+                const itemPower = items.find((val) => (val.item.toLowerCase().includes(key))).type;
+                let emoji = items.find((val) => (val.item.toLowerCase().includes(key))).emoji;
+                
+                // add text
+                //if (info.image) {
+                    //console.log('ok')
+                    //const image = await loadImage(`thumbnails/${info.image}`)
+                    //ctx.drawImage(image, pos_x, pos_y);
+                    //pos_x += 37;
+                //}
+                //ctx.fillStyle = '#D6DBDF';
+                //canvasTxt.fontSize = 15
+                //ctx.fillText(`${info.item} -`, pos_x, pos_y);
+                
+                // Measure lenght
+                //const lenght = ctx.measureText(info.item);
 
-            // Add amount
-            //ctx.fillStyle = '#5DADE2';
-            //ctx.fillText(` ${player.Inventory[key].toLocaleString()}`, pos_x + lenght.width + 4, pos_y);
-            
-            // add description
-            //canvasTxt.align = 'left';
-            //canvasTxt.drawText(ctx, info.description, pos_x, pos_y + lenght.emHeightAscent + 4, canvas.width - 14, 5);
+                // Add amount
+                //ctx.fillStyle = '#5DADE2';
+                //ctx.fillText(` ${player.Inventory[key].toLocaleString()}`, pos_x + lenght.width + 4, pos_y);
+                
+                // add description
+                //canvasTxt.align = 'left';
+                //canvasTxt.drawText(ctx, info.description, pos_x, pos_y + lenght.emHeightAscent + 4, canvas.width - 14, 5);
 
-            
-            // add some value to pos_x and pos_y
-            //pos_y += 80
+                
+                // add some value to pos_x and pos_y
+                //pos_y += 80
 
-            return `${emoji} **${info.item}** - ${player.Inventory[key].toLocaleString()}\n- ${itemDescription} - **${itemPower}**`
+                return `${emoji} **${info.item}** - ${player.Inventory[key].toLocaleString()}\n- ${itemDescription} - **${itemPower}**`
+            }
         }).join('\n');
         
         // create the attachment

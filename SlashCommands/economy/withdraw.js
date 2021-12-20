@@ -12,7 +12,7 @@ module.exports = {
             type: 'INTEGER'
         }
     ],
-    async execute(client, interaction, args) {
+    async execute({client, interaction, args}) {
         const [ amount ] = args
         const lol = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577305928888360');
         const lmfao = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577308927811594');

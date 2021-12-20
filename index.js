@@ -30,11 +30,16 @@ client.slashCommands = new Collection();
 client.cooldowns = new Collection();
 client.goldRush = new Collection();
 client.executed = new Collection();
+// stuff thats too big for this place
+require('./Shorteners/colors')(client);
 // Adding global stuff
 global.config = require('./config.json');
 global.emojis = require('./Shorteners/Emojis.js');
 global.multiplier = require('./Shorteners/multiplier.js');
 global.lockdown = false;
+client.Add = require('./Shorteners/Add');
+client.Remove = require('./Shorteners/Remove');
+client.Bal = require('./Shorteners/Bal');
 
 // handler
 require('./handler')(client);
@@ -52,4 +57,4 @@ mongoose.connect(process.env.MONGO, {
     console.log(err);
 });
 
-client.login(process.env.TOKEN);
+client.login(process.env.TEST_TOKEN);

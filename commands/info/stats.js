@@ -4,9 +4,9 @@ const { utc } = require('moment');
 const Discord = require('discord.js');
 
 module.exports = {
-    name: 'stats',
+    name: 'ping',
     description: 'Shows bots detailed stats!',
-    aliases: ['ping', 'response'],
+    aliases: ['stats', 'response'],
     async execute(message, args, client) {
         const core = os.cpus()[0]
         const clientName = client.user.tag;

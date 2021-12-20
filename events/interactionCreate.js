@@ -21,7 +21,7 @@ client.on("interactionCreate", async (interaction) => {
         }
         interaction.member = interaction.guild.members.cache.get(interaction.user.id);
 
-        cmd.execute(client, interaction, args);
+        cmd.execute({ client, interaction, args });
     }
 
     // Context Menu Handling

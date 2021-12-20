@@ -1,6 +1,8 @@
 const { MessageEmbed, MessageAttachment } = require('discord.js');
 const { createCanvas, loadImage } = require('canvas');
-const inv = require("../../models/inventory")
+const inventory = require("../../models/inventory");
+const users_currency = require('../../models/wallet');
+const wallet_create = require('../../wallet create');
 
 module.exports = {
   name: 'mine',
@@ -8,37 +10,49 @@ module.exports = {
   aliases: ['dig', 'ores'],
   async execute(message, args, client) {
     // Checking if has pickaxe
-    const player = await inv.findOne({ User: message.author.id });
-    const has = Object.keys(player.Inventory);
-    if (player.Inventory["pickaxe"] < 1 || has['Pickaxe'] || has['Pickaxe'] < 1) return message.channel.send("You need a ⛏️pickaxe to use this command");
+
+    const data = await inventory.findOne({ User: message.author.id });
+    const hasItem = Object.keys(data.Inventory).includes('pickaxe');
+    if (!hasItem || data.Inventory['pickaxe'] < 1) return message.channel.send("You need a ⛏️pickaxe to use this command");;
     
     // Removing the pickaxe
-    player.Inventory["pickaxe"]--;
-    player.save();
+    data.Inventory["pickaxe"]--;
+    await inventory.findOneAndUpdate({ User: message.author.id }, data).catch(err => {
+      message.reply('something went wrong');
+      console.log(err);
+    })
+    
+
+    // requiring balance
+    const balance = await users_currency.findOne({ User: message.author.id });
+
     // getting emojis
     const loading = await global.emojis('loading');
     const diamond = await global.emojis('diamond');
+    const coin = await global.emojis('coin');
     
     // creating level
     let level = [[], [], []];
     const keys = [['a1', 'a2', 'a3'], ['b1', 'b2', 'b3'], ['c1', 'c2', 'c3']];
     const WIDTH = 3;
     const HEIGHT = 3;
+    let allowed = false;
     for (let lvl = 0; lvl < HEIGHT; lvl++) {
       for (let w = 0; w < WIDTH; w++) {
         const random = Math.floor(Math.random() * 5);
-        if (random < 3) {
+        if (random < 3 || allowed === true) {
           level[lvl].push('S');
           continue;
         }
-      level[lvl].push('O')
+        allowed = true;
+        level[lvl].push('O')
       }
     }
     
     // sending the message with the image and creating the embed
-    const attach = new MessageAttachment('grid.png', 'grid.png');
+    const attach = new MessageAttachment('thumbnails/grid.png', 'grid.png');
     let embed = new MessageEmbed()
-      .setColor('BLACK')
+      .setColor('YELLOW')
       .setDescription('Please send a tile id (example : `a1`)')
       .setImage('attachment://grid.png')
       .setFooter(`Miner : ${message.author.username}`, message.author.displayAvatarURL())
@@ -73,10 +87,10 @@ module.exports = {
     const canvas = createCanvas(132, 132);
     const ctx = canvas.getContext('2d');
     // loading images
-    loadImage('grid.png').then((image) => {
+    loadImage('thumbnails/grid.png').then((image) => {
       ctx.drawImage(image, 0, 0, 132, 132);
     })
-    const dimond = await loadImage('commands/trusted/diamond.png');
+    const dimond = await loadImage('thumbnails/diamond.png');
     for (let h = 0; h < HEIGHT; h++) {
       for (let w = 0; w < WIDTH; w++) {
         if (level[h][w] === 'O') {
@@ -89,13 +103,28 @@ module.exports = {
         }
       }
     }
-    // send a completed map
     
+    // require the multiplier
+    const mutli = await global.multiplier(message.guild, message.author.id);
+
+    // calculate the money
+    const money = Math.floor(100000 * mutli);
+
+    // send the message
     let text = 'You found a regular rock better luck next time..'
-    if (level[list][item].toLowerCase() === 'o') text = `You are lucky you found a diamond ${diamond}`;
+    if (level[list][item].toLowerCase() === 'o') text = `You are lucky you found a diamond ${diamond}\nYou sold it for ${money}${coin} (**${multi}** mutliplier)`;
+    if (level[list][item].toLowerCase() === 'o') {
+      if (!balance) {
+        wallet_create(message.author, money);
+      }
+      else {
+        balance.wallet += money;
+        balance.save();
+      }
+    }
     
     const edited_attach = new MessageAttachment(canvas.toBuffer(), `dig.png`)
-    const new_embed = new MessageEmbed().setDescription('Goodjob').setAuthor('The map').setImage(`attachment://dig.png`).setColor('GREEN');
+    const new_embed = new MessageEmbed().setAuthor('The map').setImage(`attachment://dig.png`).setColor('YELLOW');
     await message.reply({ embeds: [new_embed], files: [edited_attach], content: text })
   }
 }

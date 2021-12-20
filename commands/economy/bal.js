@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const schema = require('../../models/wallet');
+const balanceema = require('../../models/wallet');
 const create = require('../../wallet create');
 module.exports = {
     name: 'bal',
@@ -11,30 +11,16 @@ module.exports = {
         let user = message.mentions.users.first();
         if (!user) user = await message.guild.members.cache.get(args[0]);
         if (!user) user = message.author;
-        id = user;
-        user = user.username;
-        try {
-            const schem = await schema.findOne({ User: id.id });
-            if(!schem) {
-                const sch = await create(id, 0, 0);
-                const embed = new MessageEmbed()
-                    .setAuthor(`${user}'s balance`)
-                    .setColor('YELLOW')
-                    .addField('Wallet', `\`${sch.Wallet.toLocaleString()}\`💵`, true)
-                    .addField('Bank', `\`${sch.Bank.toLocaleString()} || ${sch.BankMax.toLocaleString()}\`💳`, true)
-                    .addField('Total', `\`${(sch.Bank + sch.Wallet).toLocaleString()}\`:moneybag:`, true);
-                return message.reply({ embeds: [embed] });
-            }
-            const embed = new MessageEmbed()
-                .setAuthor(`${user}'s balance`)
-                .setColor('YELLOW')
-                .addField('Wallet', `\`${schem.Wallet.toLocaleString()}\`💵`, true)
-                .addField('Bank', `\`${schem.Bank.toLocaleString()} || ${schem.BankMax.toLocaleString()}\`💳`, true)
-                .addField('Total', `\`${(schem.Bank + schem.Wallet).toLocaleString()}\`:moneybag:`, true);
-            message.reply({ embeds: [embed] })
-        } catch(err) {
-            console.log(err)
-        }
         
+        // Balance
+        const balance = await client.Bal(user.id);
+        
+        const embed = new MessageEmbed()
+            .setAuthor(`${user.username}'s balance`)
+            .setColor(client.colors.discordYellow)
+            .addField('Wallet', `\`${balance.Wallet.toLocaleString()}\`💵`, true)
+            .addField('Bank', `\`${balance.Bank.toLocaleString()} || ${balance.BankMax.toLocaleString()}\`💳`, true)
+            .addField('Total', `\`${(balance.Bank + balance.Wallet).toLocaleString()}\`:moneybag:`, true);
+        message.channel.send({ embeds:embed });
     }
 }

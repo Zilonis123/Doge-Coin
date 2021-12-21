@@ -3,7 +3,7 @@ const client = require('../index.js');
 module.exports = async(emoji) => {
     // Require the guild
     const guild = await client.guilds.cache.get(global.config.guild);
-    const guild2 = await client.guilds.cache.get("878589153258913803")
+    const guild2 = await client.guilds.cache.get("878589153258913803");
     if (emoji.includes('coin')) {
         // Require coin emoji from the guild and return the emoji
         const emoji_coin = await guild.emojis.cache.get('874290622201221211');
@@ -20,15 +20,17 @@ module.exports = async(emoji) => {
     }
     if (emoji.includes('diamond')) {
         const emoji_diamond = await guild.emojis.cache.get('915978592146563073');
-        return transform(emoji_diamond, 'a')
+        return transform(emoji_diamond, 'a');
     }
     if (emoji.includes('bot1')) {
+        console.log(guild2)
         const emoji_bot1 = await guild2.emojis.cache.get('915978592146563073');
-        return transform(emoji_bot1)
+        console.log(emoji_bot1)
+        return transform(emoji_bot1);
     }
     if (emoji.includes('bot2')) {
         const emoji_bot2 = await guild2.emojis.cache.get('922816818593300512');
-        return transform(emoji_bot2)
+        return transform(emoji_bot2);
     }
     return ':smile:';
 }

@@ -35,6 +35,6 @@ module.exports = async(emoji) => {
 
 const transform = (emoji) => {
     const type = emoji.animated ? 'a' : '';
-    const em = `${type}:${emoji.name}:${emoji.id}>`;
+    const em = `<${type}:${emoji.name}:${emoji.id}>`;
     return em;
 }

@@ -1,6 +1,5 @@
 const client = require('../index.js');
 const inventory = require('../models/inventory');
-const Topgg = require(`@top-gg/sdk`);
 
 module.exports = multiplier = async(guild, userId) => {
   // define the multiplier
@@ -20,8 +19,8 @@ module.exports = multiplier = async(guild, userId) => {
   // Give subaru his multiplier
   if (userId === '449491647558975489') multi += 5;
   // Check if user has voted and give him a multiplier
-  const api = new Topgg.Api(process.env.TOPGG);
-  const hasVoted = await api.hasVoted(userId);
+
+  const hasVoted = await client.Vote(userId);
   if (hasVoted) multi += 1;
   
   return multi;

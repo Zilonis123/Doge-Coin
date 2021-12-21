@@ -1,8 +1,6 @@
 const { MessageEmbed, MessageAttachment } = require('discord.js');
 const { createCanvas, loadImage } = require('canvas');
 const inventory = require("../../models/inventory");
-const users_currency = require('../../models/wallet');
-const wallet_create = require('../../wallet create');
 
 module.exports = {
   name: 'mine',
@@ -23,8 +21,6 @@ module.exports = {
     })
     
 
-    // requiring balance
-    const balance = await users_currency.findOne({ User: message.author.id });
 
     // getting emojis
     const loading = await global.emojis('loading');
@@ -38,16 +34,14 @@ module.exports = {
     const HEIGHT = 3;
     let allowed = false;
     while (!allowed) {
-        for (let lvl = 0; lvl < HEIGHT; lvl++) {
-          for (let w = 0; w < WIDTH; w++) {
-            const random = Math.floor(Math.random() * 5);
-            if (random < 3 || allowed === true) {
-              continue;
-            }
-            allowed = true;
-            level[lvl][w] === 'O'
-          }
-        }
+      const lvl = Math.floor(Math.random() * 2);
+      const w = Math.floor(Math.random() * 2);
+      const random = Math.floor(Math.random() * 5);
+      if (random < 3 || allowed === true) {
+        continue;
+      }
+      allowed = true;
+      level[lvl][w] = 'O'
     }
     
     // sending the message with the image and creating the embed
@@ -106,22 +100,16 @@ module.exports = {
     }
     
     // require the multiplier
-    const mutli = await global.multiplier(message.guild, message.author.id);
+    const multi = await global.multiplier(message.guild, message.author.id);
 
     // calculate the money
-    const money = Math.floor(100000 * mutli);
+    const money = Math.floor(100000 * multi);
 
     // send the message
     let text = 'You found a regular rock better luck next time..'
     if (level[list][item].toLowerCase() === 'o') text = `You are lucky you found a diamond ${diamond}\nYou sold it for ${money}${coin} (**${multi}** mutliplier)`;
     if (level[list][item].toLowerCase() === 'o') {
-      if (!balance) {
-        wallet_create(message.author, money);
-      }
-      else {
-        balance.wallet += money;
-        balance.save();
-      }
+      client.Add(message.author.id, money);
     }
     
     const edited_attach = new MessageAttachment(canvas.toBuffer(), `dig.png`)

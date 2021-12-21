@@ -20,7 +20,7 @@ module.exports = {
             .setColor(client.colors.discordYellow)
             .addField('Wallet', `\`${balance.Wallet.toLocaleString()}\`💵`, true)
             .addField('Bank', `\`${balance.Bank.toLocaleString()} || ${balance.BankMax.toLocaleString()}\`💳`, true)
-            .addField('Total', `\`${(balance.Bank + balance.Wallet).toLocaleString()}\`:moneybag:`, true);
+            .addField('Net Worth', `\`${(balance.Bank + balance.Wallet).toLocaleString()}\`:moneybag:`, true);
         message.channel.send({ embeds:embed });
     }
 }

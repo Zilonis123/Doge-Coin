@@ -40,6 +40,8 @@ global.lockdown = false;
 client.Add = require('./Shorteners/Add');
 client.Remove = require('./Shorteners/Remove');
 client.Bal = require('./Shorteners/Bal');
+client.Inventory = require('./Shorteners/Inventory');
+client.Vote = require('./Shorteners/Vote');
 
 // handler
 require('./handler')(client);

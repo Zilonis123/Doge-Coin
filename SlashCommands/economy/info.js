@@ -23,6 +23,10 @@ module.exports = {
         if (!person) person = interaction.user;
         else person = client.users.cache.get(person);
 
+        // emojis
+        const bot1 = await global.emojis('bot1');
+        const bot2 = await global.emojis('bot2');
+
         let balance = await client.Bal(person.id);
         if (!balance) balance = {User: person.id,Wallet:0, Bank: 0, BankMax: 10000};
         let inventory = await client.Inventory(person.id);
@@ -40,7 +44,7 @@ module.exports = {
         const data = [];
         const guild = client.guilds.cache.get(interaction.guild.id);
         await guild.members.cache.forEach(async(m) => {
-            if (!m.bot) data.push(m.id);
+            if (!m.user.bot) data.push(m.id);
         });
 
         const balances = [];
@@ -60,7 +64,7 @@ module.exports = {
 
         const newEmbed = new MessageEmbed()
             .setColor(client.colors.discordYellow)
-            .setTitle(`${person.username}'s stats${person.bot ? ' **BOT**' : ''}`)
+            .setTitle(`${person.username}'s stats${person.bot ? ` ${bot1}${bot2}` : ''}`)
             .setDescription(`Theese are all ${person.username}'s info and stats`)
             .addFields(
                 { name: 'Wallet', value: `\`${balance.Wallet.toLocaleString()}\`💵`, inline: true },

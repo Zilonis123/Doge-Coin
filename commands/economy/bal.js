@@ -13,7 +13,8 @@ module.exports = {
         if (!user) user = message.author;
         
         // Balance
-        const balance = await client.Bal(user.id);
+        let balance = await client.Bal(user.id);
+        if (!balance) balance = {User:message.author.id,Wallet:0,Bank:0,BankMax:10000}
         
         const embed = new MessageEmbed()
             .setAuthor(`${user.username}'s balance`)
@@ -21,6 +22,6 @@ module.exports = {
             .addField('Wallet', `\`${balance.Wallet.toLocaleString()}\`💵`, true)
             .addField('Bank', `\`${balance.Bank.toLocaleString()} || ${balance.BankMax.toLocaleString()}\`💳`, true)
             .addField('Net Worth', `\`${(balance.Bank + balance.Wallet).toLocaleString()}\`:moneybag:`, true);
-        message.channel.send({ embeds:embed });
+        message.channel.send({ embeds: [embed] });
     }
 }

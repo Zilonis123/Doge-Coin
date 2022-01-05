@@ -7,8 +7,8 @@ module.exports = {
     cooldown: 60,
     voteOnly: true,
     async execute(message, args, client) {
-        const lol = await global.emojis('lol');
-        const coin = await global.emojis('coin');
+        const lol = await global.emojis('lol', message.guild.id);
+        const coin = await global.emojis('coin', message.guild.id);
         const lmfao = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577308927811594');
         const troll = client.guilds.cache.get('873965279665860628').emojis.cache.get('874624861337690142');
         const Nomessages = [

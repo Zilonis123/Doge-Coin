@@ -24,8 +24,8 @@ module.exports = {
         else person = client.users.cache.get(person);
 
         // emojis
-        const bot1 = await global.emojis('bot1');
-        const bot2 = await global.emojis('bot2');
+        const bot1 = await global.emojis('bot1', interaction.guild.id);
+        const bot2 = await global.emojis('bot2', interaction.guild.id);
 
         let balance = await client.Bal(person.id);
         if (!balance) balance = {User: person.id,Wallet:0, Bank: 0, BankMax: 10000};
@@ -61,6 +61,9 @@ module.exports = {
         if (!person.bot && cldwn) cldwn = cldwn.has(person.id);
         else cldwn = false;
         
+        const percentt = balance.Bank / balance.BankMax;
+        const percent = percentt * 100
+        
 
         const newEmbed = new MessageEmbed()
             .setColor(client.colors.discordYellow)
@@ -68,7 +71,7 @@ module.exports = {
             .setDescription(`Theese are all ${person.username}'s info and stats`)
             .addFields(
                 { name: 'Wallet', value: `\`${balance.Wallet.toLocaleString()}\`💵`, inline: true },
-                { name: 'Bank', value: `\`${balance.Bank.toLocaleString()} || ${balance.BankMax.toLocaleString()}\`💳`, inline: true },
+                { name: 'Bank', value: `\`${balance.Bank.toLocaleString()} || ${balance.BankMax.toLocaleString()}\` \`\`(${percent.toFixed(1)}%)\`\`💳`, inline: true },
                 { name: 'Net Worth', value: `\`${(balance.Wallet + balance.Bank).toLocaleString()}\`:moneybag:`, inline: true },
                 { name: `Inventory`, value: `${mappedData ? mappedData : 'No inventory!!!!'}`, inline: false },
                 { name: `Daily collected?`, value: `${cldwn ? 'Collected!': '__Not collected!__'}`, inline: true },

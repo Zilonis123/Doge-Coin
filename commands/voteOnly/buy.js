@@ -10,8 +10,8 @@ module.exports = {
     aliases: ['b'],
     async execute(message, args, client) {
         const bruh = client.guilds.cache.get('873965279665860628').emojis.cache.get('874577282621136907');
-        const lol = await global.emojis('lol');
-        const coin = await global.emojis('coin');
+        const lol = await global.emojis('lol', message.guild.id);
+        const coin = await global.emojis('coin', message.guild.id);
         if (!args[0]) return message.reply(`What are you gonna buy ${lol}`)
         let itemToBuy = args[0].toLowerCase();
         let count = parseInt(args[1]);

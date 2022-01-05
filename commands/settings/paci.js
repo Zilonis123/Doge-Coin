@@ -1,6 +1,4 @@
 const paci = require('../../models/pacifist');
-const hippy = require('../../models/resign as hippy');
-const moment = require('moment');
 
 module.exports = {
     name: 'pacifist',

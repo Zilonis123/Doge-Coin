@@ -8,8 +8,8 @@ module.exports = {
     description: 'Guess a number',
     cooldown: 60,
     async execute(message, args, client) {
-        const coin = await global.emojis('coin');
-        const lol = await global.emojis('lol');
+        const coin = await global.emojis('coin', message.guild.id);
+        const lol = await global.emojis('lol', message.guild.id);
 
         const sch = await schema.findOne({ User: message.author.id });
 

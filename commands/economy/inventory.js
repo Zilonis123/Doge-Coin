@@ -11,7 +11,7 @@ module.exports = {
     description: 'Open your inventory',
     async execute(message, args, client) {
         let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-        const lol = await global.emojis('lol');
+        const lol = await global.emojis('lol', message.guild.id);
         if (!user) user = message.author;
         const player = await schema.findOne({ User: user.id });
         let tag = user.tag;

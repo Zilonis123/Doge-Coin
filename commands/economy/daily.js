@@ -11,7 +11,7 @@ module.exports = {
     description: 'Get your daily money',
     cooldown: 86400,
     async execute(message, args, client) {
-        const coin = await global.emojis('coin');
+        const coin = await global.emojis('coin', message.guild.id);
         const sch = await schema.findOne({ User: message.author.id });
 
         let text = `You got {items}\n\nCome back in \`1 day\``

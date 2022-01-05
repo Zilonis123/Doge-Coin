@@ -20,6 +20,7 @@ client.on("interactionCreate", async (interaction) => {
             } else if (option.value) args.push(option.value);
         }
         interaction.member = interaction.guild.members.cache.get(interaction.user.id);
+        if (!interaction.member.permissions.has(cmd.userPermissions || [])) return interaction.followUp({ content: `You lack \`${cmd.permissions.join(', ')}\` permissions to use this command` });
 
         cmd.execute({ client, interaction, args });
     }

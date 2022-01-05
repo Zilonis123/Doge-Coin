@@ -8,22 +8,22 @@ const api = new Topgg.Api(process.env.TOPGG);
 
 
 client.on('messageCreate', async(message) => {
-	let prefixes = [`${process.env.PREFIX.toLowerCase()} `, `<@!${client.user.id}>`, `<@${client.user.id}>`, `${process.env.PREFIX.toLowerCase()} `, `<@${client.user.id}> `, `<@!${client.user.id}> `];
-	if (message.webhookId || !message.guild) return;
-        let args, cmdName;
-        for (prefix in prefixes) {
-            prefix = prefixes[prefix];
 
-            if (message.content.toLowerCase().startsWith(prefix)) {
-                 let content = message.content.slice(prefix.length);
-                 if (!content) break;
-            
-                 args = content.split(' ')[1] ? content.split(' ').slice(1) : [];
-      
-                 cmdName = content.split(' ')[0].toLowerCase();
+	let prefixes = [`${process.env.PREFIX.toLowerCase()} `, `<@!${client.user.id}>`, `<@${client.user.id}>`];
 
-            }
-        }
+    let args, cmdName;
+	for (prefix in prefixes) {
+		prefix = prefixes[prefix];
+
+		if (message.content.toLowerCase().startsWith(prefix)) {
+			let content = message.content.slice(prefix.length);
+			if (!content) break;
+	
+			args = content.split(' ')[1] ? content.split(' ').slice(1) : [];
+
+			cmdname = content.split(' ')[0].toLowerCase();
+		}
+	}
 	const command = client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
 	if(!command) return;
 	if (command.directory.toLowerCase() === 'trusted') {

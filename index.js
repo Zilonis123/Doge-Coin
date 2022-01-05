@@ -42,6 +42,9 @@ client.Remove = require('./Shorteners/Remove');
 client.Bal = require('./Shorteners/Bal');
 client.Inventory = require('./Shorteners/Inventory');
 client.Vote = require('./Shorteners/Vote');
+client.on('ready', () => {
+	client.prefixes = [`${process.env.PREFIX.toLowerCase()} `, `<@!${client.user.id}>`, `<@${client.user.id}>`];
+})
 
 // handler
 require('./handler')(client);
@@ -54,7 +57,6 @@ mongoose.connect(process.env.MONGO, {
     useFindAndModify: false,
 }).then((db) => {
     console.log(`Connected to the database`);
-	client.database = db
 }).catch((err) =>{
     console.log(err);
 });

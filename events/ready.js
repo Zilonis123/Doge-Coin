@@ -1,6 +1,4 @@
 const client = require('../index');
-const moment = require('moment');
-const daily = require('../models/daily');
 client.on('ready', async() => {
     console.log(`${client.user.tag} is ready`);
     

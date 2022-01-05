@@ -1,6 +1,6 @@
 const client = require('../index.js');
 
-module.exports = async(emoji) => {
+module.exports = async(emoji, guildId) => {
     // Require the guild
     const guild = await client.guilds.cache.get(global.config.guild);
     const guild2 = await client.guilds.cache.get("878589153258913803");
@@ -29,6 +29,10 @@ module.exports = async(emoji) => {
     if (emoji.includes('bot2')) {
         const emoji_bot2 = await guild2.emojis.cache.get('922816818593300512');
         return transform(emoji_bot2);
+    }
+    if (emoji.includes('x') || emoji.includes('failed')) {
+        const emoji_x = await guild2.emojis.cache.get('922871363700658206');
+        return transform(emoji_x);
     }
     return ':smile:';
 }

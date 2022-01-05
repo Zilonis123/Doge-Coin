@@ -10,8 +10,8 @@ module.exports = {
      * @param {String[]} args 
      */
     async execute({ interaction, args, client }) {
-        const coin = await global.emojis('coin');
-        const lol = await global.emojis('lol');
+        const coin = await global.emojis('coin', interaction.guild.id);
+        const lol = await global.emojis('lol', interaction.guild.id);
 
         function random(rand) {
             const num = Math.floor(Math.random() * rand) + 1;

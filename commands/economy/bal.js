@@ -13,14 +13,16 @@ module.exports = {
         if (!user) user = message.author;
         
         // Balance
-        let balance = await client.Bal(user.id);
-        if (!balance) balance = {User:message.author.id,Wallet:0,Bank:0,BankMax:10000}
+        const balance = await client.Bal(user.id);
+
+        const percentt = balance.Bank / balance.BankMax;
+        const percent = percentt * 100
         
         const embed = new MessageEmbed()
             .setAuthor(`${user.username}'s balance`)
             .setColor(client.colors.discordYellow)
             .addField('Wallet', `\`${balance.Wallet.toLocaleString()}\`💵`, true)
-            .addField('Bank', `\`${balance.Bank.toLocaleString()} || ${balance.BankMax.toLocaleString()}\`💳`, true)
+            .addField('Bank', `\`${balance.Bank.toLocaleString()} || ${balance.BankMax.toLocaleString()}\` \`\`(${percent.toFixed(1)}%)\`\`💳`, true)
             .addField('Net Worth', `\`${(balance.Bank + balance.Wallet).toLocaleString()}\`:moneybag:`, true);
         message.channel.send({ embeds: [embed] });
     }

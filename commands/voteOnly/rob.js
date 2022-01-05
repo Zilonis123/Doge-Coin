@@ -11,15 +11,16 @@ module.exports = {
         // check if gay
         const paci = await pacis.findOne({ User: message.author.id })
         if (paci) return message.reply('You are in pacifist👨‍🦳 mode you cant rob anyone!')
-        const pacic = await pacis.findOne({ User: user.id })
+		const user = message.mentions.users.first();
+
+		if (!user) return message.reply({ content: `try running the command again, but this time actually mention someone to steal from` })
+		
+		const pacic = await pacis.findOne({ User: user.id })
         if (pacic) return message.reply(`You can\'t rob ${user} because they are a 👨‍🦳hippy!`);
 
         // get emojis
-        const lol = await global.emojis('lol');
-        const coin = await global.emojis('coin');
-
-        const user = message.mentions.users.first();
-		if (!user) return message.reply({ content: `try running the command again, but this time actually mention someone to steal from` })
+        const lol = await global.emojis('lol', message.guild.id);
+        const coin = await global.emojis('coin', message.guild.id);
 
 		if (user.id === message.author.id) return message.reply({ content: `hey stupid, seems pretty dumb to steal from urself` })
 

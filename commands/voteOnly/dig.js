@@ -23,9 +23,9 @@ module.exports = {
 
 
     // getting emojis
-    const loading = await global.emojis('loading');
-    const diamond = await global.emojis('diamond');
-    const coin = await global.emojis('coin');
+    const loading = await global.emojis('loading', message.guild.id);
+    const diamond = await global.emojis('diamond', message.guild.id);
+    const coin = await global.emojis('coin', message.guild.id);
     
     // creating level
     let level = [["S", "S", "S"], ["S", "S", "S"], ["S", "S", "S"]];

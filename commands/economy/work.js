@@ -9,8 +9,8 @@ module.exports = {
     description: 'Work if you are bored of begging',
     cooldown: 3600,
     async execute(message, args, client) {
-        const lol = await global.emojis('lol');
-        const coin = await global.emojis('coin');
+        const lol = await global.emojis('lol', message.guild.id);
+        const coin = await global.emojis('coin', message.guild.id);
         const jobs = ['miner', 'footballer'];
         
         const rndom = Math.floor(Math.random() * jobs.length);

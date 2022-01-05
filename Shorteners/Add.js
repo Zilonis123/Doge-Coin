@@ -7,7 +7,7 @@ module.exports = function (id , coins) {
             data.wallet += coins;
         }
         else {
-            new schema({ User: id, wallet: coins })
+            new schema({ User: id, Wallet: coins, Bank: 0, BankMax: 10000 }).save();
         }
         data.save();
     });

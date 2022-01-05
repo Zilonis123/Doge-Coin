@@ -21,9 +21,10 @@ client.on('messageCreate', async(message) => {
 	
 			args = content.split(' ')[1] ? content.split(' ').slice(1) : [];
 
-			cmdname = content.split(' ')[0].toLowerCase();
+			cmdName = content.split(' ')[0].toLowerCase();
 		}
 	}
+
 	const command = client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
 	if(!command) return;
 	if (command.directory.toLowerCase() === 'trusted') {
@@ -31,7 +32,7 @@ client.on('messageCreate', async(message) => {
 	    for (id in config.trusted) {
 	        if (message.author.id === config.trusted[id]) going = true;
 	    }
-            if (!going) return;
+        if (!going) return;
 	}
     // If lockdown leave and message them
     if (global.lockdown && !global.config.trusted.includes(message.author.id)) return message.reply('Our team of developers have found a bug! Please try this again or join my support server');

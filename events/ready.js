@@ -1,7 +1,7 @@
 const client = require('../index');
 client.on('ready', async() => {
     console.log(`${client.user.tag} is ready`);
-    console.log(`logged in using -${process.env.RAILWAY ? 'Railway' : 'something else'}-`)
+    console.log(`logged in using -${process.env.RAILWAY? 'Railway' : 'something else'}-`)
     
     const messages = [
         `${process.env.PREFIX} help`,

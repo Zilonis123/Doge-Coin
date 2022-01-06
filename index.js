@@ -31,23 +31,23 @@ client.cooldowns = new Collection();
 client.goldRush = new Collection();
 client.executed = new Collection();
 // stuff thats too big for this place
-require('./Shorteners/colors')(client);
+require('./Utils/colors')(client);
 // Adding global stuff
 global.config = require('./config.json');
-global.emojis = require('./Shorteners/Emojis.js');
-global.multiplier = require('./Shorteners/multiplier.js');
+global.emojis = require('./Utils/Emojis.js');
+global.multiplier = require('./Utils/multiplier.js');
 global.lockdown = false;
-client.Add = require('./Shorteners/Add');
-client.Remove = require('./Shorteners/Remove');
-client.Bal = require('./Shorteners/Bal');
-client.Inventory = require('./Shorteners/Inventory');
-client.Vote = require('./Shorteners/Vote');
-client.on('ready', () => {
-	client.prefixes = [`${process.env.PREFIX.toLowerCase()} `, `<@!${client.user.id}>`, `<@${client.user.id}>`];
-})
+client.Add = require('./Utils/Add');
+client.Remove = require('./Utils/Remove');
+client.Bal = require('./Utils/Bal');
+client.Inventory = require('./Utils/Inventory');
+client.Vote = require('./Utils/Vote');
 
 // handler
 require('./handler')(client);
+
+// chalk
+const chalk = require('chalk')
 // Database
 const mongoose = require("mongoose");
 
@@ -56,7 +56,7 @@ mongoose.connect(process.env.MONGO, {
     useUnifiedTopology: true,
     useFindAndModify: false,
 }).then((db) => {
-    console.log(`Connected to the database`);
+    console.log(chalk.green.bold(`Connected`) + ` to the database`);
 }).catch((err) =>{
     console.log(err);
 });

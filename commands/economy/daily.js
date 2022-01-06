@@ -1,54 +1,79 @@
-const create = require('../../wallet create');
-const schema = require('../../models/wallet');
-const inventory = require('../../models/inventory');
+const userSchema = require('../../models/wallet');
 const { MessageEmbed } = require('discord.js');
-const ms = require('ms');
-const moment = require('moment');
+const msToTime = require('../../Utils/msToTime');
+const ParseComma = require('../../Utils/ParseComma')
+
 
 module.exports = {
     name: 'daily',
+    description: 'Get your daily',
     aliases: ['d'],
-    description: 'Get your daily money',
-    cooldown: 86400,
     async execute(message, args, client) {
+
+        // emojis
         const coin = await global.emojis('coin', message.guild.id);
-        const sch = await schema.findOne({ User: message.author.id });
 
-        let text = `You got {items}\n\nCome back in \`1 day\``
-        const random = Math.floor(Math.random() * 10);
-        let cash = await global.multiplier(message.guild, message.author.id);
-        cash = Math.floor(cash * 25000);
-        if (random === 1) {
-            text = text.replace('{items}', `\`${cash.toLocaleString()}\`${coin}\n\`1\` - 📦loot box`);
-            inventory.findOne({ User: message.author.id }, async(err, data) => {
-                if (data) {
-                    const hasItem = Object.keys(data.Inventory).includes('loot');
-                    if (!hasItem) {
-                        data.Inventory['lootbox'] = 1;
-                    }
-                    else {
-                        data.Inventory['lootbox'] += 1;
-                    }
-                    await inventory.findOneAndUpdate({ User: message.author.id }, data)
-                }
-                else {
-                    new inventory({
-                        User: message.author.id,
-                        Inventory: {
-                            ['lootbox']: 1
-                        },
-                    }).save();
-                }
-            });
+        let userData;
+        try {
+            userData = await userSchema.findOne({ guildID: message.guild.id, User: message.author.id })
+            if (!userData) userData = await userSchema.create({ User: message.author.id })
+        } catch (err) {
+            console.log(err)
         }
-        text = text.replace('{items}', `\`${cash.toLocaleString()}\`${coin}`)
 
-        if (!sch) {
-            await create(message.author, cash, 0);
-            return message.channel.send({ embeds: [new MessageEmbed().setColor('YELLOW').setDescription(`You got \`${cash.toLocaleString()}\`${coin}\n\nCome back in a day`).setAuthor(`${message.author.tag} here is your daily`).setFooter(cash/25000 + 'x multiplier')] });
+        const author = await userSchema.findOne({ User: message.author.id })
+        const timestamp = author.dailyAt ? Date.now() - author.dailyAt : (86400 * 1000)
+
+        if (timestamp < (86400 * 1000)) {
+            const remaining = (86400 * 1000) - timestamp
+            const time = msToTime(remaining)
+                
+            const waitEmbed = new MessageEmbed()
+                .setColor('BLURPLE')
+                .setTitle('You\'ve already claimed your daily today')
+                .setDescription(`Your next daily is ready in:\n**${time}**`)
+            return message.channel.send({ embeds: [waitEmbed] });
         }
-        message.channel.send({ embeds: [new MessageEmbed().setColor('YELLOW').setAuthor(`${message.author.tag}`, message.author.displayAvatarURL()).setDescription(`${text}`).setFooter(cash/25000 + 'x multiplier')] });
-        sch.Wallet += cash,
-        sch.save();
+        
+        const broke = timestamp >= ((86400 * 1000) * 2);
+        const streak = broke || author.dailyStreak + 1;
+        const days = streak;
+        
+        // calculating reward
+        const multi = await global.multiplier(message.guild, message.author.id);
+        let reward = Math.floor((25 * 1000) * multi);
+
+        if (Date.now() - author.dailyAt > ((86400 * 1000) * 2)) { 
+            author.dailyStreak = 1;
+            await author.save();
+        } else {
+            author.dailyStreak += 1;
+            await author.save();
+        }
+
+        const streakBonus = Math.round((0.02 * reward) * streak);
+        if (streak > 1) {
+            reward = reward + streakBonus;
+        }
+
+        const successEmbed = new MessageEmbed()
+            .setColor("GREEN")
+            .setTitle("Daily Rewards")
+            .setDescription(`**${coin}${ParseComma(reward)}** placed into your wallet ( ${multi} multiplier bonus )`)
+            .setFooter(`Streak: ${days} days ( +${ParseComma(streakBonus)} )`)
+            
+        if (streak < 2) {
+            successEmbed.setFooter(`Streak: 0 days ( +0 )`);
+        }
+
+        if (broke) {
+            successEmbed.setFooter('');
+        }
+
+        author.dailyAt = Date.now();
+        client.Add(message.author.id, reward)
+        author.save();
+
+        return message.channel.send({ embeds: [successEmbed] });
     }
 }

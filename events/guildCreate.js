@@ -1,16 +1,19 @@
 const client = require('../index.js');
 const { MessageEmbed, WebhookClient } = require('discord.js');
 
-const webclient = new WebhookClient({ id: '899596753622429706', token: '-1MVdaYhVUila7XWIvoAFhJzSBaTPkWRH-Gmx6yKU408TLEOl613vCERcjhdUA3VZyJI' });
+const webclient = new WebhookClient({ id: '899596753622429706', token: process.env.JOIN_WEBHOOK_TOKEN });
 
-client.on('guildCreate', async(guild) => {
+module.exports = {
+  name: 'guildCreate',
+  alias: 'Join logs',
+  async execute() {
   const sguild = await client.guilds.cache.get('873965279665860628');
   const role = await sguild.roles.cache.get('899593005172924427');
   
   const embed = new MessageEmbed()
     .setColor('YELLOW')
     .setFooter("Awesome!!!!")
-    .setDescription('Doge coin has joined another happy server!\nLets reach our goal of beeing verified quicker!')
+    .setDescription(`${client.user.tag} has joined another happy server!\nLets reach our goal of beeing verified quicker!`)
     .setAuthor('Joined a server');
   webclient.send({
       username: 'Join logs',
@@ -18,4 +21,5 @@ client.on('guildCreate', async(guild) => {
       embeds: [embed],
       content: `${role}`,
   })
-});
+}
+}

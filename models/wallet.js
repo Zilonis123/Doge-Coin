@@ -5,5 +5,7 @@ const schema = new mongoose.Schema({
     Wallet: Number,
     Bank: Number,
     BankMax: Number,
+    dailyAt: { type: Number, default: 0, required: true },
+    dailyStreak: { type: Number, default: 0, required: true },
 })
 module.exports = mongoose.model('balance', schema)

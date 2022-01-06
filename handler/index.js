@@ -17,29 +17,8 @@ module.exports = async (client) => {
     });
 
     // Events
-    const eventFiles = await globPromise(`${process.cwd()}/events/*.js`);
-    eventFiles.map((value) => require(value));
+    await require('./events.js')(client);
 
     // Slash Commands
-    const slashCommands = await globPromise(
-        `${process.cwd()}/SlashCommands/*/*.js`
-    );
-
-    const arrayOfSlashCommands = [];
-    slashCommands.map((value) => {
-        const file = require(value);
-        if (!file?.name) return;
-        client.slashCommands.set(file.name, file);
-        arrayOfSlashCommands.push(file);
-    });
-    client.on("ready", async () => {
-        // Register for a single guild
-        // await client.guilds.cache
-        //    .get("878589153258913803")
-        //    .commands.set(arrayOfSlashCommands);
-
-        // Register for all the guilds the bot is in
-        await client.application.commands.set(arrayOfSlashCommands)
-        console.log(`Slashcommands for all ${client.guilds.cache.size} servers have been updated`)
-    });
+    await require('./slash')(client);
 };

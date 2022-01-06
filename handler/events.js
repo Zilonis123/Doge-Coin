@@ -5,7 +5,7 @@ const chalk = require('chalk');
 
 module.exports = async (client) => {
     console.log(chalk.yellow.bold('EVENT STATUS━━━━━━━━━━━━━━━━━━━━━┓'));
-    const eventFiles = await globPromise(`${process.cwd()}/Events/**/*.js`);
+    const eventFiles = await globPromise(`${process.cwd()}/events/**/*.js`);
     eventFiles.map((file) => {
         const event = require(file);
 

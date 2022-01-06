@@ -32,7 +32,7 @@ module.exports = async (client) => {
             await client.guilds.cache.get(global.config.TEST_GUILD).commands.set(slashCommandsArray);
         }
         else {
-            await client.application.commands.set(arrayOfSlashCommands);
+            await client.application.commands.set(slashCommandsArray);
         }
     })
 }

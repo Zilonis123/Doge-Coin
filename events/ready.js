@@ -5,8 +5,11 @@ module.exports = {
     name: 'ready',
     once: true,
     async execute() {
+        // Ready log
         console.log(chalk.yellow.bold(`${client.user.tag}`) + ` is ready`);
         
+
+        // Activity changing
         const messages = [
             `${process.env.PREFIX} help`,
             'mentions',

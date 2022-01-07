@@ -13,13 +13,16 @@ module.exports = {
 		let prefixes = [`${process.env.PREFIX.toLowerCase()}`, `<@!${client.user.id}>`, `<@${client.user.id}>`];
 
 		const prefix = prefixes.find(x => message.content.startsWith(x));
+                console.log(message.content)
 		if(!prefix) return;
+                console.log("prefix")
 		const args = message.content.slice(prefix.length).trim().split(/ +/);
 		const cmdName = args.shift().toLowerCase();
 
 		// handle commands
 		const command = client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
 		if(!command) return;
+                console.log("cmd")
 		if (command.directory.toLowerCase() === 'trusted') {
 			let going = false;
 			for (id in config.trusted) {

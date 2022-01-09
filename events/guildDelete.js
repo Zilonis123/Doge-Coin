@@ -8,7 +8,7 @@ module.exports = {
   alias: 'Leave logs',
   async execute() {
     const sguild = await client.guilds.cache.get('873965279665860628');
-    if (!client.isReady() || !guild.available) return;
+    if (!client.isReady() || !sguild.available) return;
     
     const role = await sguild.roles.cache.get('899593005172924427');
     
